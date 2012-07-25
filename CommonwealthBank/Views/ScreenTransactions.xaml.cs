@@ -1,0 +1,50 @@
+﻿using System;
+using System.Linq;
+using Microsoft.Phone.Controls;
+using System.Collections.Generic;
+using CMcG.CommonwealthBank.ViewModels;
+using CMcG.CommonwealthBank.Data;
+using System.Windows;
+
+namespace CMcG.CommonwealthBank.Views
+{
+    public partial class ScreenTransactions : PhoneApplicationPage
+    {
+        public ScreenTransactions()
+        {
+            InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            this.CheckPermissions<TransactionViewModel>();
+        }
+
+        void ShowSettings(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/ScreenOptions.xaml", UriKind.Relative));
+        }
+
+        void MarkAllAsSeen(object sender, EventArgs e)
+        {
+            ((TransactionViewModel)DataContext).MarkAsSeen();
+        }
+
+        void RefreshAccount(object sender, EventArgs e)
+        {
+            ((TransactionViewModel)DataContext).Refresh();
+        }
+
+        void AddReplacement(object sender, EventArgs e)
+        {
+            var menuItem    = (MenuItem)sender;
+            var menu        = (ContextMenu)menuItem.Parent;
+            var ctl         = (FrameworkElement)menu.Owner;
+            var transaction = (Transaction)ctl.DataContext;
+
+            var url = "/Views/ScreenReplacementEdit.xaml?id=" + transaction.Id;
+            NavigationService.Navigate(new Uri(url, UriKind.Relative));
+        }
+    }
+}
