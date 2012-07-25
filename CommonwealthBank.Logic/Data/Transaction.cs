@@ -172,7 +172,6 @@ namespace CMcG.CommonwealthBank.Data
                                       .Replace("Transfer from ",                  "")
                                       .Replace("Qld Au",                          "")
                                       .Replace("Ql Aus",                          "")
-                                      .Replace("Salary Care Systems Care Systems","Care Systems: Salary")
                                       .Replace(@"Direct Debit \d+",               m => "DD")
                                       .Replace(@"Card xx\d\d\d\d",                m => "")
                                       .Replace(@"Value Date: \d\d/\d\d/\d\d\d\d", m => "");
