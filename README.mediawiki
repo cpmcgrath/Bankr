@@ -1,0 +1,11 @@
+==Unoffical Commonwealth Bank App==
+
+Gives you access to some data without requiring you to logon.
+
+Need to just check how much is in your account - it's now avalible on a live tile.
+
+===NOTE===
+Obviously for this to work you must trust the app with your bank account login details.
+
+I promise I don't misuse them, but best practice would be to read the source code, 
+make sure you are satisfied that it is safe. Then compile the application yourself.
