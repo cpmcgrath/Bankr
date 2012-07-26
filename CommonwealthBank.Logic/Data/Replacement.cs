@@ -8,8 +8,8 @@ namespace CMcG.CommonwealthBank.Data
     public class Replacement : NotifyBase
     {
         int    m_id;
-        string m_original;
-        string m_newValue;
+        string m_original = string.Empty;
+        string m_newValue = string.Empty;
 
         [Column(AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, IsDbGenerated=true)]
         public int Id
