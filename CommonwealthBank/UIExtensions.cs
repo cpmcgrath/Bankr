@@ -36,9 +36,6 @@ namespace CMcG.CommonwealthBank
 
         public static void CheckPermissions<TViewModel>(this PhoneApplicationPage instance, Func<TViewModel> creator)
         {
-            if (instance.DataContext is TViewModel)
-                return;
-
             if (App.Current.Security.HasPermission<TViewModel>())
             {
                 instance.DataContext = creator.Invoke();
