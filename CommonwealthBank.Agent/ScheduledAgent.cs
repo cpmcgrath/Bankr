@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using Microsoft.Phone.Scheduler;
 using System.Diagnostics;
-using Microsoft.Phone.Shell;
+using Microsoft.Phone.Scheduler;
+using CMcG.CommonwealthBank.Data;
+using CMcG.CommonwealthBank.Logic;
 
 namespace CMcG.CommonwealthBank.Agent
 {
@@ -26,6 +27,20 @@ namespace CMcG.CommonwealthBank.Agent
         {
             if (Debugger.IsAttached)
                 Debugger.Break();
+
+            var error = new Error
+            {
+                Time     = DateTime.Now,
+                Message  = e.ExceptionObject.Message,
+                Extended = e.ExceptionObject.ToVerboseString()
+            };
+
+            using (var store = new DataStoreContext())
+            {
+                store.Errors.InsertOnSubmit(error);
+                store.SubmitChanges();
+            }
+
             e.Handled = true;
             NotifyComplete();
         }
