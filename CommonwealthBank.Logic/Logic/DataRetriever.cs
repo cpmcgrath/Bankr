@@ -3,6 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Net;
 using CMcG.CommonwealthBank.Data;
+using System.Collections.Generic;
 
 namespace CMcG.CommonwealthBank.Logic
 {
@@ -150,23 +151,22 @@ namespace CMcG.CommonwealthBank.Logic
             using (var store = new DataStoreContext())
             {
                 var account      = store.Accounts.FirstOrDefault(x => x.AccountNumber == result.AccountNumber);
-                var transactions = result.Transactions
-                                         .Select(x => new
-                                         {
-                                             Transaction = x,
-                                             Original    = account.TransactionList.FirstOrDefault(y => y.Equals(x))
-                                         }).ToArray();
-                var newTrans = transactions.Where(x => x.Original == null);
+                var toDelete     = account.TransactionList.Where(x => !AlreadyExists(result .Transactions,    x)).ToArray();
+                var transactions = result .Transactions   .Where(x => !AlreadyExists(account.TransactionList, x)).ToArray();
 
-                foreach (var details in transactions.Where(x => x.Original != null))
-                    details.Original.IsPending = details.Transaction.IsPending;
+                store.Transactions.DeleteAllOnSubmit(toDelete);
 
-                foreach (var details in newTrans.Reverse())
-                    account.TransactionList.Add(details.Transaction);
+                foreach (var transaction in transactions.Reverse())
+                    account.TransactionList.Add(transaction);
 
                 store.SubmitChanges();
-                Status.SetAction(newTrans.Count() + " new transactions found.", true);
+                Status.SetAction(transactions.Count() + " new transactions found.", true);
             }
+        }
+
+        bool AlreadyExists(IEnumerable<Transaction> list, Transaction transaction)
+        {
+            return list.Any(y => y.Equals(transaction));
         }
     }
 }

@@ -205,7 +205,8 @@ namespace CMcG.CommonwealthBank.Data
         {
             return EffectiveDate == other.EffectiveDate
                 && Description   == other.Description
-                && Amount        == other.Amount;
+                && Amount        == other.Amount
+                && IsPending     == other.IsPending;
         }
     }
 }
