@@ -29,7 +29,7 @@ namespace CMcG.CommonwealthBank.ViewModels
             {
                 Account = store.CurrentOptions.GetSelectedAccount(store);
 
-                Transactions     = store.Transactions.ToArray().Reverse().ToArray();
+                Transactions     = store.Transactions.OrderByDescending(x => x.Id).ToArray();
                 var replacements = store.Replacements.ToArray();
 
                 foreach (var transaction in Transactions)
