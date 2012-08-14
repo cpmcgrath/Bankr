@@ -15,6 +15,8 @@ namespace CMcG.CommonwealthBank.Views
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+
             var argLookup = NavigationContext.QueryString;
             var transId   = int.Parse(argLookup["id"]);
             this.CheckPermissions(() => new ReplacementEditViewModel(transId));
