@@ -24,9 +24,7 @@ namespace CMcG.CommonwealthBank.Logic
             if (loginDetails == null)
                 return false;
 
-            var client = new CookieAwareWebClient { BaseAddress = "https://www2.my.commbank.com.au" };
-            client.UploadStringCompleted += OnClientUploadStringCompleted;
-
+            var client   = new CookieAwareWebClient { BaseAddress = "https://www2.my.commbank.com.au" };
             var password = new TwoWayEncryption().Decrypt(loginDetails.Password);
             Login(client, loginDetails.Username, password);
             return true;
@@ -48,7 +46,42 @@ namespace CMcG.CommonwealthBank.Logic
             string paramRequest = JsonConvert.SerializeObject(parameters);
 
             client.Headers["Content-Type"] = "application/json";
+            client.UploadStringCompleted += OnLoginCompleted;
             client.UploadStringAsync(new Uri("mobile/i/AjaxCalls.aspx", UriKind.Relative), "POST", paramRequest, "login");
+        }
+
+        void OnLoginCompleted(object sender, UploadStringCompletedEventArgs e)
+        {
+            var client = (WebClient)sender;
+            client.UploadStringCompleted -= OnLoginCompleted;
+            if (e.Error is WebException)
+            {
+                Status.SetAction("Cannot find the server", true);
+                Callback();
+                return;
+            }
+
+            var msg      = e.Result.Substring(2, e.Result.Length - 4);
+            var hasError = Newtonsoft.Json.Linq.JObject.Parse(msg)["ErrorMessages"].Any();
+
+            if (hasError)
+            {
+                OnLogonFailed();
+                return;
+            }
+
+            UpdateAccounts(msg);
+
+            using (var store = new DataStoreContext())
+            {
+                if (store.Options.Any())
+                    GetTransactions(client, store.CurrentOptions.SelectedAccountId);
+                else
+                {
+                    Status.SetAction("Account not set.", true);
+                    Callback();
+                }
+            }
         }
 
         void GetTransactions(WebClient client, int accountId)
@@ -66,11 +99,15 @@ namespace CMcG.CommonwealthBank.Logic
             string paramRequest = JsonConvert.SerializeObject(parameters);
 
             client.Headers["Content-Type"] = "application/json";
+            client.UploadStringCompleted += OnGetTransactionsCompleted;
             client.UploadStringAsync(new Uri("mobile/i/AjaxCalls.aspx", UriKind.Relative), "POST", paramRequest);
         }
 
-        void OnClientUploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
+        void OnGetTransactionsCompleted(object sender, UploadStringCompletedEventArgs e)
         {
+            var client = (WebClient)sender;
+            client.UploadStringCompleted -= OnGetTransactionsCompleted;
+
             if (e.Error is WebException)
             {
                 Status.SetAction("Cannot find the server", true);
@@ -79,34 +116,9 @@ namespace CMcG.CommonwealthBank.Logic
             }
 
             var msg = e.Result.Substring(2, e.Result.Length - 4);
-            var hasError = Newtonsoft.Json.Linq.JObject.Parse(msg)["ErrorMessages"].Any();
 
-            if (e.UserState as string == "login")
-            {
-                if (hasError)
-                {
-                    OnLogonFailed();
-                    return;
-                }
-
-                UpdateAccounts(msg);
-
-                using (var store = new DataStoreContext())
-                {
-                    if (store.Options.Any())
-                        GetTransactions((WebClient)sender, store.CurrentOptions.SelectedAccountId);
-                    else
-                    {
-                        Status.SetAction("Account not set.", true);
-                        Callback();
-                    }
-                }
-            }
-            else
-            {
-                UpdateTransactions(msg);
-                Callback();
-            }
+            UpdateTransactions(msg);
+            Callback();
         }
 
         void OnLogonFailed()
