@@ -139,6 +139,7 @@
   <ItemGroup>
     <Content Include="Images\appbar.add.rest.png" />
     <Content Include="Images\appbar.save.rest.png" />
+    <Content Include="Images\appbar.web.rest.png" />
     <Content Include="Images\Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

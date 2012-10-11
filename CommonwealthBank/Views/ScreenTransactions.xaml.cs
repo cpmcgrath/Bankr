@@ -46,5 +46,11 @@ namespace CMcG.CommonwealthBank.Views
             var url = "/Views/ScreenReplacementEdit.xaml?id=" + transaction.Id;
             NavigationService.Navigate(new Uri(url, UriKind.Relative));
         }
+
+        void GoToWebsite(object sender, EventArgs e)
+        {
+            var url = @"http://www.netbank.com.au/mobile";
+            new Microsoft.Phone.Tasks.WebBrowserTask { Uri = new Uri(url) }.Show();
+        }
     }
 }

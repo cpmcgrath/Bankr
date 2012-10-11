@@ -76,6 +76,7 @@
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.check.rest.png"   Text="mark all as seen" Click="MarkAllAsSeen" />
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.refresh.rest.png" Text="refresh"          Click="RefreshAccount" />
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.web.rest.png"     Text="website"          Click="GoToWebsite" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="settings" Click="ShowSettings"/>
             </shell:ApplicationBar.MenuItems>
