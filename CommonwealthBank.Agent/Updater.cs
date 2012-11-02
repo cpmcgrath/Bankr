@@ -12,10 +12,14 @@ namespace CMcG.CommonwealthBank.Agent
         {
             using (var store = new DataStoreContext())
             {
-                var account = store.CurrentOptions.GetSelectedAccount(store);
+                var  account  = store.CurrentOptions.GetSelectedAccount(store);
+                bool hasLogon = store.LoginDetails.Any();
 
-                if (account == null)
+                if (account == null || !hasLogon)
+                {
+                    SetLiveTileToError();
                     return false;
+                }
 
                 var sinceUpdate = DateTime.Now - account.LastUpdate;
                 if (sinceUpdate > TimeSpan.FromMinutes(45))
@@ -56,6 +60,12 @@ namespace CMcG.CommonwealthBank.Agent
 
                 tile.Update(new StandardTileData { Title = amount, BackTitle = backTitle, BackContent = backContent, Count = count });
             }
+        }
+
+        public void SetLiveTileToError()
+        {
+            var tile = ShellTile.ActiveTiles.First();
+            tile.Update(new StandardTileData { Title = "Requires Attention", BackTitle = "", BackContent = "", Count = 0 });
         }
     }
 }
