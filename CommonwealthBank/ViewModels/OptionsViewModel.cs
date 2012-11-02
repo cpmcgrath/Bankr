@@ -14,11 +14,15 @@ namespace CMcG.CommonwealthBank.ViewModels
                 Accounts = store.Accounts.ToArray();
 
                 if (store.Options.Any())
+                {
                     SelectedAccount = store.CurrentOptions.GetSelectedAccount(store);
+                    AutoRefresh     = store.CurrentOptions.AutoRefresh;
+                }
             }
         }
 
-        public Account[] Accounts { get; set; }
+        public bool      AutoRefresh { get; set; }
+        public Account[] Accounts    { get; set; }
 
         private Account m_selectedAccount;
         public Account SelectedAccount
@@ -39,9 +43,12 @@ namespace CMcG.CommonwealthBank.ViewModels
             using (var store = new DataStoreContext())
             {
                 if (store.Options.Any())
+                {
                     store.CurrentOptions.SelectedAccountId = SelectedAccount.Id;
+                    store.CurrentOptions.AutoRefresh       = AutoRefresh;
+                }
                 else
-                    store.Options.InsertOnSubmit(new Options { SelectedAccountId = SelectedAccount.Id });
+                    store.Options.InsertOnSubmit(new Options { SelectedAccountId = SelectedAccount.Id, AutoRefresh = AutoRefresh });
                 store.SubmitChanges();
 
                 var account               = store.CurrentOptions.GetSelectedAccount(store);

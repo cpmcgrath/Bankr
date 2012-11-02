@@ -12,8 +12,9 @@ namespace CMcG.CommonwealthBank.Agent
         {
             using (var store = new DataStoreContext())
             {
-                var  account  = store.CurrentOptions.GetSelectedAccount(store);
-                bool hasLogon = store.LoginDetails.Any();
+                bool autoRefresh = store.CurrentOptions.AutoRefresh;
+                var  account     = store.CurrentOptions.GetSelectedAccount(store);
+                bool hasLogon    = store.LoginDetails.Any();
 
                 if (account == null || !hasLogon)
                 {
@@ -22,7 +23,7 @@ namespace CMcG.CommonwealthBank.Agent
                 }
 
                 var sinceUpdate = DateTime.Now - account.LastUpdate;
-                if (sinceUpdate > TimeSpan.FromMinutes(45))
+                if (sinceUpdate > TimeSpan.FromMinutes(45) && autoRefresh)
                     return Refresh(store, afterUpdate);
             }
 

@@ -35,6 +35,12 @@
                 </StackPanel>
             </controls:PivotItem>
 
+            <controls:PivotItem Header="other">
+                <StackPanel>
+                    <CheckBox IsChecked="{Binding AutoRefresh, Mode=TwoWay}" Content="Keep balance up to date" />
+                </StackPanel>
+            </controls:PivotItem>
+
             <controls:PivotItem Header="errors">
                 <StackPanel>
                     <TextBlock Text="Sending the error report may send personal information." TextWrapping="Wrap"/>

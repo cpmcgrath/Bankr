@@ -16,7 +16,7 @@ namespace CMcG.CommonwealthBank.ViewModels
             {
                 var sinceUpdate = DateTime.Now - Account.LastUpdate;
                 CurrentApp.Status.SetAction(sinceUpdate.ToFormattedString() + " since last update", true);
-                if (sinceUpdate > TimeSpan.FromMinutes(45))
+                if (sinceUpdate > TimeSpan.FromMinutes(45) && AutoRefresh)
                     Refresh();
             }
             else
@@ -27,7 +27,8 @@ namespace CMcG.CommonwealthBank.ViewModels
         {
             using (var store = new DataStoreContext())
             {
-                Account = store.CurrentOptions.GetSelectedAccount(store);
+                Account          = store.CurrentOptions.GetSelectedAccount(store);
+                AutoRefresh      = store.CurrentOptions.AutoRefresh;
 
                 Transactions     = store.Transactions.OrderByDescending(x => x.Id).ToArray();
                 var replacements = store.Replacements.ToArray();
@@ -48,6 +49,7 @@ namespace CMcG.CommonwealthBank.ViewModels
             }.LoadData();
         }
 
+        public bool          AutoRefresh  { get; set; }
         public Account       Account      { get; set; }
         public Transaction[] Transactions { get; set; }
 
