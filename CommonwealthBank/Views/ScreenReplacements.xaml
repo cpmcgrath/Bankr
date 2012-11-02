@@ -33,6 +33,11 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         </Style>
     </phone:PhoneApplicationPage.Resources>
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="{Binding CurrentApp.Status.IsBusy}"
+                                 IsVisible="True"
+                                 Text="{Binding CurrentApp.Status.Action}" />
+    </shell:SystemTray.ProgressIndicator>
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

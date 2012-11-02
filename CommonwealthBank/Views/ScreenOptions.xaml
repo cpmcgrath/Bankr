@@ -14,6 +14,11 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="{Binding CurrentApp.Status.IsBusy}"
+                                 IsVisible="True"
+                                 Text="{Binding CurrentApp.Status.Action}" />
+    </shell:SystemTray.ProgressIndicator>
 
     <Grid Background="Transparent">
         <controls:Pivot Title="OPTIONS">

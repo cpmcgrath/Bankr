@@ -12,6 +12,11 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="{Binding CurrentApp.Status.IsBusy}"
+                                 IsVisible="True"
+                                 Text="{Binding CurrentApp.Status.Action}" />
+    </shell:SystemTray.ProgressIndicator>
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
