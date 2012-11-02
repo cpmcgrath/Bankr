@@ -18,14 +18,29 @@ namespace CMcG.CommonwealthBank.Views
             base.OnNavigatedTo(e);
 
             var argLookup = NavigationContext.QueryString;
-            var transId   = int.Parse(argLookup["id"]);
-            this.CheckPermissions(() => new ReplacementEditViewModel(transId));
+            if (argLookup.ContainsKey("transid"))
+            {
+                int transId = int.Parse(argLookup["transid"]);
+                this.CheckPermissions(() => ReplacementEditViewModel.Create(transId));
+            }
+            else
+            {
+                int id = int.Parse(argLookup["id"]);
+                this.CheckPermissions(() => ReplacementEditViewModel.Load(id));
+            }
         }
 
         void Save(object sender, EventArgs e)
         {
             this.FinishBinding();
             ((ReplacementEditViewModel)DataContext).Save();
+            NavigationService.GoBack();
+        }
+
+        void Delete(object sender, EventArgs e)
+        {
+            this.FinishBinding();
+            ((ReplacementEditViewModel)DataContext).Delete();
             NavigationService.GoBack();
         }
     }

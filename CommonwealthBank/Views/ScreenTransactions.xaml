@@ -33,10 +33,10 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="{Binding Summary}" Grid.ColumnSpan="3" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}"/>
-                <TextBlock Text="{Binding EffectiveDate, StringFormat=d MMMM}" Grid.Row="1" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}" />
+                <TextBlock Text="{Binding Summary}"                               Grid.ColumnSpan="3" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}"/>
+                <TextBlock Text="{Binding EffectiveDate,  StringFormat=d MMMM}"   Grid.Row="1" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}" />
                 <TextBlock Text="{Binding DateOfPurchase, StringFormat=(d MMMM)}" Grid.Row="1" Grid.Column="1" Margin="4,0,0,0" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}" />
-                <TextBlock Text="{Binding AbsAmount, StringFormat=$0.00}" Grid.Row="1" Grid.Column="2" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}" />
+                <TextBlock Text="{Binding AbsAmount, StringFormat=$0.00}"         Grid.Row="1" Grid.Column="2" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}" />
             </Grid>
         </DataTemplate>
         <Style TargetType="ListBoxItem">
@@ -78,7 +78,8 @@
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.refresh.rest.png" Text="refresh"          Click="RefreshAccount" />
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.web.rest.png"     Text="website"          Click="GoToWebsite" />
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="settings" Click="ShowSettings"/>
+                <shell:ApplicationBarMenuItem Text="settings"          Click="ShowSettings"/>
+                <shell:ApplicationBarMenuItem Text="manage replacements" Click="ShowReplacements"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

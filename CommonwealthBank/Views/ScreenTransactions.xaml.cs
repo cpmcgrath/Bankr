@@ -26,6 +26,11 @@ namespace CMcG.CommonwealthBank.Views
             NavigationService.Navigate(new Uri("/Views/ScreenOptions.xaml", UriKind.Relative));
         }
 
+        void ShowReplacements(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/ScreenReplacements.xaml", UriKind.Relative));
+        }
+
         void MarkAllAsSeen(object sender, EventArgs e)
         {
             ((TransactionViewModel)DataContext).MarkAsSeen();
@@ -43,7 +48,7 @@ namespace CMcG.CommonwealthBank.Views
             var ctl         = (FrameworkElement)menu.Owner;
             var transaction = (Transaction)ctl.DataContext;
 
-            var url = "/Views/ScreenReplacementEdit.xaml?id=" + transaction.Id;
+            var url = "/Views/ScreenReplacementEdit.xaml?transid=" + transaction.Id;
             NavigationService.Navigate(new Uri(url, UriKind.Relative));
         }
 

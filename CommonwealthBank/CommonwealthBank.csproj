@@ -78,6 +78,7 @@
     <Compile Include="Controls\FixedCheckBox.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="UIExtensions.cs" />
+    <Compile Include="ViewModels\ReplacementsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\LoginEditViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +94,9 @@
     </Compile>
     <Compile Include="Views\ScreenReplacementEdit.xaml.cs">
       <DependentUpon>ScreenReplacementEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScreenReplacements.xaml.cs">
+      <DependentUpon>ScreenReplacements.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ScreenTransactions.xaml.cs">
       <DependentUpon>ScreenTransactions.xaml</DependentUpon>
@@ -122,6 +126,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ScreenReplacements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ScreenTransactions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -138,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\appbar.add.rest.png" />
+    <Content Include="Images\appbar.delete.rest.png" />
     <Content Include="Images\appbar.save.rest.png" />
     <Content Include="Images\appbar.web.rest.png" />
     <Content Include="Images\Icon.png">

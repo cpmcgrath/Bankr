@@ -34,7 +34,8 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar.save.rest.png" Text="Save" Click="Save" />
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.save.rest.png"   Text="Save"   Click="Save" />
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.delete.rest.png" Text="Delete" Click="Delete" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
