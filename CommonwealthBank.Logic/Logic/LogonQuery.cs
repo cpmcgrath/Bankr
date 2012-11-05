@@ -53,11 +53,11 @@ namespace CMcG.CommonwealthBank.Logic
 
         void UpdateAccounts(string message)
         {
-            var result = JsonConvert.DeserializeObject<LoginResult>(message).AccountGroups;
+            var result = JsonConvert.DeserializeObject<LoginResult>(message);
 
             using (var store = new DataStoreContext())
             {
-                foreach (var account in result.SelectMany(x => x.ListAccount))
+                foreach (var account in result.AccountGroups.SelectMany(x => x.ListAccount))
                 {
                     account.LastUpdate = DateTime.Now;
                     var original = store.Accounts.FirstOrDefault(x => x.AccountNumber == account.AccountNumber);
@@ -73,6 +73,8 @@ namespace CMcG.CommonwealthBank.Logic
 
                 store.SubmitChanges();
             }
+
+            SessionId = result.SID;
         }
     }
 }

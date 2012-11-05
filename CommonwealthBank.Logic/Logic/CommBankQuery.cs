@@ -9,9 +9,10 @@ namespace CMcG.CommonwealthBank.Logic
 {
     public abstract class CommBankQuery
     {
-        public AppStatus     Status   { get; set; }
-        public Action        Callback { get; set; }
-        public CommBankQuery Next     { get; set; }
+        public AppStatus     Status    { get; set; }
+        public Action        Callback  { get; set; }
+        public CommBankQuery Next      { get; set; }
+        public string        SessionId { get; set; }
 
         protected abstract string      Action     { get; }
         protected abstract NameValue[] Parameters { get; }
@@ -32,7 +33,7 @@ namespace CMcG.CommonwealthBank.Logic
 
             client.Headers["Content-Type"] = "application/json";
             client.UploadStringCompleted += OnCompleted;
-            client.UploadStringAsync(new Uri("mobile/i/AjaxCalls.aspx", UriKind.Relative), "POST", paramRequest);
+            client.UploadStringAsync(new Uri("mobile/i/AjaxCalls.aspx?SID=" + SessionId, UriKind.Relative), "POST", paramRequest);
         }
 
         void OnCompleted(object sender, UploadStringCompletedEventArgs e)
@@ -52,8 +53,9 @@ namespace CMcG.CommonwealthBank.Logic
 
             if (Next != null)
             {
-                Next.Status   = Status;
-                Next.Callback = Callback;
+                Next.Status    = Status;
+                Next.SessionId = SessionId;
+                Next.Callback  = Callback;
                 Next.Start(client);
             }
         }
