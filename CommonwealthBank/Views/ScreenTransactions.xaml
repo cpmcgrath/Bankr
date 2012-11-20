@@ -69,6 +69,12 @@
                          HorizontalContentAlignment = "Stretch"
                          ItemsSource                = "{Binding SentTransactions}" />
             </controls:PivotItem>
+            
+            <controls:PivotItem Header="internal">
+                <ListBox ItemTemplate               = "{StaticResource TransactionTemplate}"
+                         HorizontalContentAlignment = "Stretch"
+                         ItemsSource                = "{Binding InternalTransactions}" />
+            </controls:PivotItem>
         </controls:Pivot>
     </Grid>
 

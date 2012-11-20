@@ -3,6 +3,7 @@ using System.Linq;
 using CMcG.CommonwealthBank.Agent;
 using CMcG.CommonwealthBank.Data;
 using CMcG.CommonwealthBank.Logic;
+using System.Text.RegularExpressions;
 
 namespace CMcG.CommonwealthBank.ViewModels
 {
@@ -30,13 +31,13 @@ namespace CMcG.CommonwealthBank.ViewModels
                 Account          = store.CurrentOptions.GetSelectedAccount(store);
                 AutoRefresh      = store.CurrentOptions.AutoRefresh;
 
-                Transactions     = store.Transactions.OrderByDescending(x => x.Id).ToArray();
-                var replacements = store.Replacements.ToArray();
+                m_allTransactions = store.Transactions.OrderByDescending(x => x.Id).ToArray();
+                var replacements  = store.Replacements.ToArray();
 
-                foreach (var transaction in Transactions)
+                foreach (var transaction in m_allTransactions)
                     transaction.Replacements = replacements;
             }
-            NotifyPropertyChanged("Transactions", "ReceivedTransactions", "SentTransactions", "AccountAmount");
+            NotifyPropertyChanged("Transactions", "ReceivedTransactions", "SentTransactions", "InternalTransactions", "AccountAmount");
             new Updater().UpdateLiveTile();
         }
 
@@ -51,7 +52,13 @@ namespace CMcG.CommonwealthBank.ViewModels
 
         public bool          AutoRefresh  { get; set; }
         public Account       Account      { get; set; }
-        public Transaction[] Transactions { get; set; }
+
+        Transaction[] m_allTransactions;
+
+        public Transaction[] Transactions
+        {
+            get { return m_allTransactions.Except(InternalTransactions).ToArray(); }
+        }
 
         public Transaction[] ReceivedTransactions
         {
@@ -61,6 +68,17 @@ namespace CMcG.CommonwealthBank.ViewModels
         public Transaction[] SentTransactions
         {
             get { return Transactions.Where(x => x.Amount < 0).ToArray(); }
+        }
+
+        public Transaction[] InternalTransactions
+        {
+            get { return m_allTransactions.Where(IsInternal).ToArray(); }
+        }
+
+        bool IsInternal(Transaction trans)
+        {
+            var match = Regex.Match(trans.Description, @"Transfer (from|to) xx(?<digits>\d+) NetBank");
+            return match.Success;
         }
 
         public string AccountAmount
