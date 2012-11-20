@@ -208,5 +208,10 @@ namespace CMcG.CommonwealthBank.Data
                 && Amount        == other.Amount
                 && IsPending     == other.IsPending;
         }
+
+        public override string ToString()
+        {
+            return "Desc: " + Description + ", Amount: " + Amount + ", Date:" + EffectiveDate + ". Pending: " + IsPending;
+        }
     }
 }
