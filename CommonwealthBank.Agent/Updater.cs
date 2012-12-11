@@ -54,19 +54,27 @@ namespace CMcG.CommonwealthBank.Agent
 
                 var tile        = ShellTile.ActiveTiles.First();
                 var count       = account.TransactionList.Count(x => !x.IsSeen);
-                var backContent = count == 1 ? account.TransactionList.First(x => !x.IsSeen).Summary
-                                : count  > 0 ? count + " unseen transactions"
+                var transactions = account.TransactionList.Where(x => !x.IsSeen).Select(x => x.Summary).Take(2).ToArray();
+                var backContent = count == 1 ? "New unseen transaction"
+                                : count  > 1 ? count + " unseen transactions"
                                 : "";
                 var backTitle   = count > 0 ? amount : "";
 
-                tile.Update(new StandardTileData { Title = amount, BackTitle = backTitle, BackContent = backContent, Count = count });
+                tile.Update(new IconicTileData
+                {
+                    Title = amount,
+                    Count = count,
+                    WideContent1 = backContent,
+                    WideContent2 = transactions.FirstOrDefault(),
+                    WideContent3 = transactions.Skip(1).FirstOrDefault()
+                });
             }
         }
 
         public void SetLiveTileToError()
         {
             var tile = ShellTile.ActiveTiles.First();
-            tile.Update(new StandardTileData { Title = "Requires Attention", BackTitle = "", BackContent = "", Count = 0 });
+            tile.Update(new IconicTileData { Title = "Requires Attention", Count = 0 });
         }
     }
 }

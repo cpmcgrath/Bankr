@@ -1,28 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-    <App xmlns="" ProductID="{80f9d14e-2d44-46d5-8639-d5dca2b2baa6}" Title="Commbank Unoffical" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="CommonwealthBank author" Description="Sample description" Publisher="CommonwealthBank">
-        <IconPath IsRelative="true" IsResource="false">Images\Icon.png</IconPath>
-        <Capabilities>
-            <Capability Name="ID_CAP_NETWORKING" />
-            <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
-        </Capabilities>
-        <Tasks>
-            <DefaultTask Name="_default" NavigationPage="Views/ScreenTransactions.xaml" />
-            <ExtendedTask Name="BackgroundTask">
-                <BackgroundServiceAgent Specifier = "ScheduledTaskAgent"
-                                        Name      = "CommonwealthBank.Agent"
-                                        Source    = "CommonwealthBank.Agent"
-                                        Type      = "CMcG.CommonwealthBank.Agent.ScheduledAgent" />
-            </ExtendedTask>
-        </Tasks>
-        <Tokens>
-            <PrimaryToken TokenID="CommonwealthBankToken" TaskName="_default">
-                <TemplateType5>
-                    <BackgroundImageURI IsRelative="true" IsResource="false">Images\Tile.png</BackgroundImageURI>
-                    <Count>0</Count>
-                    <Title>Commbank Unoffical</Title>
-                </TemplateType5>
-            </PrimaryToken>
-        </Tokens>
-    </App>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+  <DefaultLanguage xmlns="" code="en-US" />
+  <App xmlns="" ProductID="{d9c02142-aa4c-4861-87fb-10b16137addc}" Title="Commbank Unoffical" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="CommonwealthBank author" Description="Sample description" Publisher="CommonwealthBank" PublisherID="{a8649d3c-a004-4573-a6df-90923307254b}">
+    <IconPath IsRelative="true" IsResource="false">Images\Icon.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="Views/ScreenTransactions.xaml" />
+      <ExtendedTask Name="BackgroundTask">
+        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="CommonwealthBank.Agent" Source="CommonwealthBank.Agent" Type="CMcG.CommonwealthBank.Agent.ScheduledAgent" />
+      </ExtendedTask>
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="CommonwealthBankToken" TaskName="_default">
+        <TemplateIconic>
+          <SmallImageURI IsRelative="true" IsResource="false">Images\SmallTile.png</SmallImageURI>
+          <Count>0</Count>
+          <IconImageURI IsRelative="true" IsResource="false">Images\Tile.png</IconImageURI>
+          <Title>Commbank Unoffical</Title>
+          <Message>
+          </Message>
+          <BackgroundColor>
+          </BackgroundColor>
+          <HasLarge>True</HasLarge>
+          <LargeContent1>
+          </LargeContent1>
+          <LargeContent2>
+          </LargeContent2>
+          <LargeContent3>
+          </LargeContent3>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
+            Images\LockTile.png
+          </DeviceLockImageURI>
+        </TemplateIconic>
+      </PrimaryToken>
+    </Tokens>
+    <Extensions>
+      <Extension ExtensionName="LockScreen_Notification_IconCount" ConsumerID="{111DFF24-AA15-4A96-8006-2BFF8122084F}" TaskID="_default" />
+    </Extensions>
+    <ScreenResolutions>
+      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+      <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+    </ScreenResolutions>
+  </App>
 </Deployment>
