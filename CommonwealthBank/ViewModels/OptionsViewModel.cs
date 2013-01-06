@@ -9,6 +9,7 @@ namespace CMcG.CommonwealthBank.ViewModels
     {
         public OptionsViewModel()
         {
+            AutoRefresh = true;
             using (var store = new DataStoreContext())
             {
                 Accounts = store.Accounts.ToArray();
