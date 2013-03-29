@@ -25,16 +25,9 @@ namespace CMcG.CommonwealthBank.Logic
 
         public async void LoadData()
         {
-            var loginDetails = GetLogonDetails();
+            var client     = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
+            var logonQuery = GetLogonQuery();
 
-            var client = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
-
-            var logonQuery = new LogonQuery
-            {
-                Username = loginDetails.Username,
-                Password = new TwoWayEncryption().Decrypt(loginDetails.Password),
-            };
-            SetupQuery(logonQuery);
             m_sessionId = await logonQuery.Start(client);
 
             if (m_sessionId != null)
@@ -50,6 +43,18 @@ namespace CMcG.CommonwealthBank.Logic
             query.Status    = Status;
             query.SessionId = m_sessionId;
             return query;
+        }
+
+        LogonQuery GetLogonQuery()
+        {
+            var loginDetails = GetLogonDetails();
+            var logonQuery = new LogonQuery
+            {
+                Username = loginDetails.Username,
+                Password = new TwoWayEncryption().Decrypt(loginDetails.Password),
+            };
+            SetupQuery(logonQuery);
+            return logonQuery;
         }
     }
 }
