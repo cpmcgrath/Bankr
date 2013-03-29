@@ -37,8 +37,6 @@ namespace CMcG.CommonwealthBank.Logic
                 store.SubmitChanges();
                 Status.SetAction("Upcoming transactions found.", true);
             }
-
-            Callback();
         }
 
         bool AlreadyExists(IEnumerable<UpcomingTransaction> list, UpcomingTransaction transaction)

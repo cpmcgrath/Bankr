@@ -19,10 +19,7 @@ namespace CMcG.CommonwealthBank.Logic
                 if (hasAccount)
                     m_accountId = store.CurrentOptions.SelectedAccountId;
                 else
-                {
                     Status.SetAction("Account not set.", true);
-                    Callback();
-                }
 
                 return hasAccount;
             }
@@ -64,8 +61,6 @@ namespace CMcG.CommonwealthBank.Logic
                 store.SubmitChanges();
                 Status.SetAction(transactions.Count() + " new transactions found.", true);
             }
-
-            Callback();
         }
 
         bool AlreadyExists(IEnumerable<Transaction> list, Transaction transaction)

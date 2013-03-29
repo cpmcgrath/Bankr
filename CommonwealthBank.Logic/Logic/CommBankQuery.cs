@@ -12,7 +12,6 @@ namespace CMcG.CommonwealthBank.Logic
     public abstract class CommBankQuery
     {
         public AppStatus Status    { get; set; }
-        public Action    Callback  { get; set; }
         public string    SessionId { get; set; }
 
         protected abstract string      Action     { get; }
@@ -55,7 +54,6 @@ namespace CMcG.CommonwealthBank.Logic
             catch (WebException)
             {
                 Status.SetAction("Cannot find the server", true);
-                Callback();
                 return null;
             }
         }

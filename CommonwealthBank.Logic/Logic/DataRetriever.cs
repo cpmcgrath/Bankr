@@ -37,18 +37,17 @@ namespace CMcG.CommonwealthBank.Logic
             SetupQuery(logonQuery);
             m_sessionId = await logonQuery.Start(client);
 
-            if (m_sessionId == null)
-                return;
-
-            await SetupQuery(new GetTransactionsQuery()).Start(client);
-            await SetupQuery(new GetUpcomingTransactionsQuery()).Start(client);
-
+            if (m_sessionId != null)
+            {
+                await SetupQuery(new GetTransactionsQuery()        ).Start(client);
+                await SetupQuery(new GetUpcomingTransactionsQuery()).Start(client);
+            }
+            Callback();
         }
 
         CommBankQuery SetupQuery(CommBankQuery query)
         {
             query.Status    = Status;
-            query.Callback  = Callback;
             query.SessionId = m_sessionId;
             return query;
         }

@@ -47,7 +47,6 @@ namespace CMcG.CommonwealthBank.Logic
                 store.SubmitChanges();
             }
             Status.SetAction("Error occured while trying to log on", true);
-            Callback();
         }
 
         void UpdateAccounts(string message)
