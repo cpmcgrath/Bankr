@@ -43,7 +43,7 @@ namespace CMcG.CommonwealthBank.Logic
             }
         }
 
-        protected override void OnCompleted(string response, bool hasError)
+        protected override void ProcessResult(string response, bool hasError)
         {
             var result = JsonConvert.DeserializeObject<Account>(response);
 

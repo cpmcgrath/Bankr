@@ -62,9 +62,9 @@ namespace CMcG.CommonwealthBank.Logic
         {
             var response = result.Substring(2, result.Length - 4);
             var hasError = Newtonsoft.Json.Linq.JObject.Parse(response)["ErrorMessages"].Any();
-            OnCompleted(response, hasError);
+            ProcessResult(response, hasError);
         }
 
-        protected abstract void OnCompleted(string response, bool hasError);
+        protected abstract void ProcessResult(string response, bool hasError);
     }
 }
