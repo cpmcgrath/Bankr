@@ -56,11 +56,7 @@ namespace CMcG.CommonwealthBank.Logic
             {
                 Status.SetAction("Cannot find the server", true);
                 Callback();
-                return;
             }
-
-            var    parameters   = new JsonParameters { Params = Parameters };
-            string paramRequest = JsonConvert.SerializeObject(parameters);
         }
 
         void ProcessResult(HttpClient client, string result)
