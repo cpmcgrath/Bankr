@@ -6,6 +6,7 @@ using System.Windows.Navigation;
 using CMcG.CommonwealthBank.Data;
 using CMcG.CommonwealthBank.Logic;
 using Microsoft.Phone.Scheduler;
+using Microsoft.Phone.Info;
 
 namespace CMcG.CommonwealthBank
 {
@@ -90,8 +91,19 @@ namespace CMcG.CommonwealthBank
             e.Handled = true;
         }
 
+        public static bool IsLowMemDevice
+        {
+            get
+            {
+                return (long)DeviceExtendedProperties.GetValue("DeviceTotalMemory") <= 268435456;
+            }
+        }
+
         void StartBackgroundAgent()
         {
+            if (IsLowMemDevice)
+                return;
+
             var taskName = "CMcG.CommonwealthBank.Agent";
 
             if (ScheduledActionService.Find(taskName) is PeriodicTask)
