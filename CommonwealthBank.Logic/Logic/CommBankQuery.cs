@@ -49,7 +49,7 @@ namespace CMcG.CommonwealthBank.Logic
 
             var response = e.Result.Substring(2, e.Result.Length - 4);
             var hasError = Newtonsoft.Json.Linq.JObject.Parse(response)["ErrorMessages"].Any();
-            OnCompleted(client, response, hasError);
+            OnCompleted(response, hasError);
 
             if (Next != null)
             {
@@ -60,6 +60,6 @@ namespace CMcG.CommonwealthBank.Logic
             }
         }
 
-        protected abstract void OnCompleted(WebClient client, string response, bool hasError);
+        protected abstract void OnCompleted(string response, bool hasError);
     }
 }
