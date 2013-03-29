@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using CMcG.CommonwealthBank.Data;
+using System.Net.Http;
 
 namespace CMcG.CommonwealthBank.Logic
 {
@@ -21,7 +22,7 @@ namespace CMcG.CommonwealthBank.Logic
             if (loginDetails == null)
                 return false;
 
-            var client = new CookieAwareWebClient { BaseAddress = "https://www2.my.commbank.com.au" };
+            var client = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
 
             new LogonQuery
             {

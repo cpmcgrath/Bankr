@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System.Net;
 using CMcG.CommonwealthBank.Data;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace CMcG.CommonwealthBank.Logic
 {
@@ -22,32 +24,48 @@ namespace CMcG.CommonwealthBank.Logic
             return true;
         }
 
-        public void Start(WebClient client)
+        public Uri RequestUri
+        {
+            get { return new Uri("mobile/i/AjaxCalls.aspx?SID=" + SessionId, UriKind.Relative); }
+        }
+
+        public HttpContent GetContent()
+        {
+            var    parameters   = new JsonParameters { Params = Parameters };
+            string paramRequest = JsonConvert.SerializeObject(parameters);
+
+            var stringContent = new StringContent(paramRequest);
+            stringContent.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+            return stringContent;
+        }
+
+        public async void Start(HttpClient client)
         {
             if (!CanRun())
                 return;
 
             Status.SetAction(Action);
-            var    parameters   = new JsonParameters { Params = Parameters };
-            string paramRequest = JsonConvert.SerializeObject(parameters);
 
-            client.Headers["Content-Type"] = "application/json";
-            client.UploadStringCompleted += OnCompleted;
-            client.UploadStringAsync(new Uri("mobile/i/AjaxCalls.aspx?SID=" + SessionId, UriKind.Relative), "POST", paramRequest);
-        }
-
-        void OnCompleted(object sender, UploadStringCompletedEventArgs e)
-        {
-            var client = (WebClient)sender;
-            client.UploadStringCompleted -= OnCompleted;
-            if (e.Error is WebException)
+            try
+            {
+                var response = await client.PostAsync(RequestUri, GetContent());
+                var content  = await response.Content.ReadAsStringAsync();
+                ProcessResult(client, content);
+            }
+            catch (WebException)
             {
                 Status.SetAction("Cannot find the server", true);
                 Callback();
                 return;
             }
 
-            var response = e.Result.Substring(2, e.Result.Length - 4);
+            var    parameters   = new JsonParameters { Params = Parameters };
+            string paramRequest = JsonConvert.SerializeObject(parameters);
+        }
+
+        void ProcessResult(HttpClient client, string result)
+        {
+            var response = result.Substring(2, result.Length - 4);
             var hasError = Newtonsoft.Json.Linq.JObject.Parse(response)["ErrorMessages"].Any();
             OnCompleted(response, hasError);
 

@@ -121,7 +121,6 @@
     <Compile Include="Logic\CbaAmountConverter.cs" />
     <Compile Include="Logic\CbaDateConverter.cs" />
     <Compile Include="Logic\CommBankQuery.cs" />
-    <Compile Include="Logic\CookieAwareWebClient.cs" />
     <Compile Include="Logic\GetUpcomingTransactionsQuery.cs" />
     <Compile Include="Logic\DataRetriever.cs" />
     <Compile Include="Logic\Extensions.cs" />

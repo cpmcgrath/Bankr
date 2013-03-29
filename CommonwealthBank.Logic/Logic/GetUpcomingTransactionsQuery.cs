@@ -9,8 +9,6 @@ namespace CMcG.CommonwealthBank.Logic
 {
     public class GetUpcomingTransactionsQuery : CommBankQuery
     {
-        int m_accountId;
-
         protected override string Action
         {
             get { return "Looking for upcoming transactions..."; }
