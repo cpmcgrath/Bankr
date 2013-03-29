@@ -10,7 +10,14 @@ namespace CMcG.CommonwealthBank.Logic
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var input = ((string)reader.Value).Trim();
-            return DateTime.ParseExact(input, "dd/MM/yy", CultureInfo.CurrentCulture);
+            try
+            {
+                return DateTime.ParseExact(input, "dd/MM/yy", CultureInfo.CurrentCulture);
+            }
+            catch (FormatException)
+            {
+            }
+            return DateTime.ParseExact(input, "dd/MM/yyyy", CultureInfo.CurrentCulture);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

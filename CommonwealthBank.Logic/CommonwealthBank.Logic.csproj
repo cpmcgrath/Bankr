@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Account.cs" />
+    <Compile Include="Data\UpcomingTransaction.cs" />
     <Compile Include="Data\DataStoreContext.cs" />
     <Compile Include="Data\Error.cs" />
     <Compile Include="Data\LoginDetails.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Logic\CbaDateConverter.cs" />
     <Compile Include="Logic\CommBankQuery.cs" />
     <Compile Include="Logic\CookieAwareWebClient.cs" />
+    <Compile Include="Logic\GetUpcomingTransactionsQuery.cs" />
     <Compile Include="Logic\DataRetriever.cs" />
     <Compile Include="Logic\Extensions.cs" />
     <Compile Include="Logic\GetTransactionsQuery.cs" />

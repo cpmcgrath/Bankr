@@ -6,16 +6,14 @@
     xmlns:controls = "clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d        = "http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc       = "http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:cvt      = "clr-namespace:CMcG.CommonwealthBank.Controls.Converters"
     xmlns:tk       = "clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable   = "d" d:DesignWidth="480" d:DesignHeight="696"
     FontFamily     = "{StaticResource PhoneFontFamilyNormal}"
     FontSize       = "{StaticResource PhoneFontSizeNormal}"
     Foreground     = "{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" Margin="0,-2,0,2">
     <phone:PhoneApplicationPage.Resources>
-        <cvt:BoolToBrushConverter x:Key="colourBoolConverter" TrueBrush="{StaticResource PhoneForegroundBrush}" FalseBrush="{StaticResource PhoneAccentBrush}" />
         <DataTemplate x:Key="TransactionTemplate">
             <Grid Margin="0,0,25,40">
                 <tk:ContextMenuService.ContextMenu>
@@ -39,9 +37,6 @@
                 <TextBlock Text="{Binding AbsAmount, StringFormat=$0.00}"         Grid.Row="1" Grid.Column="2" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}" />
             </Grid>
         </DataTemplate>
-        <Style TargetType="ListBoxItem">
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        </Style>
     </phone:PhoneApplicationPage.Resources>
 
     <shell:SystemTray.ProgressIndicator>
@@ -69,7 +64,7 @@
                          HorizontalContentAlignment = "Stretch"
                          ItemsSource                = "{Binding SentTransactions}" />
             </controls:PivotItem>
-            
+
             <controls:PivotItem Header="internal">
                 <ListBox ItemTemplate               = "{StaticResource TransactionTemplate}"
                          HorizontalContentAlignment = "Stretch"
@@ -84,8 +79,9 @@
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.refresh.rest.png" Text="refresh"          Click="RefreshAccount" />
             <shell:ApplicationBarIconButton IconUri="/Images/appbar.web.rest.png"     Text="website"          Click="GoToWebsite" />
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="settings"          Click="ShowSettings"/>
-                <shell:ApplicationBarMenuItem Text="manage replacements" Click="ShowReplacements"/>
+                <shell:ApplicationBarMenuItem Text="settings"              Click="ShowSettings"/>
+                <shell:ApplicationBarMenuItem Text="manage replacements"   Click="ShowReplacements"/>
+                <shell:ApplicationBarMenuItem Text="upcoming transactions" Click="ShowUpcoming"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

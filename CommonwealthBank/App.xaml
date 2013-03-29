@@ -3,6 +3,7 @@
              xmlns:x            = "http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:phone        = "clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
              xmlns:shell        = "clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+             xmlns:cvt          = "clr-namespace:CMcG.CommonwealthBank.Controls.Converters"
              UnhandledException = "GlobalUnhandledExceptionHandler">
 
     <Application.Resources>
@@ -35,10 +36,10 @@
                                                     </DiscreteObjectKeyFrame.Value>
                                                 </DiscreteObjectKeyFrame>
                                             </ObjectAnimationUsingKeyFrames>
-                                            
+
                                             <DoubleAnimation Duration="0" To="5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="grid" />
                                             <DoubleAnimation Duration="0" To="-5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid" />
-                                            
+
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Disabled">
@@ -63,6 +64,12 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <cvt:BoolToBrushConverter x:Key="colourBoolConverter" TrueBrush="{StaticResource PhoneForegroundBrush}" FalseBrush="{StaticResource PhoneAccentBrush}" />
+
+        <Style TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         </Style>
     </Application.Resources>
 
