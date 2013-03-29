@@ -2,45 +2,14 @@ using System;
 using System.Linq;
 using System.Data.Linq;
 using System.Collections.Generic;
-using Microsoft.Phone.Data.Linq;
 
 namespace CMcG.CommonwealthBank.Data
 {
     public partial class DataStoreContext : System.Data.Linq.DataContext
     {
-        public void CreateIfNotExists()
-        {
-            if (!DatabaseExists())
-            {
-                CreateDatabase();
-                var schemaUpdater = this.CreateDatabaseSchemaUpdater();
-                schemaUpdater.DatabaseSchemaVersion = 2;
-                schemaUpdater.Execute();
-            }
-            else
-            {
-                var schemaUpdater = this.CreateDatabaseSchemaUpdater();
-                int version       = schemaUpdater.DatabaseSchemaVersion;
- 
-                if (version == 0)
-                {
-                    schemaUpdater.AddColumn<Options>("AutoRefresh");
-                    schemaUpdater.DatabaseSchemaVersion = 1;
-                    schemaUpdater.Execute();
-                }
-
-                if (version == 1)
-                {
-                    schemaUpdater.AddTable<UpcomingTransaction>();
-                    schemaUpdater.DatabaseSchemaVersion = 2;
-                    schemaUpdater.Execute();
-                }
-            }
-        }
-
         public DataStoreContext(string connectionString = "Data Source=isostore:/DataStore.sdf") : base(connectionString)
         {
-            CreateIfNotExists();
+            new DataStoreUpdater().Upgrade(this);
         }
 
         public Table<Account> Accounts
