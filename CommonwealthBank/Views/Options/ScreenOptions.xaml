@@ -38,6 +38,7 @@
             <controls:PivotItem Header="other">
                 <StackPanel>
                     <CheckBox IsChecked="{Binding AutoRefresh, Mode=TwoWay}" Content="Keep balance up to date" />
+                    <Button Content="PIN options" Click="ShowPinOptions"/>
                 </StackPanel>
             </controls:PivotItem>
 

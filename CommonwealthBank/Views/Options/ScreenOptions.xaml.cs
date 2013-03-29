@@ -30,5 +30,10 @@ namespace CMcG.CommonwealthBank.Views.Options
         {
             ((OptionsViewModel)DataContext).SendErrorReport();
         }
+
+         void ShowPinOptions(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/Options/ScreenPinEdit.xaml", UriKind.Relative));
+        }
     }
 }

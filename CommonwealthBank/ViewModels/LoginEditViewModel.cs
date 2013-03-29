@@ -16,9 +16,11 @@ namespace CMcG.CommonwealthBank.ViewModels
         {
             var encryptedPassword = new TwoWayEncryption().Encrypt(Password);
             var details = new LoginDetails { Username = Username, Password = encryptedPassword };
-            var store = new DataStoreContext();
-            store.LoginDetails.InsertOnSubmit(details);
-            store.SubmitChanges();
+            using (var store = new DataStoreContext())
+            {
+                store.LoginDetails.InsertOnSubmit(details);
+                store.SubmitChanges();
+            }
         }
     }
 }
