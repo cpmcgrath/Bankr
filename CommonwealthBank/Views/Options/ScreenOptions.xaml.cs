@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.ViewModels;
+using CMcG.CommonwealthBank.ViewModels.Options;
 
 namespace CMcG.CommonwealthBank.Views.Options
 {

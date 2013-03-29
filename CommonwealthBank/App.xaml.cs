@@ -6,6 +6,7 @@ using System.Windows.Navigation;
 using CMcG.CommonwealthBank.Data;
 using CMcG.CommonwealthBank.Logic;
 using Microsoft.Phone.Scheduler;
+using CMcG.CommonwealthBank.ViewModels.Options;
 
 namespace CMcG.CommonwealthBank
 {
@@ -28,7 +29,7 @@ namespace CMcG.CommonwealthBank
             InitializePhoneApplication();
             Status   = new AppStatus { AutoRemove = true };
             Security = new Security();
-            Security.UpdatePermission<ViewModels.OptionsViewModel>(true);
+            Security.UpdatePermission<OptionsViewModel>(true);
 
             if (System.Diagnostics.Debugger.IsAttached)
                 ShowGraphicsProfiling();

@@ -4,7 +4,7 @@ using System.Windows;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
 using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.ViewModels;
+using CMcG.CommonwealthBank.ViewModels.Options;
 
 namespace CMcG.CommonwealthBank.Views.Options
 {

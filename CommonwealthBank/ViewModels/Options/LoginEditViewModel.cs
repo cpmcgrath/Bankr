@@ -5,7 +5,7 @@ using CMcG.CommonwealthBank.Data;
 using CMcG.CommonwealthBank.Logic;
 using System.Security.Cryptography;
 
-namespace CMcG.CommonwealthBank.ViewModels
+namespace CMcG.CommonwealthBank.ViewModels.Options
 {
     public class LoginEditViewModel
     {

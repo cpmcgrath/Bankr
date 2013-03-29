@@ -2,7 +2,7 @@
 using System.Linq;
 using CMcG.CommonwealthBank.Data;
 
-namespace CMcG.CommonwealthBank.ViewModels
+namespace CMcG.CommonwealthBank.ViewModels.Options
 {
     public class ReplacementEditViewModel : ViewModelBase
     {

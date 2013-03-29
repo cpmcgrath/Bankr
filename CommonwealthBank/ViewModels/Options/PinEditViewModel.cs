@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using CMcG.CommonwealthBank.Data;
 using CMcG.CommonwealthBank.Logic;
 
-namespace CMcG.CommonwealthBank.ViewModels
+namespace CMcG.CommonwealthBank.ViewModels.Options
 {
     public class PinEditViewModel
     {
-        public string Pin        { get; set; }
+        public string Pin { get; set; }
 
         public void Save()
         {

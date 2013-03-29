@@ -3,7 +3,7 @@ using System.Linq;
 using CMcG.CommonwealthBank.Data;
 using Microsoft.Phone.Tasks;
 
-namespace CMcG.CommonwealthBank.ViewModels
+namespace CMcG.CommonwealthBank.ViewModels.Options
 {
     public class OptionsViewModel : ViewModelBase
     {
@@ -49,7 +49,7 @@ namespace CMcG.CommonwealthBank.ViewModels
                     store.CurrentOptions.AutoRefresh       = AutoRefresh;
                 }
                 else
-                    store.Options.InsertOnSubmit(new Options { SelectedAccountId = SelectedAccount.Id, AutoRefresh = AutoRefresh });
+                    store.Options.InsertOnSubmit(new Data.Options { SelectedAccountId = SelectedAccount.Id, AutoRefresh = AutoRefresh });
                 store.SubmitChanges();
 
                 var account               = store.CurrentOptions.GetSelectedAccount(store);
