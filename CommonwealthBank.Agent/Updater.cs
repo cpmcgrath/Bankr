@@ -38,7 +38,13 @@ namespace CMcG.CommonwealthBank.Agent
                 UpdateLiveTile();
                 afterUpdate.Invoke();
             };
-            return retriever.LoadData();
+            
+            bool canLoad = retriever.CanLoadData;
+            
+            if (canLoad)
+                retriever.LoadData();
+
+            return canLoad;
         }
 
         public void UpdateLiveTile()

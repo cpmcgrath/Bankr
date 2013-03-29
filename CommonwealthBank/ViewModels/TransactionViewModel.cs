@@ -43,7 +43,7 @@ namespace CMcG.CommonwealthBank.ViewModels
 
         public void Refresh()
         {
-            var retriever = new DataRetriever
+            new DataRetriever
             {
                 Status   = CurrentApp.Status,
                 Callback = Load

@@ -46,7 +46,6 @@ namespace CMcG.CommonwealthBank.Logic
                 store.LoginDetails.DeleteAllOnSubmit(store.LoginDetails);
                 store.SubmitChanges();
             }
-            Next = null;
             Status.SetAction("Error occured while trying to log on", true);
             Callback();
         }
