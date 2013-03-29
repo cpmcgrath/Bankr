@@ -14,7 +14,7 @@ namespace CMcG.CommonwealthBank.Data
             {
                 CreateDatabase();
                 var schemaUpdater = this.CreateDatabaseSchemaUpdater();
-                schemaUpdater.DatabaseSchemaVersion = 1;
+                schemaUpdater.DatabaseSchemaVersion = 2;
                 schemaUpdater.Execute();
             }
             else
@@ -26,6 +26,13 @@ namespace CMcG.CommonwealthBank.Data
                 {
                     schemaUpdater.AddColumn<Options>("AutoRefresh");
                     schemaUpdater.DatabaseSchemaVersion = 1;
+                    schemaUpdater.Execute();
+                }
+
+                if (version == 1)
+                {
+                    schemaUpdater.AddTable<UpcomingTransaction>();
+                    schemaUpdater.DatabaseSchemaVersion = 2;
                     schemaUpdater.Execute();
                 }
             }
@@ -64,6 +71,11 @@ namespace CMcG.CommonwealthBank.Data
         public Table<Transaction> Transactions
         {
             get { return GetTable<Transaction>(); }
+        }
+
+        public Table<UpcomingTransaction> UpcomingTransactions
+        {
+            get { return GetTable<UpcomingTransaction>(); }
         }
 
         public Table<Replacement> Replacements

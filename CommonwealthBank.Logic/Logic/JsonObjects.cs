@@ -3,6 +3,11 @@ using System.Linq;
 
 namespace CMcG.CommonwealthBank.Logic
 {
+    public class UpcomingTransResult
+    {
+        public Data.UpcomingTransaction[] Transactions { get; set; }
+    }
+
     public class LoginResult
     {
         public string         SID           { get; set; }

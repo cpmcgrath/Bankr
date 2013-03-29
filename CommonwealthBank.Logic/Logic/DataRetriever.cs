@@ -29,7 +29,7 @@ namespace CMcG.CommonwealthBank.Logic
                 Password = new TwoWayEncryption().Decrypt(loginDetails.Password),
                 Status   = Status,
                 Callback = Callback,
-                Next     = new GetTransactionsQuery()
+                Next     = new GetTransactionsQuery { Next = new GetUpcomingTransactionsQuery() }
             }.Start(client);
 
             return true;
