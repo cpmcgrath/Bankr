@@ -4,7 +4,7 @@ using Microsoft.Phone.Controls;
 using System.Collections.Generic;
 using CMcG.CommonwealthBank.ViewModels;
 
-namespace CMcG.CommonwealthBank.Views
+namespace CMcG.CommonwealthBank.Views.Options
 {
     public partial class ScreenReplacementEdit : PhoneApplicationPage
     {

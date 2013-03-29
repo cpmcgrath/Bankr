@@ -128,16 +128,16 @@
     <Compile Include="Views\ScreenLogin.xaml.cs">
       <DependentUpon>ScreenLogin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScreenLoginEdit.xaml.cs">
+    <Compile Include="Views\Options\ScreenLoginEdit.xaml.cs">
       <DependentUpon>ScreenLoginEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScreenOptions.xaml.cs">
+    <Compile Include="Views\Options\ScreenOptions.xaml.cs">
       <DependentUpon>ScreenOptions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScreenReplacementEdit.xaml.cs">
+    <Compile Include="Views\Options\ScreenReplacementEdit.xaml.cs">
       <DependentUpon>ScreenReplacementEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScreenReplacements.xaml.cs">
+    <Compile Include="Views\Options\ScreenReplacements.xaml.cs">
       <DependentUpon>ScreenReplacements.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ScreenTransactions.xaml.cs">
@@ -159,19 +159,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ScreenLoginEdit.xaml">
+    <Page Include="Views\Options\ScreenLoginEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ScreenOptions.xaml">
+    <Page Include="Views\Options\ScreenOptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ScreenReplacementEdit.xaml">
+    <Page Include="Views\Options\ScreenReplacementEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ScreenReplacements.xaml">
+    <Page Include="Views\Options\ScreenReplacements.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +221,7 @@
       <Name>CommonwealthBank.Logic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

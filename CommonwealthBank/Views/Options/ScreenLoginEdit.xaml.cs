@@ -6,7 +6,7 @@ using CMcG.CommonwealthBank.ViewModels;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
-namespace CMcG.CommonwealthBank.Views
+namespace CMcG.CommonwealthBank.Views.Options
 {
     public partial class ScreenLoginEdit : PhoneApplicationPage
     {

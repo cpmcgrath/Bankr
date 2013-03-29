@@ -23,12 +23,12 @@ namespace CMcG.CommonwealthBank.Views
 
         void ShowSettings(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Views/ScreenOptions.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/Options/ScreenOptions.xaml", UriKind.Relative));
         }
 
         void ShowReplacements(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Views/ScreenReplacements.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Views/Options/ScreenReplacements.xaml", UriKind.Relative));
         }
 
         void ShowUpcoming(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace CMcG.CommonwealthBank.Views
             var ctl         = (FrameworkElement)menu.Owner;
             var transaction = (Transaction)ctl.DataContext;
 
-            var url = "/Views/ScreenReplacementEdit.xaml?transid=" + transaction.Id;
+            var url = "/Views/Options/ScreenReplacementEdit.xaml?transid=" + transaction.Id;
             NavigationService.Navigate(new Uri(url, UriKind.Relative));
         }
 

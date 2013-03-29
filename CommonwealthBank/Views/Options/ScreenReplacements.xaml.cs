@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using CMcG.CommonwealthBank.Data;
 using CMcG.CommonwealthBank.ViewModels;
 
-namespace CMcG.CommonwealthBank.Views
+namespace CMcG.CommonwealthBank.Views.Options
 {
     public partial class ScreenReplacements : PhoneApplicationPage
     {
@@ -26,7 +26,7 @@ namespace CMcG.CommonwealthBank.Views
             var ctl         = (FrameworkElement)sender;
             var replacement = (Replacement)ctl.DataContext;
 
-            var url = "/Views/ScreenReplacementEdit.xaml?id=" + replacement.Id;
+            var url = "/Views/Options/ScreenReplacementEdit.xaml?id=" + replacement.Id;
             NavigationService.Navigate(new Uri(url, UriKind.Relative));
         }
     }

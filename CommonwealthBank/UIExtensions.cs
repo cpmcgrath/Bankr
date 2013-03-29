@@ -44,8 +44,8 @@ namespace CMcG.CommonwealthBank
             Hide(instance);
 
             var screen = App.Current.Security.HasLogin
-                       ? new Views.ScreenLogin     { OnLogin = () => ResetLook(instance, creator) } as UIElement
-                       : new Views.ScreenLoginEdit { OnSave  = () => ResetLook(instance, creator) };
+                       ? new Views.ScreenLogin             { OnLogin = () => ResetLook(instance, creator) } as UIElement
+                       : new Views.Options.ScreenLoginEdit { OnSave  = () => ResetLook(instance, creator) };
 
             var popup = new Popup
             {
