@@ -12,7 +12,7 @@ namespace CMcG.CommonwealthBank.Data
         {
             store.CreateDatabase();
             var schemaUpdater = store.CreateDatabaseSchemaUpdater();
-            schemaUpdater.DatabaseSchemaVersion = 2;
+            schemaUpdater.DatabaseSchemaVersion = 3;
             schemaUpdater.Execute();
         }
 
@@ -30,11 +30,12 @@ namespace CMcG.CommonwealthBank.Data
             switch (version)
             {
                 case 0 : schema.AddColumn<Options>("AutoRefresh"); goto case 1;
-                case 1 : schema.AddTable<UpcomingTransaction>();   break;
-                case 2 : return;
+                case 1 : schema.AddTable<UpcomingTransaction>();   goto case 2;
+                case 2 : schema.AddColumn<LoginDetails>("Pin");    break;
+                case 3 : return;
             }
 
-            schema.DatabaseSchemaVersion = 2;
+            schema.DatabaseSchemaVersion = 3;
             schema.Execute();
         }
     }

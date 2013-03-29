@@ -11,6 +11,7 @@ namespace CMcG.CommonwealthBank.Data
         int    m_id;
         string m_username = string.Empty;
         string m_password = string.Empty;
+        string m_pin      = string.Empty;
 
         [Column(AutoSync=AutoSync.OnInsert, IsPrimaryKey=true, IsDbGenerated=true)]
         public int Id
@@ -54,6 +55,21 @@ namespace CMcG.CommonwealthBank.Data
                 SendPropertyChanging();
                 m_password = value;
                 SendPropertyChanged("Password");
+            }
+        }
+
+        [Column]
+        public string Pin
+        {
+            get { return m_pin ?? string.Empty; }
+            set
+            {
+                if (m_pin == value)
+                    return;
+
+                SendPropertyChanging();
+                m_pin = value;
+                SendPropertyChanged("Pin");
             }
         }
     }
