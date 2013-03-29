@@ -146,5 +146,10 @@ namespace CMcG.CommonwealthBank.Data
         {
             return "TransactionType: " + TransactionType + ", Amount: " + Amount + ", Date:" + EffectiveDate + ". Status: " + Status;
         }
+
+        public string Summary
+        {
+            get { return string.Format("{0:dd MMMM} {1} ({2:c})", EffectiveDate, TransactionTo, AbsAmount); }
+        }
     }
 }
