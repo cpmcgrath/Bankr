@@ -1,7 +1,8 @@
 using System;
 using System.Linq;
-using CMcG.CommonwealthBank.Data;
 using System.Net.Http;
+using CMcG.CommonwealthBank.Data;
+using System.Threading.Tasks;
 
 namespace CMcG.CommonwealthBank.Logic
 {
@@ -12,49 +13,31 @@ namespace CMcG.CommonwealthBank.Logic
 
         string m_sessionId;
 
-        public LoginDetails GetLogonDetails()
-        {
-            using (var store = new DataStoreContext())
-                return store.LoginDetails.FirstOrDefault();
-        }
-
         public bool CanLoadData
         {
-            get { return GetLogonDetails() != null; }
+            get { return LogonQuery.GetLogonDetails() != null; }
         }
 
         public async void LoadData()
         {
-            var client     = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
-            var logonQuery = GetLogonQuery();
+            var client = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
 
-            m_sessionId = await logonQuery.Start(client);
-
+            m_sessionId = await RunQuery<LogonQuery>(client);
             if (m_sessionId != null)
             {
-                await SetupQuery(new GetTransactionsQuery()        ).Start(client);
-                await SetupQuery(new GetUpcomingTransactionsQuery()).Start(client);
+                await RunQuery<GetTransactionsQuery>(client);
+                await RunQuery<GetUpcomingTransactionsQuery>(client);
             }
             Callback();
         }
 
-        CommBankQuery SetupQuery(CommBankQuery query)
+        async Task<string> RunQuery<T>(HttpClient client) where T : CommBankQuery, new()
         {
-            query.Status    = Status;
-            query.SessionId = m_sessionId;
-            return query;
-        }
-
-        LogonQuery GetLogonQuery()
-        {
-            var loginDetails = GetLogonDetails();
-            var logonQuery = new LogonQuery
+            return await new T
             {
-                Username = loginDetails.Username,
-                Password = new TwoWayEncryption().Decrypt(loginDetails.Password),
-            };
-            SetupQuery(logonQuery);
-            return logonQuery;
+                Status    = Status,
+                SessionId = m_sessionId
+            }.Start(client);
         }
     }
 }

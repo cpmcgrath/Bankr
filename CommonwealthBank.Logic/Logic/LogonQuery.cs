@@ -9,8 +9,11 @@ namespace CMcG.CommonwealthBank.Logic
 {
     public class LogonQuery : CommBankQuery
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public static LoginDetails GetLogonDetails()
+        {
+            using (var store = new DataStoreContext())
+                return store.LoginDetails.FirstOrDefault();
+        }
 
         protected override string Action
         {
@@ -21,11 +24,15 @@ namespace CMcG.CommonwealthBank.Logic
         {
             get
             {
+                var loginDetails = GetLogonDetails();
+                var username     = loginDetails.Username;
+                var password     = new TwoWayEncryption().Decrypt(loginDetails.Password);
+
                 return new[]
                 {
                     new NameValue("Request",  "login"),
-                    new NameValue("UserName", Username),
-                    new NameValue("Password", Password),
+                    new NameValue("UserName", username),
+                    new NameValue("Password", password),
                     new NameValue("Token",    "")
                 };
             }
