@@ -25,8 +25,8 @@ namespace CMcG.CommonwealthBank.Logic
             m_sessionId = await RunQuery<LogonQuery>(client);
             if (m_sessionId != null)
             {
-                await RunQuery<GetTransactionsQuery>(client);
                 await RunQuery<GetUpcomingTransactionsQuery>(client);
+                await RunQuery<GetTransactionsQuery>(client);
             }
             Callback();
         }
