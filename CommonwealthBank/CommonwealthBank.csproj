@@ -124,6 +124,9 @@
     <Compile Include="Controls\PropertyChangedEventArgs.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="UIExtensions.cs" />
+    <Compile Include="ViewModels\LoginPinViewModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ViewModels\Options\PinEditViewModel.cs" />
     <Compile Include="ViewModels\Options\ReplacementsViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -148,6 +151,10 @@
     </Compile>
     <Compile Include="Views\Options\ScreenReplacements.xaml.cs">
       <DependentUpon>ScreenReplacements.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScreenLoginPin.xaml.cs">
+      <DependentUpon>ScreenLoginPin.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Views\ScreenTransactions.xaml.cs">
       <DependentUpon>ScreenTransactions.xaml</DependentUpon>
@@ -189,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Options\ScreenReplacements.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ScreenLoginPin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
