@@ -116,7 +116,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DependencyProperties.cs" />
     <Compile Include="Controls\FixedCheckBox.cs" />
+    <Compile Include="Controls\PinControl.xaml.cs">
+      <DependentUpon>PinControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PropertyChangedEventArgs.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="UIExtensions.cs" />
     <Compile Include="ViewModels\Options\PinEditViewModel.cs" />
@@ -159,6 +164,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Controls\PinControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Options\ScreenPinEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
