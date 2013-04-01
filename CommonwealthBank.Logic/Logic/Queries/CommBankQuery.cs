@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace CMcG.CommonwealthBank.Logic
+namespace CMcG.CommonwealthBank.Logic.Queries
 {
     public abstract class CommBankQuery
     {

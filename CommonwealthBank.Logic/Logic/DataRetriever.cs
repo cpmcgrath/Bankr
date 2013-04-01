@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using CMcG.CommonwealthBank.Data;
 using System.Threading.Tasks;
+using CMcG.CommonwealthBank.Logic.Queries;
 
 namespace CMcG.CommonwealthBank.Logic
 {

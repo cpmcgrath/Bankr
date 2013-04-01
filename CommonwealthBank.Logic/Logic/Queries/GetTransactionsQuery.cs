@@ -5,7 +5,7 @@ using System.Net;
 using CMcG.CommonwealthBank.Data;
 using System.Collections.Generic;
 
-namespace CMcG.CommonwealthBank.Logic
+namespace CMcG.CommonwealthBank.Logic.Queries
 {
     public class GetTransactionsQuery : CommBankQuery
     {
