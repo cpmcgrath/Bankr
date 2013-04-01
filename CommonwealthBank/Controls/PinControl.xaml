@@ -8,16 +8,7 @@
              FontSize       = "{StaticResource PhoneFontSizeNormal}"
              Foreground     = "{StaticResource PhoneForegroundBrush}"
              d:DesignHeight = "480" d:DesignWidth="480">
-    <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="BorderBrush" Value="White" />
-            <Setter Property="BorderThickness" Value="3" />
-            <!--<Setter Property="Padding" Value="0" />
-            <Setter Property="Margin" Value="0" />-->
-        </Style>
-    </UserControl.Resources>
-
-    <Grid Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+    <Grid Name="LayoutRoot" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

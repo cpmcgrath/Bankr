@@ -3,14 +3,12 @@ using System.Linq;
 using System.Windows;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.Logic;
 using CMcG.CommonwealthBank.ViewModels;
 using System.Windows.Controls.Primitives;
 
 namespace CMcG.CommonwealthBank.Views
 {
-    public partial class ScreenLogin: PhoneApplicationPage
+    public partial class ScreenLogin : PhoneApplicationPage
     {
         public ScreenLogin()
         {
