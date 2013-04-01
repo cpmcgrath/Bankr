@@ -16,7 +16,7 @@ namespace CMcG.CommonwealthBank.Views
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.CheckPermissions<UpcomingTransactionViewModel>();
+            this.CheckPermissions<UpcomingTransactionViewModel>(e);
         }
     }
 }

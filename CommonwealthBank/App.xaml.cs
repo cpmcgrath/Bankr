@@ -29,7 +29,7 @@ namespace CMcG.CommonwealthBank
             InitializePhoneApplication();
             Status   = new AppStatus { AutoRemove = true };
             Security = new Security();
-            Security.UpdatePermission<OptionsViewModel>(true);
+            Security.UpdatePermission<OptionsViewModel>(Security.LoginType.PinAndPassword);
 
             if (System.Diagnostics.Debugger.IsAttached)
                 ShowGraphicsProfiling();

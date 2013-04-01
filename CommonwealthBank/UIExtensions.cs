@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using System.Windows.Input;
 using System.Windows.Controls.Primitives;
+using System.Windows.Navigation;
 
 namespace CMcG.CommonwealthBank
 {
@@ -29,29 +30,32 @@ namespace CMcG.CommonwealthBank
             instance.Focus();
         }
 
-        public static void CheckPermissions<TViewModel>(this PhoneApplicationPage instance) where TViewModel : new()
+        public static void CheckPermissions<TViewModel>(this PhoneApplicationPage instance, NavigationEventArgs e) where TViewModel : new()
         {
-            instance.CheckPermissions(() => new TViewModel());
+            instance.CheckPermissions(e, () => new TViewModel());
         }
 
-        public static void CheckPermissions<TViewModel>(this PhoneApplicationPage instance, Func<TViewModel> creator)
+        public static void CheckPermissions<TViewModel>(this PhoneApplicationPage instance, NavigationEventArgs e, Func<TViewModel> creator)
         {
-            if (App.Current.Security.HasPermission<TViewModel>())
-            {
-                instance.DataContext = creator.Invoke();
+            if (e.NavigationMode != NavigationMode.New)
                 return;
+
+            UIElement screen = null;
+
+            switch (App.Current.Security.LogonRequired<TViewModel>())
+            {
+                case Security.LoginType.None        : instance.DataContext = creator.Invoke(); return;
+                case Security.LoginType.CreateLogin : screen = new Views.Options.ScreenLoginEdit { OnSave  = () => ResetLook(instance, creator)        }; break;
+                case Security.LoginType.Password    : screen = new Views.ScreenLogin             { OnLogin = () => ResetLook(instance, creator)        }; break;
+                case Security.LoginType.Pin         : screen = new Views.ScreenLoginPin          { OnLogin = () => ResetLook(instance, creator, false) }; break;
             }
+
             Hide(instance);
-
-            var screen = App.Current.Security.HasLogin
-                       ? new Views.ScreenLogin             { OnLogin = () => ResetLook(instance, creator) } as UIElement
-                       : new Views.Options.ScreenLoginEdit { OnSave  = () => ResetLook(instance, creator) };
-
             var popup = new Popup
             {
                 Child          = screen,
                 VerticalOffset = 30,
-                IsOpen         = true
+                IsOpen         = true,
             };
         }
 
@@ -63,7 +67,7 @@ namespace CMcG.CommonwealthBank
                 instance.ApplicationBar.IsVisible = false;
         }
 
-        static void ResetLook<TViewModel>(PhoneApplicationPage instance, Func<TViewModel> creator)
+        static void ResetLook<TViewModel>(PhoneApplicationPage instance, Func<TViewModel> creator, bool isLoggedIn = true)
         {
             App.Current.Security.IsLoggedIn = true;
             instance.DataContext = creator.Invoke();

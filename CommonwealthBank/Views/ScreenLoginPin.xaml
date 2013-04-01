@@ -28,10 +28,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <c:PinControl Password="{Binding Pin, Mode=TwoWay}" />
 
-            <Button Content="Login" HorizontalAlignment="Center" Width="180" Click="Login" Grid.Row="1" />
+            <Button Content="Login" Width="250" Click="Login" Grid.Row="1" />
+            <Button Content="Switch to password" Width="250" Click="SwitchToPassword" Grid.Row="2" />
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>

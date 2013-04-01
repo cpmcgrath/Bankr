@@ -16,7 +16,7 @@ namespace CMcG.CommonwealthBank.Views.Options
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.CheckPermissions<OptionsViewModel>();
+            this.CheckPermissions<OptionsViewModel>(e);
         }
 
         void Save(object sender, EventArgs e)

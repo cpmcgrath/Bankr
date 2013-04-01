@@ -18,7 +18,7 @@ namespace CMcG.CommonwealthBank.Views
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.CheckPermissions<TransactionViewModel>();
+            this.CheckPermissions<TransactionViewModel>(e);
         }
 
         void ShowSettings(object sender, EventArgs e)

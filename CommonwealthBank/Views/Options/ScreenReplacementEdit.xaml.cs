@@ -21,12 +21,12 @@ namespace CMcG.CommonwealthBank.Views.Options
             if (argLookup.ContainsKey("transid"))
             {
                 int transId = int.Parse(argLookup["transid"]);
-                this.CheckPermissions(() => ReplacementEditViewModel.Create(transId));
+                this.CheckPermissions(e, () => ReplacementEditViewModel.Create(transId));
             }
             else
             {
                 int id = int.Parse(argLookup["id"]);
-                this.CheckPermissions(() => ReplacementEditViewModel.Load(id));
+                this.CheckPermissions(e, () => ReplacementEditViewModel.Load(id));
             }
         }
 

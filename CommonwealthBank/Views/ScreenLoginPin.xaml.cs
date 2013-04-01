@@ -28,5 +28,14 @@ namespace CMcG.CommonwealthBank.Views
                 OnLogin();
             }
         }
+
+        void SwitchToPassword(object sender, RoutedEventArgs e)
+        {
+            var passwordScreen = new ScreenLogin { OnLogin = OnLogin };
+            var popup = (Popup)Parent;
+            popup.IsOpen = false;
+            popup.Child = passwordScreen;
+            popup.IsOpen = true;
+        }
     }
 }
