@@ -6,9 +6,9 @@ using CMcG.CommonwealthBank.ViewModels;
 
 namespace CMcG.CommonwealthBank.Views
 {
-    public partial class ScreenUpcomingTransactions : PhoneApplicationPage
+    public partial class UpcomingTransactionsView : PhoneApplicationPage
     {
-        public ScreenUpcomingTransactions()
+        public UpcomingTransactionsView()
         {
             InitializeComponent();
         }

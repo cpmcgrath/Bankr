@@ -6,9 +6,9 @@ using CMcG.CommonwealthBank.ViewModels.Options;
 
 namespace CMcG.CommonwealthBank.Views.Options
 {
-    public partial class ScreenOptions : PhoneApplicationPage
+    public partial class ReplacementEditView : PhoneApplicationPage
     {
-        public ScreenOptions()
+        public ReplacementEditView()
         {
             InitializeComponent();
         }
@@ -22,18 +22,15 @@ namespace CMcG.CommonwealthBank.Views.Options
         void Save(object sender, EventArgs e)
         {
             this.FinishBinding();
-            ((OptionsViewModel)DataContext).Save();
+            ((ReplacementEditViewModel)DataContext).Save();
             this.Navigation().GoBack();
         }
 
-        private void SendErrorReport(object sender, System.Windows.RoutedEventArgs e)
+        void Delete(object sender, EventArgs e)
         {
-            ((OptionsViewModel)DataContext).SendErrorReport();
-        }
-
-         void ShowPinOptions(object sender, System.Windows.RoutedEventArgs e)
-        {
-            this.Navigation().GoTo<PinEditViewModel>();
+            this.FinishBinding();
+            ((ReplacementEditViewModel)DataContext).Delete();
+            this.Navigation().GoBack();
         }
     }
 }

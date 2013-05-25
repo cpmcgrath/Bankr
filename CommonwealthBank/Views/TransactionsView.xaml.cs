@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace CMcG.CommonwealthBank.Views
 {
-    public partial class ScreenTransactions : PhoneApplicationPage
+    public partial class TransactionsView : PhoneApplicationPage
     {
-        public ScreenTransactions()
+        public TransactionsView()
         {
             InitializeComponent();
         }

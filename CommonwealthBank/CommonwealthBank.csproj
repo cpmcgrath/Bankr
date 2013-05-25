@@ -140,45 +140,45 @@
     <Compile Include="ViewModels\Transfer\PickRecipientViewModel.cs" />
     <Compile Include="ViewModels\Transfer\PickAccountViewModel.cs" />
     <Compile Include="ViewModels\UpcomingTransactionsViewModel.cs" />
-    <Compile Include="Views\Options\ScreenPinEdit.xaml.cs">
-      <DependentUpon>ScreenPinEdit.xaml</DependentUpon>
+    <Compile Include="Views\Options\PinEditView.xaml.cs">
+      <DependentUpon>PinEditView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScreenLogin.xaml.cs">
-      <DependentUpon>ScreenLogin.xaml</DependentUpon>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Options\ScreenLoginEdit.xaml.cs">
-      <DependentUpon>ScreenLoginEdit.xaml</DependentUpon>
+    <Compile Include="Views\Options\LoginEditView.xaml.cs">
+      <DependentUpon>LoginEditView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Options\ScreenOptions.xaml.cs">
-      <DependentUpon>ScreenOptions.xaml</DependentUpon>
+    <Compile Include="Views\Options\OptionsView.xaml.cs">
+      <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Options\ScreenReplacementEdit.xaml.cs">
-      <DependentUpon>ScreenReplacementEdit.xaml</DependentUpon>
+    <Compile Include="Views\Options\ReplacementEditView.xaml.cs">
+      <DependentUpon>ReplacementEditView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Options\ScreenReplacements.xaml.cs">
-      <DependentUpon>ScreenReplacements.xaml</DependentUpon>
+    <Compile Include="Views\Options\ReplacementsView.xaml.cs">
+      <DependentUpon>ReplacementsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ScreenLoginPin.xaml.cs">
-      <DependentUpon>ScreenLoginPin.xaml</DependentUpon>
+    <Compile Include="Views\LoginPinView.xaml.cs">
+      <DependentUpon>LoginPinView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\ScreenTransactions.xaml.cs">
-      <DependentUpon>ScreenTransactions.xaml</DependentUpon>
+    <Compile Include="Views\TransactionsView.xaml.cs">
+      <DependentUpon>TransactionsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\TransactionsViewModel.cs" />
     <Compile Include="ViewModels\Options\OptionsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\ScreenUpcomingTransactions.xaml.cs">
-      <DependentUpon>ScreenUpcomingTransactions.xaml</DependentUpon>
+    <Compile Include="Views\UpcomingTransactionsView.xaml.cs">
+      <DependentUpon>UpcomingTransactionsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Transfer\ScreenFinishTransfer.xaml.cs">
-      <DependentUpon>ScreenFinishTransfer.xaml</DependentUpon>
+    <Compile Include="Views\Transfer\FinishTransferView.xaml.cs">
+      <DependentUpon>FinishTransferView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Transfer\ScreenPickAccount.xaml.cs">
-      <DependentUpon>ScreenPickAccount.xaml</DependentUpon>
+    <Compile Include="Views\Transfer\PickAccountView.xaml.cs">
+      <DependentUpon>PickAccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Transfer\ScreenPickRecipient.xaml.cs">
-      <DependentUpon>ScreenPickRecipient.xaml</DependentUpon>
+    <Compile Include="Views\Transfer\PickRecipientView.xaml.cs">
+      <DependentUpon>PickRecipientView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -190,51 +190,51 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Options\ScreenPinEdit.xaml">
+    <Page Include="Views\Options\PinEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ScreenLogin.xaml">
+    <Page Include="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Options\ScreenLoginEdit.xaml">
+    <Page Include="Views\Options\LoginEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Options\ScreenOptions.xaml">
+    <Page Include="Views\Options\OptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Options\ScreenReplacementEdit.xaml">
+    <Page Include="Views\Options\ReplacementEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Options\ScreenReplacements.xaml">
+    <Page Include="Views\Options\ReplacementsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ScreenLoginPin.xaml">
+    <Page Include="Views\LoginPinView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ScreenTransactions.xaml">
+    <Page Include="Views\TransactionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ScreenUpcomingTransactions.xaml">
+    <Page Include="Views\UpcomingTransactionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Transfer\ScreenFinishTransfer.xaml">
+    <Page Include="Views\Transfer\FinishTransferView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Transfer\ScreenPickAccount.xaml">
+    <Page Include="Views\Transfer\PickAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Transfer\ScreenPickRecipient.xaml">
+    <Page Include="Views\Transfer\PickRecipientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

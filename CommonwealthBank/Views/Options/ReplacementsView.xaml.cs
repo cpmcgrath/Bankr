@@ -8,9 +8,9 @@ using CMcG.CommonwealthBank.ViewModels.Options;
 
 namespace CMcG.CommonwealthBank.Views.Options
 {
-    public partial class ScreenReplacements : PhoneApplicationPage
+    public partial class ReplacementsView : PhoneApplicationPage
     {
-        public ScreenReplacements()
+        public ReplacementsView()
         {
             InitializeComponent();
         }

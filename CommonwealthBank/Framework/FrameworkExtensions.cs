@@ -20,7 +20,7 @@ namespace CMcG.CommonwealthBank
         public static void SetupView<TPage>(this TPage instance, NavigationEventArgs e) where TPage : PhoneApplicationPage
         {
             var assembly      = Assembly.GetExecutingAssembly();
-            var defaultVMName = typeof(TPage).Name.Replace("Screen", "") + "ViewModel";
+            var defaultVMName = typeof(TPage).Name + "Model";
             var attr          = typeof(TPage).GetCustomAttribute<ViewOfAttribute>();
             var vm            = attr != null ? attr.ViewModelType : assembly.GetTypes().First(x => x.Name == defaultVMName);
 
@@ -59,9 +59,9 @@ namespace CMcG.CommonwealthBank
             switch (App.Current.Security.LogonRequired(viewModel))
             {
                 case Security.LoginType.None        : instance.DataContext = creator.Invoke(); return;
-                case Security.LoginType.CreateLogin : screen = new Views.Options.ScreenLoginEdit { OnSave  = () => ResetLook(instance, creator)        }; break;
-                case Security.LoginType.Password    : screen = new Views.ScreenLogin             { OnLogin = () => ResetLook(instance, creator)        }; break;
-                case Security.LoginType.Pin         : screen = new Views.ScreenLoginPin          { OnLogin = () => ResetLook(instance, creator, false) }; break;
+                case Security.LoginType.CreateLogin : screen = new Views.Options.LoginEditView { OnSave  = () => ResetLook(instance, creator)        }; break;
+                case Security.LoginType.Password    : screen = new Views.LoginView             { OnLogin = () => ResetLook(instance, creator)        }; break;
+                case Security.LoginType.Pin         : screen = new Views.LoginPinView          { OnLogin = () => ResetLook(instance, creator, false) }; break;
             }
 
             Hide(instance);

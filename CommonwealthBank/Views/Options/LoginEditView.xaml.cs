@@ -8,9 +8,9 @@ using System.Windows.Controls.Primitives;
 
 namespace CMcG.CommonwealthBank.Views.Options
 {
-    public partial class ScreenLoginEdit : PhoneApplicationPage
+    public partial class LoginEditView : PhoneApplicationPage
     {
-        public ScreenLoginEdit()
+        public LoginEditView()
         {
             InitializeComponent();
             DataContext = new LoginEditViewModel();

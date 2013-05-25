@@ -8,9 +8,9 @@ using System.Windows.Controls.Primitives;
 
 namespace CMcG.CommonwealthBank.Views
 {
-    public partial class ScreenLoginPin : PhoneApplicationPage
+    public partial class LoginPinView : PhoneApplicationPage
     {
-        public ScreenLoginPin()
+        public LoginPinView()
         {
             InitializeComponent();
             DataContext = new LoginPinViewModel();
@@ -31,7 +31,7 @@ namespace CMcG.CommonwealthBank.Views
 
         void SwitchToPassword(object sender, RoutedEventArgs e)
         {
-            var passwordScreen = new ScreenLogin { OnLogin = OnLogin };
+            var passwordScreen = new LoginView { OnLogin = OnLogin };
             var popup = (Popup)Parent;
             popup.IsOpen = false;
             popup.Child = passwordScreen;

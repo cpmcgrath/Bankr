@@ -1,16 +1,21 @@
-﻿<phone:PhoneApplicationPage x:Class="CMcG.CommonwealthBank.Views.ScreenLogin"
+﻿<phone:PhoneApplicationPage x:Class="CMcG.CommonwealthBank.Views.Options.LoginEditView"
     xmlns       = "http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x     = "http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone = "clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell = "clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d     = "http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc    = "http://schemas.openxmlformats.org/markup-compatibility/2006"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
+    FontFamily  = "{StaticResource PhoneFontFamilyNormal}"
+    FontSize    = "{StaticResource PhoneFontSizeNormal}"
+    Foreground  = "{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="{Binding CurrentApp.Status.IsBusy}"
+                                 IsVisible="True"
+                                 Text="{Binding CurrentApp.Status.Action}" />
+    </shell:SystemTray.ProgressIndicator>
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -25,12 +30,12 @@
 
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock Text="Client number" />
-            <TextBlock Text="{Binding Username}" Style="{StaticResource PhoneTextLargeStyle}" />
+            <TextBox Text="{Binding Username, Mode=TwoWay}" InputScope="Number" />
 
             <TextBlock Text="Password" />
             <PasswordBox Password="{Binding Password, Mode=TwoWay}" />
 
-            <Button Content="Login" HorizontalAlignment="Center" Width="180" Margin="0,20,0,0" Click="Login" />
+            <Button Content="Save" HorizontalAlignment="Center" Width="180" Margin="0,20,0,0" Click="Save" />
         </StackPanel>
     </Grid>
 </phone:PhoneApplicationPage>

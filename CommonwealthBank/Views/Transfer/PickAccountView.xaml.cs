@@ -8,9 +8,9 @@ using CMcG.CommonwealthBank.Data;
 
 namespace CMcG.CommonwealthBank.Views.Transfer
 {
-    public partial class ScreenPickRecipient : PhoneApplicationPage
+    public partial class PickAccountView : PhoneApplicationPage
     {
-        public ScreenPickRecipient()
+        public PickAccountView()
         {
             InitializeComponent();
         }
@@ -21,20 +21,12 @@ namespace CMcG.CommonwealthBank.Views.Transfer
             this.SetupView(e);
         }
 
-        void SelectRecipient(object sender, RoutedEventArgs e)
+        void SelectAccount(object sender, RoutedEventArgs e)
         {
-            var vm = (PickRecipientViewModel)DataContext;
-
             var ctl     = (FrameworkElement)sender;
-            var account = (TransferToAccount)ctl.DataContext;
+            var account = (Account)ctl.DataContext;
 
-            this.Navigation().GoTo<FinishTransferViewModel>(vm.FromAccount.Id, account.Id);
-        }
-
-        public void Refresh(object sender, EventArgs e)
-        {
-            var vm = (PickRecipientViewModel)DataContext;
-            vm.ReloadList();
+            this.Navigation().GoTo<PickRecipientViewModel>(account.Id);
         }
     }
 }

@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Phone.Controls;
+using System.Collections.Generic;
 using CMcG.CommonwealthBank.ViewModels.Options;
 
 namespace CMcG.CommonwealthBank.Views.Options
 {
-    public partial class ScreenPinEdit : PhoneApplicationPage
+    public partial class OptionsView : PhoneApplicationPage
     {
-        public ScreenPinEdit()
+        public OptionsView()
         {
             InitializeComponent();
         }
@@ -22,8 +22,18 @@ namespace CMcG.CommonwealthBank.Views.Options
         void Save(object sender, EventArgs e)
         {
             this.FinishBinding();
-            ((PinEditViewModel)DataContext).Save();
+            ((OptionsViewModel)DataContext).Save();
             this.Navigation().GoBack();
+        }
+
+        private void SendErrorReport(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ((OptionsViewModel)DataContext).SendErrorReport();
+        }
+
+         void ShowPinOptions(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.Navigation().GoTo<PinEditViewModel>();
         }
     }
 }

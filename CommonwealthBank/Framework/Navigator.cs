@@ -16,7 +16,7 @@ namespace CMcG.CommonwealthBank
 
         public bool GoTo<TViewModel>(params object[] args)
         {
-            var defaultScreenName = "Screen" + typeof(TViewModel).Name.Replace("ViewModel", "");
+            var defaultScreenName = typeof(TViewModel).Name.Replace("ViewModel", "") + "View";
             var assembly = Assembly.GetExecutingAssembly();
             var type = assembly.GetTypes().FirstOrDefault(x => ViewOfAttribute.IsViewOf<TViewModel>(x))
                     ?? assembly.GetTypes().First(x => x.Name == defaultScreenName);

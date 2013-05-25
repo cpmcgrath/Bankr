@@ -11,9 +11,9 @@ using CMcG.CommonwealthBank.ViewModels.Transfer;
 
 namespace CMcG.CommonwealthBank.Views.Transfer
 {
-    public partial class ScreenFinishTransfer : PhoneApplicationPage
+    public partial class FinishTransferView : PhoneApplicationPage
     {
-        public ScreenFinishTransfer()
+        public FinishTransferView()
         {
             InitializeComponent();
         }
