@@ -7,6 +7,7 @@ using CMcG.CommonwealthBank.Data;
 using CMcG.CommonwealthBank.Logic;
 using Microsoft.Phone.Scheduler;
 using CMcG.CommonwealthBank.ViewModels.Options;
+using CMcG.CommonwealthBank.ViewModels.Transfer;
 
 namespace CMcG.CommonwealthBank
 {
@@ -29,7 +30,8 @@ namespace CMcG.CommonwealthBank
             InitializePhoneApplication();
             Status   = new AppStatus { AutoRemove = true };
             Security = new Security();
-            Security.UpdatePermission<OptionsViewModel>(Security.LoginType.PinAndPassword);
+            Security.UpdatePermission<OptionsViewModel    >(Security.LoginType.PinAndPassword);
+            Security.UpdatePermission<PickAccountViewModel>(Security.LoginType.Pin);
 
             if (System.Diagnostics.Debugger.IsAttached)
                 ShowGraphicsProfiling();

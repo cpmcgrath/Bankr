@@ -15,6 +15,7 @@ namespace CMcG.CommonwealthBank.Data
         int         m_id;
         string      m_accountName;
         string      m_accountNumber;
+        decimal     m_availableFunds;
         DateTime    m_lastUsed;
         AccountType m_type;
 
@@ -60,6 +61,31 @@ namespace CMcG.CommonwealthBank.Data
                 SendPropertyChanging();
                 m_accountNumber = value;
                 SendPropertyChanged("AccountNumber");
+            }
+        }
+
+        public string MoreInformation
+        {
+            get
+            {
+                return Type == AccountType.ThirdParty
+                     ? AccountNumber
+                     : AvailableFunds.ToString("c") + "\r\n" + AccountNumber;
+            }
+        }
+
+        [Column, JsonConverter(typeof(CbaAmountConverter))]
+        public decimal AvailableFunds
+        {
+            get { return m_availableFunds; }
+            set
+            {
+                if (m_availableFunds == value)
+                    return;
+
+                SendPropertyChanging();
+                m_availableFunds = value;
+                SendPropertyChanged("AvailableFunds");
             }
         }
 

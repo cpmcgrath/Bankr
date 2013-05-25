@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
-using System.Net;
 using CMcG.CommonwealthBank.Data;
 using System.Collections.Generic;
 
