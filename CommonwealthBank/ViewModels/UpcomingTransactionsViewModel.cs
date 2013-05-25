@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CMcG.CommonwealthBank.ViewModels
 {
-    public class UpcomingTransactionViewModel : ViewModelBase
+    public class UpcomingTransactionsViewModel : ViewModelBase
     {
-        public UpcomingTransactionViewModel()
+        public UpcomingTransactionsViewModel()
         {
             Load();
         }

@@ -23,7 +23,7 @@ namespace CMcG.CommonwealthBank.Views.Options
         {
             this.FinishBinding();
             ((OptionsViewModel)DataContext).Save();
-            NavigationService.GoBack();
+            this.Navigation().GoBack();
         }
 
         private void SendErrorReport(object sender, System.Windows.RoutedEventArgs e)
@@ -33,7 +33,7 @@ namespace CMcG.CommonwealthBank.Views.Options
 
          void ShowPinOptions(object sender, System.Windows.RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Views/Options/ScreenPinEdit.xaml", UriKind.Relative));
+            this.Navigation().GoTo<PinEditViewModel>();
         }
     }
 }

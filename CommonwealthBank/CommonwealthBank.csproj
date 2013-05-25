@@ -122,7 +122,10 @@
       <DependentUpon>PinControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PropertyChangedEventArgs.cs" />
-    <Compile Include="Security.cs" />
+    <Compile Include="Framework\NavigationExtensions.cs" />
+    <Compile Include="Framework\Navigator.cs" />
+    <Compile Include="Framework\Security.cs" />
+    <Compile Include="Framework\ViewOfAttribute.cs" />
     <Compile Include="UIExtensions.cs" />
     <Compile Include="ViewModels\LoginPinViewModel.cs">
       <SubType>Code</SubType>
@@ -136,7 +139,7 @@
     <Compile Include="ViewModels\Transfer\FinishTransferViewModel.cs" />
     <Compile Include="ViewModels\Transfer\PickRecipientViewModel.cs" />
     <Compile Include="ViewModels\Transfer\PickAccountViewModel.cs" />
-    <Compile Include="ViewModels\UpcomingTransactionViewModel.cs" />
+    <Compile Include="ViewModels\UpcomingTransactionsViewModel.cs" />
     <Compile Include="Views\Options\ScreenPinEdit.xaml.cs">
       <DependentUpon>ScreenPinEdit.xaml</DependentUpon>
     </Compile>

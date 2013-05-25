@@ -23,8 +23,8 @@ namespace CMcG.CommonwealthBank.Views.Transfer
             base.OnNavigatedTo(e);
 
             var argLookup = NavigationContext.QueryString;
-            int fromId    = int.Parse(argLookup["fromid"]);
-            int toId      = int.Parse(argLookup["toid"]);
+            int fromId    = int.Parse(argLookup["fromAccountId"]);
+            int toId      = int.Parse(argLookup["toAccountId"]);
             this.CheckPermissions(e, () => new FinishTransferViewModel(fromId, toId));
         }
 
@@ -40,9 +40,7 @@ namespace CMcG.CommonwealthBank.Views.Transfer
 
         void Cancel(object sender, EventArgs e)
         {
-            NavigationService.RemoveBackEntry();
-            NavigationService.RemoveBackEntry();
-            NavigationService.GoBack();
+            this.Navigation().GoBack(3);
         }
 
     }

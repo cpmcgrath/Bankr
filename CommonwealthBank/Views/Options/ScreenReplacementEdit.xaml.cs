@@ -18,15 +18,15 @@ namespace CMcG.CommonwealthBank.Views.Options
             base.OnNavigatedTo(e);
 
             var argLookup = NavigationContext.QueryString;
-            if (argLookup.ContainsKey("transid"))
+            if (argLookup.ContainsKey("transactionId"))
             {
-                int transId = int.Parse(argLookup["transid"]);
-                this.CheckPermissions(e, () => ReplacementEditViewModel.Create(transId));
+                int transId = int.Parse(argLookup["transactionId"]);
+                this.CheckPermissions(e, () => new ReplacementEditViewModel(-1, transId));
             }
             else
             {
                 int id = int.Parse(argLookup["id"]);
-                this.CheckPermissions(e, () => ReplacementEditViewModel.Load(id));
+                this.CheckPermissions(e, () => new ReplacementEditViewModel(id));
             }
         }
 
@@ -34,14 +34,14 @@ namespace CMcG.CommonwealthBank.Views.Options
         {
             this.FinishBinding();
             ((ReplacementEditViewModel)DataContext).Save();
-            NavigationService.GoBack();
+            this.Navigation().GoBack();
         }
 
         void Delete(object sender, EventArgs e)
         {
             this.FinishBinding();
             ((ReplacementEditViewModel)DataContext).Delete();
-            NavigationService.GoBack();
+            this.Navigation().GoBack();
         }
     }
 }

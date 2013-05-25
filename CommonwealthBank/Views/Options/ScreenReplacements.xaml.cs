@@ -26,8 +26,7 @@ namespace CMcG.CommonwealthBank.Views.Options
             var ctl         = (FrameworkElement)sender;
             var replacement = (Replacement)ctl.DataContext;
 
-            var url = "/Views/Options/ScreenReplacementEdit.xaml?id=" + replacement.Id;
-            NavigationService.Navigate(new Uri(url, UriKind.Relative));
+            this.Navigation().GoTo<ReplacementEditViewModel>(replacement.Id, -1);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace CMcG.CommonwealthBank.Views.Options
         {
             this.FinishBinding();
             ((PinEditViewModel)DataContext).Save();
-            NavigationService.GoBack();
+            this.Navigation().GoBack();
         }
     }
 }

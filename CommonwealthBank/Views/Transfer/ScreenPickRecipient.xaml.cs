@@ -20,7 +20,7 @@ namespace CMcG.CommonwealthBank.Views.Transfer
             base.OnNavigatedTo(e);
 
             var argLookup = NavigationContext.QueryString;
-            int fromId = int.Parse(argLookup["fromid"]);
+            int fromId = int.Parse(argLookup["fromAccountId"]);
             this.CheckPermissions(e, () => new PickRecipientViewModel(fromId));
         }
 
@@ -31,8 +31,7 @@ namespace CMcG.CommonwealthBank.Views.Transfer
             var ctl     = (FrameworkElement)sender;
             var account = (TransferToAccount)ctl.DataContext;
 
-            var url = "/Views/Transfer/ScreenFinishTransfer.xaml?fromid=" + vm.FromAccount.Id + "&toid=" +account.Id;
-            NavigationService.Navigate(new Uri(url, UriKind.Relative));                    
+            this.Navigation().GoTo<FinishTransferViewModel>(vm.FromAccount.Id, account.Id);
         }
 
         public void Refresh(object sender, EventArgs e)

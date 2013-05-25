@@ -26,8 +26,7 @@ namespace CMcG.CommonwealthBank.Views.Transfer
             var ctl     = (FrameworkElement)sender;
             var account = (Account)ctl.DataContext;
 
-            var url = "/Views/Transfer/ScreenPickRecipient.xaml?fromid=" + account.Id;
-            NavigationService.Navigate(new Uri(url, UriKind.Relative));
+            this.Navigation().GoTo<PickRecipientViewModel>(account.Id);
         }
     }
 }

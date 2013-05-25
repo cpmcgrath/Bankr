@@ -7,31 +7,32 @@ namespace CMcG.CommonwealthBank.ViewModels.Options
     public class ReplacementEditViewModel : ViewModelBase
     {
         public bool Existing { get; private set; }
-        private ReplacementEditViewModel()
+        public ReplacementEditViewModel(int id, int transactionId = -1)
         {
+            if (id >= 0)
+                Load(id);
+            else
+                Create(transactionId);
         }
 
-        public static ReplacementEditViewModel Create(int transactionId)
+        public void Create(int transactionId)
         {
-            var item  = new ReplacementEditViewModel();
-            item.Data = new Replacement();
+            Data = new Replacement();
 
             using (var store = new DataStoreContext())
             {
                 var transaction = store.Transactions.First(x => x.Id == transactionId);
-                item.Data.Original   = transaction.Summary.Replace("Sent to ", "").Replace("Received from ", "");
+                Data.Original   = transaction.Summary.Replace("Sent to ", "").Replace("Received from ", "");
             }
-            return item;
         }
 
-        public static ReplacementEditViewModel Load(int id)
+        public void Load(int id)
         {
-            var item = new ReplacementEditViewModel { Existing = true };
+            Existing = true;
             using (var store = new DataStoreContext())
             {
-                item.Data = store.Replacements.First(x => x.Id == id);
+                Data = store.Replacements.First(x => x.Id == id);
             }
-            return item;
         }
 
         public Replacement Data { get; set; }
