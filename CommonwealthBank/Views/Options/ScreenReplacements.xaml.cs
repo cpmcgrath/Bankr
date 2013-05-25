@@ -18,7 +18,7 @@ namespace CMcG.CommonwealthBank.Views.Options
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.CheckPermissions<ReplacementsViewModel>(e);
+            this.SetupView(e);
         }
 
         void ViewReplacement(object sender, EventArgs e)

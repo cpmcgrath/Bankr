@@ -122,7 +122,7 @@
       <DependentUpon>PinControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PropertyChangedEventArgs.cs" />
-    <Compile Include="Framework\NavigationExtensions.cs" />
+    <Compile Include="Framework\FrameworkExtensions.cs" />
     <Compile Include="Framework\Navigator.cs" />
     <Compile Include="Framework\Security.cs" />
     <Compile Include="Framework\ViewOfAttribute.cs" />
@@ -165,7 +165,7 @@
     <Compile Include="Views\ScreenTransactions.xaml.cs">
       <DependentUpon>ScreenTransactions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\TransactionViewModel.cs" />
+    <Compile Include="ViewModels\TransactionsViewModel.cs" />
     <Compile Include="ViewModels\Options\OptionsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\ScreenUpcomingTransactions.xaml.cs">

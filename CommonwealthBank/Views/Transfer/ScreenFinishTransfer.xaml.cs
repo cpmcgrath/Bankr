@@ -21,11 +21,7 @@ namespace CMcG.CommonwealthBank.Views.Transfer
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            var argLookup = NavigationContext.QueryString;
-            int fromId    = int.Parse(argLookup["fromAccountId"]);
-            int toId      = int.Parse(argLookup["toAccountId"]);
-            this.CheckPermissions(e, () => new FinishTransferViewModel(fromId, toId));
+            this.SetupView(e);
         }
 
         void MakeTransaction(object sender, EventArgs e)

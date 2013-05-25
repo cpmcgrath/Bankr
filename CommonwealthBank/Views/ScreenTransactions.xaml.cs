@@ -18,7 +18,7 @@ namespace CMcG.CommonwealthBank.Views
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.CheckPermissions<TransactionViewModel>(e);
+            this.SetupView(e);
         }
 
         void ShowSettings(object sender, EventArgs e)
@@ -43,12 +43,12 @@ namespace CMcG.CommonwealthBank.Views
 
         void MarkAllAsSeen(object sender, EventArgs e)
         {
-            ((TransactionViewModel)DataContext).MarkAsSeen();
+            ((TransactionsViewModel)DataContext).MarkAsSeen();
         }
 
         void RefreshAccount(object sender, EventArgs e)
         {
-            ((TransactionViewModel)DataContext).Refresh();
+            ((TransactionsViewModel)DataContext).Refresh();
         }
 
         void AddReplacement(object sender, EventArgs e)

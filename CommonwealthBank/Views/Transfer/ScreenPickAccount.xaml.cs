@@ -18,7 +18,7 @@ namespace CMcG.CommonwealthBank.Views.Transfer
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            this.CheckPermissions<PickAccountViewModel>(e);
+            this.SetupView(e);
         }
 
         void SelectAccount(object sender, RoutedEventArgs e)

@@ -13,6 +13,7 @@ namespace CMcG.CommonwealthBank
         {
             m_navigation = navigation;
         }
+
         public bool GoTo<TViewModel>(params object[] args)
         {
             var defaultScreenName = "Screen" + typeof(TViewModel).Name.Replace("ViewModel", "");
@@ -50,6 +51,10 @@ namespace CMcG.CommonwealthBank
                 m_navigation.RemoveBackEntry();
 
             m_navigation.GoBack();
+        }
+
+        public void Setup()
+        {
         }
     }
 }

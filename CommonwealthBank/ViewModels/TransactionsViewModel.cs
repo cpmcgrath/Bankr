@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace CMcG.CommonwealthBank.ViewModels
 {
-    public class TransactionViewModel : ViewModelBase
+    public class TransactionsViewModel : ViewModelBase
     {
-        public TransactionViewModel()
+        public TransactionsViewModel()
         {
             Load();
 

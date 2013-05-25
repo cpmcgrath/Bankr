@@ -29,10 +29,14 @@ namespace CMcG.CommonwealthBank
 
         public LoginType LogonRequired<TViewModel>()
         {
+            return LogonRequired(typeof(TViewModel));
+        }
+        public LoginType LogonRequired(Type viewModel)
+        {
             if (!HasLogin)
                 return LoginType.CreateLogin;
 
-            var permission = m_secureItems.ContainsKey(typeof(TViewModel)) ? m_secureItems[typeof(TViewModel)] : LoginType.None;
+            var permission = m_secureItems.ContainsKey(viewModel) ? m_secureItems[viewModel] : LoginType.None;
 
             if (!IsLoggedIn && (permission & LoginType.Password) == LoginType.Password)
                 return LoginType.Password;
