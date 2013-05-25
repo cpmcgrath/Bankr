@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Account.cs" />
+    <Compile Include="Data\TransferToAccount.cs" />
     <Compile Include="Data\DataStoreUpdater.cs" />
     <Compile Include="Data\UpcomingTransaction.cs" />
     <Compile Include="Data\DataStoreContext.cs" />

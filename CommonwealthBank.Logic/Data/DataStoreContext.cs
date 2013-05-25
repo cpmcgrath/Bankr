@@ -51,5 +51,10 @@ namespace CMcG.CommonwealthBank.Data
         {
             get { return GetTable<Replacement>(); }
         }
+
+        public Table<TransferToAccount> TransferToAccounts
+        {
+            get { return GetTable<TransferToAccount>(); }
+        }
     }
 }
