@@ -133,6 +133,8 @@
     <Compile Include="ViewModels\Options\LoginEditViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Options\ReplacementEditViewModel.cs" />
+    <Compile Include="ViewModels\Transfer\PickRecipientViewModel.cs" />
+    <Compile Include="ViewModels\Transfer\PickAccountViewModel.cs" />
     <Compile Include="ViewModels\UpcomingTransactionViewModel.cs" />
     <Compile Include="Views\Options\ScreenPinEdit.xaml.cs">
       <DependentUpon>ScreenPinEdit.xaml</DependentUpon>
@@ -164,6 +166,12 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\ScreenUpcomingTransactions.xaml.cs">
       <DependentUpon>ScreenUpcomingTransactions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Transfer\ScreenPickAccount.xaml.cs">
+      <DependentUpon>ScreenPickAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Transfer\ScreenPickRecipient.xaml.cs">
+      <DependentUpon>ScreenPickRecipient.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +219,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Transfer\ScreenPickAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Transfer\ScreenPickRecipient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -226,6 +242,7 @@
     <Content Include="Images\appbar.add.rest.png" />
     <Content Include="Images\appbar.delete.rest.png" />
     <Content Include="Images\appbar.save.rest.png" />
+    <Content Include="Images\appbar.transfer.rest.png" />
     <Content Include="Images\appbar.web.rest.png" />
     <Content Include="Images\Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

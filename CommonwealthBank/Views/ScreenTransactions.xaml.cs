@@ -36,6 +36,11 @@ namespace CMcG.CommonwealthBank.Views
             NavigationService.Navigate(new Uri("/Views/ScreenUpcomingTransactions.xaml", UriKind.Relative));
         }
 
+        void TransferMoney(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Views/Transfer/ScreenPickAccount.xaml", UriKind.Relative));
+        }
+
         void MarkAllAsSeen(object sender, EventArgs e)
         {
             ((TransactionViewModel)DataContext).MarkAsSeen();
