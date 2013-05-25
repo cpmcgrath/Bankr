@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace CMcG.CommonwealthBank.ViewModels
 {
@@ -10,6 +11,11 @@ namespace CMcG.CommonwealthBank.ViewModels
         {
             foreach (var propertyName in propertyNames)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected void FirePropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public App CurrentApp
