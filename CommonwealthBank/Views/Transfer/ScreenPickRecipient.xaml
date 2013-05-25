@@ -25,7 +25,6 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <!--<TextBlock Text="TRANSFER MONEY" Style="{StaticResource PhoneTextNormalStyle}"/>-->
             <TextBlock Style="{StaticResource PhoneTextNormalStyle}">
                 FROM: 
                 <Run Text="{Binding FromAccount.AccountName}" />

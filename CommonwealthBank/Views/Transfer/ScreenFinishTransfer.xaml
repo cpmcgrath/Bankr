@@ -1,0 +1,58 @@
+﻿<phone:PhoneApplicationPage x:Class="CMcG.CommonwealthBank.Views.Transfer.ScreenFinishTransfer"
+                            xmlns        ="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x      ="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:phone  ="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell  ="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:d      ="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc     ="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:tkit   ="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:System ="clr-namespace:System;assembly=mscorlib"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            SupportedOrientations="Portrait" Orientation="Portrait"
+                            mc:Ignorable="d"
+                            shell:SystemTray.IsVisible="True" Margin="0,-1,0,1">
+
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator IsIndeterminate="{Binding CurrentApp.Status.IsBusy}"
+                                 IsVisible="True"
+                                 Text="{Binding CurrentApp.Status.Action}" />
+    </shell:SystemTray.ProgressIndicator>
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="transfer money" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <TextBlock>
+                <Run Text="From: "/>
+                <Run Text="{Binding FromAccount.AccountName}" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="To: "/>
+                <Run Text="{Binding ToAccount.AccountName}" />
+            </TextBlock>
+            <TextBlock Text="Amount:" />
+            <TextBox InputScope="Number" Text="{Binding Amount, Mode=TwoWay, StringFormat=c}" />
+            <TextBlock Text="Description:" />
+            <tkit:AutoCompleteBox Text="{Binding YourDescription, Mode=TwoWay}"
+                                  ItemsSource="{Binding DescriptionList}" />
+
+        </StackPanel>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.check.rest.png" Text="make transaction" Click="MakeTransaction" />
+            <shell:ApplicationBarIconButton IconUri="/Images/AppBar/cancel.png"     Text="cancel"          Click="Cancel" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

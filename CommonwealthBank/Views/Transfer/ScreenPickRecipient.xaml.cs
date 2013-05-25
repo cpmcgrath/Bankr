@@ -29,7 +29,7 @@ namespace CMcG.CommonwealthBank.Views.Transfer
             var vm = (PickRecipientViewModel)DataContext;
 
             var ctl     = (FrameworkElement)sender;
-            var account = (Account)ctl.DataContext;
+            var account = (TransferToAccount)ctl.DataContext;
 
             var url = "/Views/Transfer/ScreenFinishTransfer.xaml?fromid=" + vm.FromAccount.Id + "&toid=" +account.Id;
             NavigationService.Navigate(new Uri(url, UriKind.Relative));                    
