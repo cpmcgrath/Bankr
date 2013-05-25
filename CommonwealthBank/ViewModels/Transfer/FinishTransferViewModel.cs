@@ -3,6 +3,7 @@ using CMcG.CommonwealthBank.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 
 namespace CMcG.CommonwealthBank.ViewModels.Transfer
 {
@@ -31,24 +32,13 @@ namespace CMcG.CommonwealthBank.ViewModels.Transfer
             }
         }
 
-        string m_yourDescription;
-        public string YourDescription
+        string m_description;
+        public string Description
         {
-            get { return m_yourDescription; }
+            get { return m_description; }
             set
             {
-                m_yourDescription = value;
-                FirePropertyChanged();
-            }
-        }
-
-        string m_theirDescription;
-        public string TheirDescription
-        {
-            get { return m_theirDescription ?? YourDescription; }
-            set
-            {
-                m_theirDescription = value;
+                m_description = value;
                 FirePropertyChanged();
             }
         }
@@ -61,9 +51,21 @@ namespace CMcG.CommonwealthBank.ViewModels.Transfer
             }
         }
 
-        public void MakeTransaction()
+        public async void MakeTransaction(Navigator navigator)
         {
-            throw new NotImplementedException();
+            var retriever = new DataRetriever { Status = CurrentApp.Status };
+            if (retriever.CanTransferMoney)
+            {
+                var receipt = await retriever.TransferMoney(FromAccount.Id, ToAccount.Id, Description, Amount);
+
+                if (string.IsNullOrEmpty(receipt))
+                    MessageBox.Show("Transfer failed");
+                else
+                {
+                    MessageBox.Show("Money Transfered.\r\nReceipt:" + receipt);
+                    navigator.GoBack(3);
+                }
+            }
         }
     }
 }

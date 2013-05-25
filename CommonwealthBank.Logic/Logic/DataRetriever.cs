@@ -57,5 +57,44 @@ namespace CMcG.CommonwealthBank.Logic
                 SessionId = m_sessionId
             }.Start(client);
         }
+
+        public bool CanTransferMoney
+        {
+            get { return LogonQuery.GetLogonDetails() != null; }
+        }
+
+        public async Task<string> TransferMoney(int fromAccount, int toAccount, string description, decimal amount)
+        {
+            var client = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
+
+            m_sessionId = await RunQuery<LogonQuery>(client);
+            if (m_sessionId == null)
+                return null;
+
+            await RunQuery<GetTransferAccountsQuery>(client);
+
+            using (var store = new DataStoreContext())
+            {
+                var fromData     = store.Accounts.First(x => x.Id == fromAccount);
+                var fromSendData = store.TransferToAccounts.First(x => x.Id == fromAccount && x.AccountName == fromData.AccountName);
+                fromAccount      = fromSendData.SenderId ?? -1;
+            }
+
+            var query = new TransferMoneyQuery
+            {
+                Status        = Status,
+                SessionId     = m_sessionId,
+                FromAccountId = fromAccount,
+                ToAccountId   = toAccount,
+                Description   = description,
+                Amount        = amount,
+                IsValidate    = true
+            };
+            await query.Start(client);
+
+            query.IsValidate = false;
+            await query.Start(client);
+            return query.ReceiptNo;
+        }
     }
 }

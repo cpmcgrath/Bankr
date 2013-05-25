@@ -13,6 +13,7 @@ namespace CMcG.CommonwealthBank.Data
     public partial class TransferToAccount : NotifyBase
     {
         int         m_id;
+        int?         m_senderId;
         string      m_accountName;
         string      m_accountNumber;
         decimal     m_availableFunds;
@@ -31,6 +32,21 @@ namespace CMcG.CommonwealthBank.Data
                 SendPropertyChanging();
                 m_id = value;
                 SendPropertyChanged("Id");
+            }
+        }
+
+        [Column]
+        public int? SenderId
+        {
+            get { return m_senderId; }
+            set
+            {
+                if (m_senderId == value)
+                    return;
+
+                SendPropertyChanging();
+                m_senderId = value;
+                SendPropertyChanged("SenderId");
             }
         }
 

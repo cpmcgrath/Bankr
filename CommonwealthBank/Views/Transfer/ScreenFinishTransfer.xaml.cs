@@ -26,12 +26,15 @@ namespace CMcG.CommonwealthBank.Views.Transfer
 
         void MakeTransaction(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Are you sure you want to transfer this money?", "Confirmation", MessageBoxButton.OKCancel);
+            this.FinishBinding();
+            var vm = (FinishTransferViewModel)DataContext;
+            string message = string.Format("Are you sure you want complete the transfer?\r\nFrom: {0}\r\nTo: {1}\r\n{2:c}\r\n{3}",
+                                           vm.FromAccount.AccountName, vm.ToAccount.AccountName, vm.Amount, vm.Description);
+            var result = MessageBox.Show(message, "Confirmation", MessageBoxButton.OKCancel);
             if (result != MessageBoxResult.OK)
                 return;
 
-            var vm = (FinishTransferViewModel)DataContext;
-            //vm.MakeTransaction();
+            vm.MakeTransaction(this.Navigation());
         }
 
         void Cancel(object sender, EventArgs e)

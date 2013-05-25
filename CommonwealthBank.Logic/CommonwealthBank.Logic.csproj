@@ -123,6 +123,7 @@
     <Compile Include="Logic\CbaAmountConverter.cs" />
     <Compile Include="Logic\CbaDateConverter.cs" />
     <Compile Include="Logic\Queries\CommBankQuery.cs" />
+    <Compile Include="Logic\Queries\TransferMoneyQuery.cs" />
     <Compile Include="Logic\Queries\GetTransferAccountsQuery.cs">
       <SubType>Code</SubType>
     </Compile>
