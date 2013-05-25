@@ -36,4 +36,11 @@ namespace CMcG.CommonwealthBank.Logic
         public string Name  { get; set; }
         public object Value { get; set; }
     }
+
+    public class TransferAccountResult
+    {
+        public Data.TransferToAccount[] AccountsFrom        { get; set; }
+        public Data.TransferToAccount[] AccountsToLinked    { get; set; }
+        public Data.TransferToAccount[] AccountsToNotLinked { get; set; }
+    }
 }

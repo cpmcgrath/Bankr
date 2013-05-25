@@ -32,6 +32,23 @@ namespace CMcG.CommonwealthBank.Logic
             Callback();
         }
 
+        public bool CanLoadTransferAccounts
+        {
+            get { return LogonQuery.GetLogonDetails() != null; }
+        }
+
+        public async void LoadTransferAccounts()
+        {
+            var client = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
+
+            m_sessionId = await RunQuery<LogonQuery>(client);
+            if (m_sessionId != null)
+            {
+                await RunQuery<GetTransferAccountsQuery>(client);
+            }
+            Callback();
+        }
+
         async Task<string> RunQuery<T>(HttpClient client) where T : CommBankQuery, new()
         {
             return await new T
