@@ -59,7 +59,7 @@ namespace CMcG.CommonwealthBank
             if (e.NavigationMode != NavigationMode.New)
                 return;
 
-            UIElement screen = null;
+            PhoneApplicationPage screen = null;
 
             switch (App.Current.Security.LogonRequired(viewModel))
             {
@@ -70,6 +70,8 @@ namespace CMcG.CommonwealthBank
             }
 
             Hide(instance);
+            screen.Height =  Application.Current.Host.Content.ActualHeight - 50;
+            screen.Width  =  Application.Current.Host.Content.ActualWidth;
             s_popup = new Popup
             {
                 Child          = screen,

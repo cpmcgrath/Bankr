@@ -12,7 +12,13 @@
                             SupportedOrientations="Portrait" Orientation="Portrait"
                             mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
                             shell:SystemTray.IsVisible="True">
-
+    <UserControl.Resources>
+        <Style TargetType="Button" >
+            <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="Margin" Value="-8"/>
+        </Style>
+    </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,16 +30,22 @@
             <TextBlock Text="pin login" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <c:PinControl Password="{Binding Pin, Mode=TwoWay}" />
 
-            <Button Content="Login" Width="250" Click="Login" Grid.Row="1" />
-            <Button Content="Switch to password" Width="250" Click="SwitchToPassword" Grid.Row="2" />
+            <Grid Grid.Row="1"  Background="#1F1F1F">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Login" Click="Login" />
+                <Button Content="Switch to password" Click="SwitchToPassword" Grid.Column="1" Grid.ColumnSpan="2" />
+            </Grid>
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>

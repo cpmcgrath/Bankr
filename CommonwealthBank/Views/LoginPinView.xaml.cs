@@ -31,7 +31,7 @@ namespace CMcG.CommonwealthBank.Views
 
         void SwitchToPassword(object sender, RoutedEventArgs e)
         {
-            var passwordScreen = new LoginView { OnLogin = OnLogin };
+            var passwordScreen = new LoginView { OnLogin = OnLogin, Width = Width, Height = Height };
             var popup = (Popup)Parent;
             popup.IsOpen = false;
             popup.Child = passwordScreen;
