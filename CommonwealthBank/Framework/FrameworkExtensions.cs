@@ -49,8 +49,13 @@ namespace CMcG.CommonwealthBank
             return value;
         }
 
+        static Popup s_popup;
+
         static void CheckPermissions(PhoneApplicationPage instance, Type viewModel, NavigationEventArgs e, Func<object> creator)
         {
+            if (s_popup != null && s_popup.IsOpen)
+                s_popup.IsOpen = false;
+
             if (e.NavigationMode != NavigationMode.New)
                 return;
 
@@ -65,7 +70,7 @@ namespace CMcG.CommonwealthBank
             }
 
             Hide(instance);
-            var popup = new Popup
+            s_popup = new Popup
             {
                 Child          = screen,
                 VerticalOffset = 30,
