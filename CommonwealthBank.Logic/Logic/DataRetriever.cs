@@ -9,6 +9,7 @@ namespace CMcG.CommonwealthBank.Logic
 {
     public class DataRetriever
     {
+        private const string URI = "https://www1.my.commbank.com.au";
         public AppStatus Status   { get; set; }
         public Action    Callback { get; set; }
 
@@ -21,7 +22,7 @@ namespace CMcG.CommonwealthBank.Logic
 
         public async void LoadData()
         {
-            var client = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
+            var client = new HttpClient { BaseAddress = new Uri(URI) };
 
             m_sessionId = await RunQuery<LogonQuery>(client);
             if (m_sessionId != null)
@@ -39,7 +40,7 @@ namespace CMcG.CommonwealthBank.Logic
 
         public async void LoadTransferAccounts()
         {
-            var client = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
+            var client = new HttpClient { BaseAddress = new Uri(URI) };
 
             m_sessionId = await RunQuery<LogonQuery>(client);
             if (m_sessionId != null)
@@ -65,7 +66,7 @@ namespace CMcG.CommonwealthBank.Logic
 
         public async Task<string> TransferMoney(int fromAccount, int toAccount, string description, decimal amount)
         {
-            var client = new HttpClient { BaseAddress = new Uri("https://www2.my.commbank.com.au") };
+            var client = new HttpClient { BaseAddress = new Uri(URI) };
 
             m_sessionId = await RunQuery<LogonQuery>(client);
             if (m_sessionId == null)
