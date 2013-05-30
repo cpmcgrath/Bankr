@@ -13,11 +13,7 @@
                             mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
                             shell:SystemTray.IsVisible="True">
     <UserControl.Resources>
-        <Style TargetType="Button" >
-            <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource PhoneAccentBrush}"/>
-            <Setter Property="Margin" Value="-8"/>
-        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource GreyBtn}" />
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -43,8 +39,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Login" Click="Login" />
-                <Button Content="Switch to password" Click="SwitchToPassword" Grid.Column="1" Grid.ColumnSpan="2" />
+                <Button Content="Login"              Click="Login" Style="{StaticResource AccentBtn}" />
+                <Button Content="Switch to password" Click="SwitchToPassword" Style="{StaticResource AccentBtn}" Grid.Column="1" Grid.ColumnSpan="2" />
             </Grid>
         </Grid>
     </Grid>

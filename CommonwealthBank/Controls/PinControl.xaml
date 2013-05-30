@@ -9,10 +9,7 @@
              Foreground     = "{StaticResource PhoneForegroundBrush}"
              d:DesignHeight = "480" d:DesignWidth="480">
     <UserControl.Resources>
-        <Style TargetType="Button" >
-            <Setter Property="Background" Value="#474747"/>
-            <Setter Property="BorderBrush" Value="#474747"/>
-            <Setter Property="Margin" Value="-8"/>
+        <Style TargetType="Button" BasedOn="{StaticResource GreyBtn}">
             <Setter Property="FontSize" Value="40"/>
         </Style>
     </UserControl.Resources>
