@@ -28,7 +28,7 @@ namespace CMcG.CommonwealthBank.Views.Transfer
             var ctl     = (FrameworkElement)sender;
             var account = (TransferToAccount)ctl.DataContext;
 
-            this.Navigation().GoTo<FinishTransferViewModel>(vm.FromAccount.Id, account.Id);
+            this.Navigation().GoTo<AmountViewModel>(vm.FromAccount.Id, account.Id);
         }
 
         public void Refresh(object sender, EventArgs e)

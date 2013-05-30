@@ -39,7 +39,7 @@ namespace CMcG.CommonwealthBank.Views.Transfer
 
         void Cancel(object sender, EventArgs e)
         {
-            this.Navigation().GoBack(3);
+            this.Navigation().GoBack(4);
         }
 
     }

@@ -13,6 +13,7 @@
             <Setter Property="Background" Value="#474747"/>
             <Setter Property="BorderBrush" Value="#474747"/>
             <Setter Property="Margin" Value="-8"/>
+            <Setter Property="FontSize" Value="40"/>
         </Style>
     </UserControl.Resources>
 
@@ -53,7 +54,7 @@
 
             <Button Content="0" Grid.Row="3" Grid.Column="1" Click="OnNumberPressed" IsEnabled="{Binding MaxLengthNotReached}" />
 
-            <Button Content="Clear" Grid.Row="3" Grid.Column="2" Click="Clear" />
+            <Button Content="Clear" Grid.Row="3" Grid.Column="2" Click="Clear" FontSize="22.667" />
         </Grid>
     </Grid>
 </UserControl>

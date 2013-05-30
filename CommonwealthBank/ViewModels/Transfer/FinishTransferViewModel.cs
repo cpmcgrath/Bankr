@@ -9,8 +9,9 @@ namespace CMcG.CommonwealthBank.ViewModels.Transfer
 {
     public class FinishTransferViewModel : ViewModelBase
     {
-        public FinishTransferViewModel(int fromAccountId, int toAccountId)
+        public FinishTransferViewModel(int fromAccountId, int toAccountId, decimal amount)
         {
+            Amount = amount;
             using (var store = new DataStoreContext())
             {
                 FromAccount = store.Accounts.First(x => x.Id == fromAccountId);

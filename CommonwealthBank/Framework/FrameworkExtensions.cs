@@ -46,6 +46,9 @@ namespace CMcG.CommonwealthBank
             if (type == typeof(int))
                 return int.Parse(value);
 
+            if (type == typeof(decimal))
+                return decimal.Parse(value);
+
             return value;
         }
 

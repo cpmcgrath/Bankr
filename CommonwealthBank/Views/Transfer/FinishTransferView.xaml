@@ -27,21 +27,32 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="transfer money" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock>
-                <Run Text="From: "/>
-                <Run Text="{Binding FromAccount.AccountName}" />
-            </TextBlock>
-            <TextBlock>
-                <Run Text="To: "/>
-                <Run Text="{Binding ToAccount.AccountName}" />
-            </TextBlock>
-            <TextBlock Text="Amount:" />
-            <TextBox InputScope="Number" Text="{Binding Amount, Mode=TwoWay, StringFormat=c}" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="30" />
+                    </Style>
+                </Grid.Resources>
+                <TextBlock Grid.Row="0" Text="From: "/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding FromAccount.AccountName}" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="To: "/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ToAccount.AccountName}" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Amount: " />
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Amount, StringFormat=c}" />
+            </Grid>
             <TextBlock Text="Description:" />
             <tkit:AutoCompleteBox Text="{Binding Description, Mode=TwoWay}"
                                   ItemsSource="{Binding DescriptionList}" />
