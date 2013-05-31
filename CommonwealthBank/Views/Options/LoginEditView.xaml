@@ -35,7 +35,13 @@
             <TextBlock Text="Password" />
             <PasswordBox Password="{Binding Password, Mode=TwoWay}" />
 
-            <Button Content="Save" HorizontalAlignment="Center" Width="180" Margin="0,20,0,0" Click="Save" />
+            <Button Content             = "Save"
+                    Style               = "{StaticResource AccentBtn}"
+                    HorizontalAlignment = "Right"
+                    Width               = "200"
+                    Height              = "116"
+                    Margin              = "0"
+                    Click               = "Save" />
         </StackPanel>
     </Grid>
 </phone:PhoneApplicationPage>

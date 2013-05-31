@@ -38,6 +38,7 @@
             <TextBlock Grid.ColumnSpan     = "3"
                        Text                = "{Binding Amount}"
                        FontSize            = "90"
+                       Margin              = "21,0"
                        VerticalAlignment   = "Top" />
 
             <Grid Background="#1F1F1F" Grid.Row="2">
