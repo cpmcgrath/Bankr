@@ -9,7 +9,8 @@ namespace CMcG.CommonwealthBank.Logic
 {
     public class DataRetriever
     {
-        private const string URI = "https://www1.my.commbank.com.au";
+        const string Url = "https://www.my.commbank.com.au/mobile/i/default.aspx";
+
         public AppStatus Status   { get; set; }
         public Action    Callback { get; set; }
 
@@ -20,9 +21,21 @@ namespace CMcG.CommonwealthBank.Logic
             get { return LogonQuery.GetLogonDetails() != null; }
         }
 
+        static Uri m_uri;
+        async Task<Uri> GetUri()
+        {
+            if (m_uri != null)
+                return m_uri;
+
+            var findResult = await new HttpClient().GetAsync(Url);
+            m_uri = new Uri("https://" + findResult.RequestMessage.RequestUri.Host);
+            return m_uri;
+        }
+
         public async void LoadData()
         {
-            var client = new HttpClient { BaseAddress = new Uri(URI) };
+            var uri    = await GetUri();
+            var client = new HttpClient { BaseAddress = uri };
 
             m_sessionId = await RunQuery<LogonQuery>(client);
             if (m_sessionId != null)
@@ -40,7 +53,8 @@ namespace CMcG.CommonwealthBank.Logic
 
         public async void LoadTransferAccounts()
         {
-            var client = new HttpClient { BaseAddress = new Uri(URI) };
+            var uri    = await GetUri();
+            var client = new HttpClient { BaseAddress = uri };
 
             m_sessionId = await RunQuery<LogonQuery>(client);
             if (m_sessionId != null)
@@ -66,7 +80,8 @@ namespace CMcG.CommonwealthBank.Logic
 
         public async Task<string> TransferMoney(int fromAccount, int toAccount, string description, decimal amount)
         {
-            var client = new HttpClient { BaseAddress = new Uri(URI) };
+            var uri    = await GetUri();
+            var client = new HttpClient { BaseAddress = uri };
 
             m_sessionId = await RunQuery<LogonQuery>(client);
             if (m_sessionId == null)
