@@ -33,7 +33,7 @@
             </Grid.RowDefinitions>
             <c:PinControl Password="{Binding Pin, Mode=TwoWay}" />
 
-            <Grid Grid.Row="1"  Background="#1F1F1F">
+                <Grid Grid.Row="1"  Background="{StaticResource PhoneChromeBrush}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>

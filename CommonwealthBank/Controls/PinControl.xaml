@@ -24,7 +24,7 @@
                    FontSize            = "90"
                    HorizontalAlignment = "Center"
                    VerticalAlignment   = "Top" />
-        <Grid Background="#1F1F1F" Grid.Row="1">
+        <Grid Background="{StaticResource PhoneChromeBrush}" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>

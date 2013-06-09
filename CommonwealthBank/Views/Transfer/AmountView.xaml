@@ -41,7 +41,7 @@
                        Margin              = "21,0"
                        VerticalAlignment   = "Top" />
 
-            <Grid Background="#1F1F1F" Grid.Row="2">
+            <Grid Background="{StaticResource PhoneChromeBrush}" Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
