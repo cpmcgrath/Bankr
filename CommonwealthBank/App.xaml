@@ -8,13 +8,14 @@
 
     <Application.Resources>
         <Style x:Key="GreyBtn" TargetType="Button">
-            <Setter Property="Background"      Value="#474747"/>
+            <Setter Property="Background"      Value="{StaticResource PhoneInactiveBrush}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Margin"          Value="-8"/>
         </Style>
 
         <Style x:Key="AccentBtn" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource PhoneAccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Margin" Value="-8"/>
             <Setter Property="Template">
