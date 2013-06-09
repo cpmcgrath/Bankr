@@ -72,7 +72,11 @@ namespace CMcG.CommonwealthBank.Data
         {
             get
             {
-                return ViewModelType.Name.Replace("ViewModel", "");
+                var name = ViewModelType.Name.Replace("ViewModel", "");
+                if (name.EndsWith("Edit"))
+                    return name.Substring(0, name.Length - 4);
+                else
+                    return name;
             }
         }
 
