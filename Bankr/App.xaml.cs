@@ -93,10 +93,14 @@ namespace CMcG.Bankr
 
         void StartBackgroundAgent()
         {
+            var oldTaskName = "CMcG.CommonwealthBank.Agent";
             var taskName = "CMcG.Bankr.Agent";
 
             if (ScheduledActionService.Find(taskName) is PeriodicTask)
                 ScheduledActionService.Remove(taskName);
+
+            if (ScheduledActionService.Find(oldTaskName) is PeriodicTask)
+                ScheduledActionService.Remove(oldTaskName);
 
             ScheduledActionService.Add(new PeriodicTask(taskName)
             {
