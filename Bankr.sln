@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonwealthBank", "CommonwealthBank\CommonwealthBank.csproj", "{26EBE86D-B45D-4D42-9794-E00D656E7421}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankr", "Bankr\Bankr.csproj", "{26EBE86D-B45D-4D42-9794-E00D656E7421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonwealthBank.Agent", "CommonwealthBank.Agent\CommonwealthBank.Agent.csproj", "{CACE03BD-E92D-47D6-8E04-DAD373F49031}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankr.Agent", "Bankr.Agent\Bankr.Agent.csproj", "{CACE03BD-E92D-47D6-8E04-DAD373F49031}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonwealthBank.Logic", "CommonwealthBank.Logic\CommonwealthBank.Logic.csproj", "{B0995A78-B445-42FC-8A0C-542C45DBF3DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankr.Logic", "Bankr.Logic\Bankr.Logic.csproj", "{B0995A78-B445-42FC-8A0C-542C45DBF3DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

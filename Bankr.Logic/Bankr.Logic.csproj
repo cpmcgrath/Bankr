@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CACE03BD-E92D-47D6-8E04-DAD373F49031}</ProjectGuid>
+    <ProjectGuid>{B0995A78-B445-42FC-8A0C-542C45DBF3DA}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CMcG.CommonwealthBank.Agent</RootNamespace>
-    <AssemblyName>CommonwealthBank.Agent</AssemblyName>
+    <RootNamespace>CMcG.Bankr</RootNamespace>
+    <AssemblyName>Bankr.Logic</AssemblyName>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>
     </SilverlightVersion>
@@ -20,9 +20,9 @@
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
-    <BackgroundAgentType>AgentLibrary</BackgroundAgentType>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
-    <SupportedCultures>en</SupportedCultures>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -94,19 +94,58 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ScheduledAgent.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Updater.cs" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.3-beta\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.3-beta\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.1.3-beta\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonwealthBank.Logic\CommonwealthBank.Logic.csproj">
-      <Project>{B0995A78-B445-42FC-8A0C-542C45DBF3DA}</Project>
-      <Name>CommonwealthBank.Logic</Name>
-    </ProjectReference>
+    <Compile Include="Data\AccessLevel.cs" />
+    <Compile Include="Data\Account.cs" />
+    <Compile Include="Data\ScreenSecurity.cs" />
+    <Compile Include="Data\TransferToAccount.cs" />
+    <Compile Include="Data\DataStoreUpdater.cs" />
+    <Compile Include="Data\UpcomingTransaction.cs" />
+    <Compile Include="Data\DataStoreContext.cs" />
+    <Compile Include="Data\Error.cs" />
+    <Compile Include="Data\LoginDetails.cs" />
+    <Compile Include="Data\NotifyBase.cs" />
+    <Compile Include="Data\Options.cs" />
+    <Compile Include="Data\Replacement.cs" />
+    <Compile Include="Data\Transaction.cs" />
+    <Compile Include="Logic\AppStatus.cs" />
+    <Compile Include="Logic\CbaAmountConverter.cs" />
+    <Compile Include="Logic\CbaDateConverter.cs" />
+    <Compile Include="Logic\Queries\CommBankQuery.cs" />
+    <Compile Include="Logic\Queries\TransferMoneyQuery.cs" />
+    <Compile Include="Logic\Queries\GetTransferAccountsQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Logic\Queries\GetUpcomingTransactionsQuery.cs" />
+    <Compile Include="Logic\DataRetriever.cs" />
+    <Compile Include="Logic\Extensions.cs" />
+    <Compile Include="Logic\Queries\GetTransactionsQuery.cs" />
+    <Compile Include="Logic\JsonObjects.cs" />
+    <Compile Include="Logic\Queries\LogonQuery.cs" />
+    <Compile Include="Logic\TwoWayEncryption.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.0-rc\tools\Microsoft.Bcl.Build.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
