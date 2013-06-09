@@ -41,10 +41,17 @@
                     <Button Content             = "PIN options"
                             Style               = "{StaticResource AccentBtn}"
                             HorizontalAlignment = "Left"
-                            Width               = "200"
+                            Width               = "250"
                             Height              = "116"
                             Margin              = "0"
                             Click               = "ShowPinOptions"/>
+                    <Button Content             = "Screen protection"
+                            Style               = "{StaticResource AccentBtn}"
+                            HorizontalAlignment = "Left"
+                            Width               = "250"
+                            Height              = "116"
+                            Margin              = "0"
+                            Click               = "ShowScreenProtection"/>
                 </StackPanel>
             </controls:PivotItem>
 

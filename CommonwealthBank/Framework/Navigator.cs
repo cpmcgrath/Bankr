@@ -8,6 +8,14 @@ namespace CMcG.CommonwealthBank
 {
     public class Navigator
     {
+        public static IEnumerable<Type> GetViewModelTypes(bool defaultPathOnly = true, bool includeLogin = false)
+        {
+            var types = Assembly.GetExecutingAssembly().GetTypes();
+            return types.Where(x => x.Name.EndsWith("ViewModel"))
+                        .Where(x => !defaultPathOnly || x.Namespace.Contains("ViewModels"))
+                        .Where(x => includeLogin     || !x.Name.Contains("Login"));
+        }
+
         NavigationService m_navigation;
         public Navigator(NavigationService navigation)
         {

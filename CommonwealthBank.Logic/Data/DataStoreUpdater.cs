@@ -8,7 +8,7 @@ namespace CMcG.CommonwealthBank.Data
 {
     public partial class DataStoreUpdater
     {
-        const int CURRENT_VERSION = 5;
+        const int CURRENT_VERSION = 6;
 
         void Create(DataStoreContext store)
         {
@@ -35,7 +35,8 @@ namespace CMcG.CommonwealthBank.Data
                 case 1 : schema.AddTable<UpcomingTransaction>();          goto case 2;
                 case 2 : schema.AddColumn<LoginDetails>("Pin");           goto case 3;
                 case 3 : schema.AddTable<TransferToAccount>();            goto case 4;
-                case 4 : schema.AddColumn<TransferToAccount>("SenderId"); break;
+                case 4 : schema.AddColumn<TransferToAccount>("SenderId"); goto case 5;
+                case 5 : schema.AddTable<ScreenSecurity>();               break;
 
                 default : return;
             }

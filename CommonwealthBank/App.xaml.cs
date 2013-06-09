@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Controls;
@@ -29,9 +30,8 @@ namespace CMcG.CommonwealthBank
             InitializeComponent();
             InitializePhoneApplication();
             Status   = new AppStatus { AutoRemove = true };
-            Security = new Security();
-            Security.UpdatePermission<OptionsViewModel    >(Security.LoginType.PinAndPassword);
-            Security.UpdatePermission<PickAccountViewModel>(Security.LoginType.Pin);
+            Security = new CommonwealthBank.Security();
+            Security.LoadFromDatabase();
 
             if (System.Diagnostics.Debugger.IsAttached)
                 ShowGraphicsProfiling();

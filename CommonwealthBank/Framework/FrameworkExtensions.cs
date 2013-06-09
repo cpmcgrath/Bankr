@@ -7,6 +7,7 @@ using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using CMcG.CommonwealthBank.Data;
 
 namespace CMcG.CommonwealthBank
 {
@@ -19,10 +20,9 @@ namespace CMcG.CommonwealthBank
 
         public static void SetupView<TPage>(this TPage instance, NavigationEventArgs e) where TPage : PhoneApplicationPage
         {
-            var assembly      = Assembly.GetExecutingAssembly();
             var defaultVMName = typeof(TPage).Name + "Model";
             var attr          = typeof(TPage).GetCustomAttribute<ViewOfAttribute>();
-            var vm            = attr != null ? attr.ViewModelType : assembly.GetTypes().First(x => x.Name == defaultVMName);
+            var vm            = attr != null ? attr.ViewModelType : Navigator.GetViewModelTypes(false, true).First(x => x.Name == defaultVMName);
 
             var argLookup = instance.NavigationContext.QueryString;
             var constructor = vm.GetConstructors()
@@ -66,10 +66,10 @@ namespace CMcG.CommonwealthBank
 
             switch (App.Current.Security.LogonRequired(viewModel))
             {
-                case Security.LoginType.None        : instance.DataContext = creator.Invoke(); return;
-                case Security.LoginType.CreateLogin : screen = new Views.Options.LoginEditView { OnSave  = () => ResetLook(instance, creator)        }; break;
-                case Security.LoginType.Password    : screen = new Views.LoginView             { OnLogin = () => ResetLook(instance, creator)        }; break;
-                case Security.LoginType.Pin         : screen = new Views.LoginPinView          { OnLogin = () => ResetLook(instance, creator, false) }; break;
+                case AccessLevel.None        : instance.DataContext = creator.Invoke(); return;
+                case AccessLevel.CreateLogin : screen = new Views.Options.LoginEditView { OnSave  = () => ResetLook(instance, creator)        }; break;
+                case AccessLevel.Password    : screen = new Views.LoginView             { OnLogin = () => ResetLook(instance, creator)        }; break;
+                case AccessLevel.Pin         : screen = new Views.LoginPinView          { OnLogin = () => ResetLook(instance, creator, false) }; break;
             }
 
             Hide(instance);

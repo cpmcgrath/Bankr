@@ -1,12 +1,34 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel;
+using CMcG.CommonwealthBank.Data;
+using CMcG.CommonwealthBank.ViewModels.Transfer;
+using CMcG.CommonwealthBank.ViewModels.Options;
 
 namespace CMcG.CommonwealthBank
 {
     public class Security
     {
-        Dictionary<Type, LoginType> m_secureItems = new Dictionary<Type, LoginType>();
+        Dictionary<Type, AccessLevel> m_secureItems = new Dictionary<Type, AccessLevel>();
+
+        public void LoadFromDatabase()
+        {
+            m_secureItems = new Dictionary<Type,AccessLevel>();
+            using (var store = new DataStoreContext())
+            {
+                if (!store.ScreenSecurity.Any())
+                {
+                    UpdatePermission<OptionsViewModel    >(AccessLevel.PinAndPassword);
+                    UpdatePermission<PickAccountViewModel>(AccessLevel.Pin);
+                }
+                else
+                {
+                    foreach (var screen in store.ScreenSecurity)
+                        UpdatePermission(screen.ViewModelType, screen.AccessLevel);
+                }
+            }
+        }
 
         public bool IsLoggedIn { get; set; }
         public bool HasLogin
@@ -27,46 +49,45 @@ namespace CMcG.CommonwealthBank
             }
         }
 
-        public LoginType LogonRequired<TViewModel>()
+        public AccessLevel LogonRequired<TViewModel>()
         {
             return LogonRequired(typeof(TViewModel));
         }
-        public LoginType LogonRequired(Type viewModel)
+        public AccessLevel LogonRequired(Type viewModel)
         {
             if (!HasLogin)
-                return LoginType.CreateLogin;
+                return AccessLevel.CreateLogin;
 
-            var permission = m_secureItems.ContainsKey(viewModel) ? m_secureItems[viewModel] : LoginType.None;
+            var permission = m_secureItems.ContainsKey(viewModel) ? m_secureItems[viewModel] : AccessLevel.None;
 
-            if (!IsLoggedIn && (permission & LoginType.Password) == LoginType.Password)
-                return LoginType.Password;
+            if (!IsLoggedIn && (permission & AccessLevel.Password) == AccessLevel.Password)
+                return AccessLevel.Password;
 
-            if ((permission & LoginType.Pin) == LoginType.Pin)
-                return HasPin ? LoginType.Pin : LoginType.Password;
+            if ((permission & AccessLevel.Pin) == AccessLevel.Pin)
+                return HasPin ? AccessLevel.Pin : AccessLevel.Password;
 
-            return LoginType.None;
+            return AccessLevel.None;
         }
 
-        public void UpdatePermission<TViewModel>(LoginType loginType)
+        public void UpdatePermission<TViewModel>(AccessLevel loginType)
         {
-            bool alreadySecure = m_secureItems.ContainsKey(typeof(TViewModel));
+            UpdatePermission(typeof(TViewModel), loginType);
+        }
+        public void UpdatePermission(Type vm, AccessLevel loginType)
+        {
+            bool alreadySecure = m_secureItems.ContainsKey(vm);
 
-            if (loginType == LoginType.None)
-                m_secureItems.Remove(typeof(TViewModel));
+            if (loginType == AccessLevel.None)
+                m_secureItems.Remove(vm);
             else if (alreadySecure)
-                m_secureItems[typeof(TViewModel)] = loginType;
+                m_secureItems[vm] = loginType;
             else
-                m_secureItems.Add(typeof(TViewModel), loginType);
+                m_secureItems.Add(vm, loginType);
         }
 
-        [Flags]
-        public enum LoginType
+        public AccessLevel GetAccessLevel(Type vm)
         {
-            None,
-            Pin,
-            Password,
-            PinAndPassword = Pin | Password,
-            CreateLogin
+            return m_secureItems.ContainsKey(vm) ? m_secureItems[vm] : AccessLevel.None;
         }
     }
 }

@@ -108,7 +108,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AccessLevel.cs" />
     <Compile Include="Data\Account.cs" />
+    <Compile Include="Data\ScreenSecurity.cs" />
     <Compile Include="Data\TransferToAccount.cs" />
     <Compile Include="Data\DataStoreUpdater.cs" />
     <Compile Include="Data\UpcomingTransaction.cs" />

@@ -56,5 +56,10 @@ namespace CMcG.CommonwealthBank.Data
         {
             get { return GetTable<TransferToAccount>(); }
         }
+
+        public Table<ScreenSecurity> ScreenSecurity
+        {
+            get { return GetTable<ScreenSecurity>(); }
+        }
     }
 }

@@ -31,9 +31,14 @@ namespace CMcG.CommonwealthBank.Views.Options
             ((OptionsViewModel)DataContext).SendErrorReport();
         }
 
-         void ShowPinOptions(object sender, System.Windows.RoutedEventArgs e)
+        void ShowPinOptions(object sender, System.Windows.RoutedEventArgs e)
         {
             this.Navigation().GoTo<PinEditViewModel>();
+        }
+
+        void ShowScreenProtection(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.Navigation().GoTo<ScreenProtectionViewModel>();
         }
     }
 }
