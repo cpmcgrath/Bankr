@@ -1,12 +1,14 @@
-﻿using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.Logic;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Windows;
+using System.ComponentModel;
+using CMcG.CommonwealthBank.Data;
+using System.Collections.Generic;
+using CMcG.CommonwealthBank.Logic;
 
 namespace CMcG.CommonwealthBank.ViewModels.Transfer
 {
+    [Description("4. Transfer Money")]
     public class FinishTransferViewModel : ViewModelBase
     {
         public FinishTransferViewModel(int fromAccountId, int toAccountId, decimal amount)

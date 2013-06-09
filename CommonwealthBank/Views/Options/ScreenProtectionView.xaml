@@ -15,11 +15,11 @@
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="ScreenTemplate">
             <Grid>
-                <TextBlock Text="{Binding Name}" Margin="0,35,0,0" />
+                <TextBlock Text="{Binding Name}" Margin="0,30,0,0" />
                 <toolkit:ListPicker ItemsSource         = "{Binding AccessLevels}"
                                     SelectedItem        = "{Binding AccessLevel, Mode=TwoWay}"
                                     HorizontalAlignment = "Right"
-                                    Width               = "250" />
+                                    Width               = "230" />
             </Grid>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>

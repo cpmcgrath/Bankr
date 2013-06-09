@@ -1,11 +1,11 @@
-﻿using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.Logic;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CMcG.CommonwealthBank.ViewModels.Transfer
 {
+    [Description("3. Amount")]
     class AmountViewModel : ViewModels.ViewModelBase
     {
         public AmountViewModel(int fromAccountId, int toAccountId)

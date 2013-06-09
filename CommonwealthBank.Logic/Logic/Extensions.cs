@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Text;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace CMcG.CommonwealthBank.Logic
 {
@@ -65,6 +67,30 @@ namespace CMcG.CommonwealthBank.Logic
             str += ts.Minutes + (ts.Minutes == 1 ? " minute" : " minutes");
 
             return str;
+        }
+
+        public static string GetFriendlyName(this MemberInfo instance)
+        {
+            var desc = instance.GetAttribute<DescriptionAttribute>();
+            if (desc != null)
+                return desc.Description;
+
+            var name = instance.Name;
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < name.Length; i++)
+            {
+                if (i > 0 && !char.IsLower(name[i]) && char.IsLower(name[i - 1]))
+                    result.Append(' ');
+
+                result.Append(name[i]);
+            }
+            return result.ToString();
+        }
+
+        public static TAttribute GetAttribute<TAttribute>(this MemberInfo instance, bool inherit = false)
+            where TAttribute : Attribute
+        {
+            return (TAttribute)instance.GetCustomAttributes(typeof(TAttribute), inherit).FirstOrDefault();
         }
     }
 }

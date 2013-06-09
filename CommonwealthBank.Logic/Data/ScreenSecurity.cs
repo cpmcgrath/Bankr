@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Linq.Mapping;
 using System.Linq;
+using CMcG.CommonwealthBank.Logic;
 
 namespace CMcG.CommonwealthBank.Data
 {
@@ -60,7 +62,12 @@ namespace CMcG.CommonwealthBank.Data
 
         public Type ViewModelType
         {
-            get { return m_viewModelType ?? Type.GetType(TypeFullName); }
+            get
+            {
+                if (m_viewModelType == null)
+                    m_viewModelType = Type.GetType(TypeFullName);
+                return m_viewModelType;
+            }
             set
             {
                 m_viewModelType = value;
@@ -72,9 +79,11 @@ namespace CMcG.CommonwealthBank.Data
         {
             get
             {
-                var name = ViewModelType.Name.Replace("ViewModel", "");
-                if (name.EndsWith("Edit"))
-                    return name.Substring(0, name.Length - 4);
+                var name = ViewModelType.GetFriendlyName();
+                name = name.Replace(" View Model", "");
+
+                if (name.EndsWith(" Edit"))
+                    return name.Substring(0, name.Length - 5);
                 else
                     return name;
             }

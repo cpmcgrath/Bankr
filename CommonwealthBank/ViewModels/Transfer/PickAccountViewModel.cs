@@ -2,9 +2,11 @@
 using System.Linq;
 using System.Collections.Generic;
 using CMcG.CommonwealthBank.Data;
+using System.ComponentModel;
 
 namespace CMcG.CommonwealthBank.ViewModels.Transfer
 {
+    [Description("1. From Account")]
     public class PickAccountViewModel : ViewModelBase
     {
         public PickAccountViewModel()
