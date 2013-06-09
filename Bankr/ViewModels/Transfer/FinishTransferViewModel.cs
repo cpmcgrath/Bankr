@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Windows;
 using System.ComponentModel;
-using CMcG.CommonwealthBank.Data;
+using CMcG.Bankr.Data;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Logic;
 
-namespace CMcG.CommonwealthBank.ViewModels.Transfer
+namespace CMcG.Bankr.ViewModels.Transfer
 {
     [Description("4. Transfer Money")]
     public class FinishTransferViewModel : ViewModelBase

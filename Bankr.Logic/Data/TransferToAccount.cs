@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Logic;
 using Microsoft.Phone.Data.Linq.Mapping;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     [Table]
     public partial class TransferToAccount : NotifyBase

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Data.Linq.Mapping;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     [Table]
     public class Replacement : NotifyBase

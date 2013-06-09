@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Linq.Mapping;
 using System.Linq;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Logic;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     [Table]
     public class ScreenSecurity : NotifyBase

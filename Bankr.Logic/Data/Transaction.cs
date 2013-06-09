@@ -3,13 +3,13 @@ using System.Linq;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Logic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     [Table]
     public partial class Transaction : NotifyBase

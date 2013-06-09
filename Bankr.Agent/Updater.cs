@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Data;
+using CMcG.Bankr.Logic;
 using Microsoft.Phone.Shell;
 
-namespace CMcG.CommonwealthBank.Agent
+namespace CMcG.Bankr.Agent
 {
     public class Updater
     {

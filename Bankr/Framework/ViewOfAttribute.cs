@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace CMcG.CommonwealthBank
+namespace CMcG.Bankr
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class ViewOfAttribute : Attribute

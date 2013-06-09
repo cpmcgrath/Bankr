@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace CMcG.CommonwealthBank.Logic
+namespace CMcG.Bankr.Logic
 {
     public class TwoWayEncryption
     {

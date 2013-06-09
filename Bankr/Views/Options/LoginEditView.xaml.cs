@@ -2,11 +2,11 @@
 using System.Linq;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.ViewModels.Options;
+using CMcG.Bankr.ViewModels.Options;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
-namespace CMcG.CommonwealthBank.Views.Options
+namespace CMcG.Bankr.Views.Options
 {
     public partial class LoginEditView : PhoneApplicationPage
     {

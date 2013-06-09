@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.Data;
+using CMcG.Bankr.Data;
 
-namespace CMcG.CommonwealthBank.ViewModels.Options
+namespace CMcG.Bankr.ViewModels.Options
 {
     class ScreenProtectionViewModel
     {

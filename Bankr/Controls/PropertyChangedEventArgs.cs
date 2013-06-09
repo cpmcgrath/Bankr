@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-namespace CMcG.CommonwealthBank.Controls
+namespace CMcG.Bankr.Controls
 {
     public class PropertyChangedEventArgs<T>
     {

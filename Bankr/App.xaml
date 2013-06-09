@@ -1,9 +1,9 @@
-﻿<Application x:Class="CMcG.CommonwealthBank.App"
+﻿<Application x:Class="CMcG.Bankr.App"
              xmlns              = "http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x            = "http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:phone        = "clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
              xmlns:shell        = "clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-             xmlns:cvt          = "clr-namespace:CMcG.CommonwealthBank.Controls.Converters"
+             xmlns:cvt          = "clr-namespace:CMcG.Bankr.Controls.Converters"
              UnhandledException = "GlobalUnhandledExceptionHandler">
 
     <Application.Resources>

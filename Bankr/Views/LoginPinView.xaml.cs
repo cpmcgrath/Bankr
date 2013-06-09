@@ -3,10 +3,10 @@ using System.Linq;
 using System.Windows;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.ViewModels;
+using CMcG.Bankr.ViewModels;
 using System.Windows.Controls.Primitives;
 
-namespace CMcG.CommonwealthBank.Views
+namespace CMcG.Bankr.Views
 {
     public partial class LoginPinView : PhoneApplicationPage
     {

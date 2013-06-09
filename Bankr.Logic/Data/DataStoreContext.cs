@@ -3,7 +3,7 @@ using System.Linq;
 using System.Data.Linq;
 using System.Collections.Generic;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     public partial class DataStoreContext : System.Data.Linq.DataContext
     {

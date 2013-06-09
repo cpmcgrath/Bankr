@@ -4,10 +4,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
-using CMcG.CommonwealthBank.ViewModels.Transfer;
+using CMcG.Bankr.ViewModels.Transfer;
 using Microsoft.Phone.Shell;
 
-namespace CMcG.CommonwealthBank.Views.Transfer
+namespace CMcG.Bankr.Views.Transfer
 {
     public partial class AmountView : PhoneApplicationPage
     {

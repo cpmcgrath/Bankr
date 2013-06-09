@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Data;
+using CMcG.Bankr.Logic;
 using System.Security.Cryptography;
 
-namespace CMcG.CommonwealthBank.ViewModels.Options
+namespace CMcG.Bankr.ViewModels.Options
 {
     public class LoginEditViewModel
     {

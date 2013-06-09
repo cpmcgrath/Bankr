@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Data;
+using CMcG.Bankr.Logic;
 
-namespace CMcG.CommonwealthBank.ViewModels
+namespace CMcG.Bankr.ViewModels
 {
     public class LoginPinViewModel
     {

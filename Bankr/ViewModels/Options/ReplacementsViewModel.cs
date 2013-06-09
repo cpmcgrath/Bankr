@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using CMcG.CommonwealthBank.Data;
+using CMcG.Bankr.Data;
 
-namespace CMcG.CommonwealthBank.ViewModels.Options
+namespace CMcG.Bankr.ViewModels.Options
 {
     public class ReplacementsViewModel : ViewModelBase
     {

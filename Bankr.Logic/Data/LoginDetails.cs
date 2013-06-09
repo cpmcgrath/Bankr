@@ -3,7 +3,7 @@ using System.Linq;
 using System.Data.Linq.Mapping;
 using System.Collections.Generic;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     [Table]
     public partial class LoginDetails : NotifyBase

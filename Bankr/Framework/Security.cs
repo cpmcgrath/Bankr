@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
-using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.ViewModels.Transfer;
-using CMcG.CommonwealthBank.ViewModels.Options;
+using CMcG.Bankr.Data;
+using CMcG.Bankr.ViewModels.Transfer;
+using CMcG.Bankr.ViewModels.Options;
 
-namespace CMcG.CommonwealthBank
+namespace CMcG.Bankr
 {
     public class Security
     {

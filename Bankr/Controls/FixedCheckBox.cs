@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace CMcG.CommonwealthBank.Controls
+namespace CMcG.Bankr.Controls
 {
     //Checkbox causes the debugger to throw some exception
     public class FixedCheckBox : CheckBox 

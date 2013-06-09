@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CMcG.CommonwealthBank.Controls
+namespace CMcG.Bankr.Controls
 {
     public partial class PinControl : UserControl
     {

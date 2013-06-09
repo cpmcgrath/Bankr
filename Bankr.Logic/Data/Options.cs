@@ -3,7 +3,7 @@ using System.Linq;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     [Table]
     public partial class Options : NotifyBase

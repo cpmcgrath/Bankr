@@ -2,11 +2,11 @@
 using System.Linq;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.ViewModels;
-using CMcG.CommonwealthBank.Data;
+using CMcG.Bankr.ViewModels;
+using CMcG.Bankr.Data;
 using System.Windows;
 
-namespace CMcG.CommonwealthBank.Views
+namespace CMcG.Bankr.Views
 {
     public partial class TransactionsView : PhoneApplicationPage
     {

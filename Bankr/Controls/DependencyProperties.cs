@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Linq.Expressions;
 
-namespace CMcG.CommonwealthBank.Controls
+namespace CMcG.Bankr.Controls
 {
     public static class DependencyProperties<TOwner> where TOwner : DependencyObject
     {

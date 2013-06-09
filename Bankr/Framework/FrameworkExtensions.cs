@@ -7,9 +7,9 @@ using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
 using System.Windows;
 using System.Windows.Controls.Primitives;
-using CMcG.CommonwealthBank.Data;
+using CMcG.Bankr.Data;
 
-namespace CMcG.CommonwealthBank
+namespace CMcG.Bankr
 {
     public static class FrameworkExtensions
     {

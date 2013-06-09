@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
-using CMcG.CommonwealthBank.Data;
+using CMcG.Bankr.Data;
 using System.Collections.Generic;
 
-namespace CMcG.CommonwealthBank.Logic.Queries
+namespace CMcG.Bankr.Logic.Queries
 {
     public class GetTransferAccountsQuery : CommBankQuery
     {

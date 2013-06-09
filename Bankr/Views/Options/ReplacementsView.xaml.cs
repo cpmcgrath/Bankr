@@ -3,10 +3,10 @@ using System.Linq;
 using System.Windows;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.ViewModels.Options;
+using CMcG.Bankr.Data;
+using CMcG.Bankr.ViewModels.Options;
 
-namespace CMcG.CommonwealthBank.Views.Options
+namespace CMcG.Bankr.Views.Options
 {
     public partial class ReplacementsView : PhoneApplicationPage
     {

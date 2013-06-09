@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using CMcG.CommonwealthBank.Data;
+using CMcG.Bankr.Data;
 using Microsoft.Phone.Tasks;
 
-namespace CMcG.CommonwealthBank.ViewModels.Options
+namespace CMcG.Bankr.ViewModels.Options
 {
     public class OptionsViewModel : ViewModelBase
     {
@@ -75,7 +75,7 @@ namespace CMcG.CommonwealthBank.ViewModels.Options
             }
             var emailComposeTask = new EmailComposeTask
             {
-                Subject = "Commonwealth Bank Error Report",
+                Subject = "Bankr Error Report",
                 Body    = message,
                 To      = "dev@cpmcgrath.com",
             };

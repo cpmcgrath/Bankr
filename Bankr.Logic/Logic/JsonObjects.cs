@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace CMcG.CommonwealthBank.Logic
+namespace CMcG.Bankr.Logic
 {
     public class UpcomingTransResult
     {

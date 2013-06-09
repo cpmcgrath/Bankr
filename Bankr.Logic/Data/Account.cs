@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Collections.Generic;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Logic;
 using Microsoft.Phone.Data.Linq.Mapping;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     [Index(Name="UQ__Account__000000000000006A", Columns="AccountName ASC", IsUnique=true)]
     [Table]

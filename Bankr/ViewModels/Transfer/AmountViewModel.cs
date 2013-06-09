@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace CMcG.CommonwealthBank.ViewModels.Transfer
+namespace CMcG.Bankr.ViewModels.Transfer
 {
     [Description("3. Amount")]
     class AmountViewModel : ViewModels.ViewModelBase

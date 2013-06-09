@@ -4,7 +4,7 @@ using System.Data.Linq;
 using System.Collections.Generic;
 using Microsoft.Phone.Data.Linq;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     public partial class DataStoreUpdater
     {

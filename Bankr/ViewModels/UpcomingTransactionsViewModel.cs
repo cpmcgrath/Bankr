@@ -1,11 +1,11 @@
-﻿using CMcG.CommonwealthBank.Data;
+﻿using CMcG.Bankr.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMcG.CommonwealthBank.ViewModels
+namespace CMcG.Bankr.ViewModels
 {
     public class UpcomingTransactionsViewModel : ViewModelBase
     {

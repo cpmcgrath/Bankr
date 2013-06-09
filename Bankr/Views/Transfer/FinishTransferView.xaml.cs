@@ -7,9 +7,9 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using CMcG.CommonwealthBank.ViewModels.Transfer;
+using CMcG.Bankr.ViewModels.Transfer;
 
-namespace CMcG.CommonwealthBank.Views.Transfer
+namespace CMcG.Bankr.Views.Transfer
 {
     public partial class FinishTransferView : PhoneApplicationPage
     {

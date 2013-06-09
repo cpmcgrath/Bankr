@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Phone.Controls;
-using CMcG.CommonwealthBank.ViewModels.Options;
+using CMcG.Bankr.ViewModels.Options;
 
-namespace CMcG.CommonwealthBank.Views.Options
+namespace CMcG.Bankr.Views.Options
 {
     public partial class PinEditView : PhoneApplicationPage
     {

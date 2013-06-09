@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace CMcG.CommonwealthBank.ViewModels
+namespace CMcG.Bankr.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

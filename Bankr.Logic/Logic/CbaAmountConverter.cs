@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Globalization;
 
-namespace CMcG.CommonwealthBank.Logic
+namespace CMcG.Bankr.Logic
 {
     public class CbaAmountConverter : JsonConverter
     {

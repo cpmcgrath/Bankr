@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.ComponentModel;
 
-namespace CMcG.CommonwealthBank.Logic
+namespace CMcG.Bankr.Logic
 {
     public static class Extensions
     {

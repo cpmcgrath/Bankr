@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using Microsoft.Phone.Controls;
-using CMcG.CommonwealthBank.ViewModels.Transfer;
-using CMcG.CommonwealthBank.Data;
+using CMcG.Bankr.ViewModels.Transfer;
+using CMcG.Bankr.Data;
 
-namespace CMcG.CommonwealthBank.Views.Transfer
+namespace CMcG.Bankr.Views.Transfer
 {
     public partial class PickRecipientView : PhoneApplicationPage
     {

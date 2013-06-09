@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Navigation;
 
-namespace CMcG.CommonwealthBank
+namespace CMcG.Bankr
 {
     public class Navigator
     {

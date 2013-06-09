@@ -2,7 +2,7 @@
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace CMcG.CommonwealthBank.Controls.Converters
+namespace CMcG.Bankr.Controls.Converters
 {
     public class BoolToBrushConverter : IValueConverter
     {

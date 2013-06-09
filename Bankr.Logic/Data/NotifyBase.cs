@@ -2,7 +2,7 @@
 using System.Net;
 using System.ComponentModel;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     public class NotifyBase : INotifyPropertyChanging, INotifyPropertyChanged
     {

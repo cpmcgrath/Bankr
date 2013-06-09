@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using CMcG.CommonwealthBank.Agent;
-using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Agent;
+using CMcG.Bankr.Data;
+using CMcG.Bankr.Logic;
 using System.Text.RegularExpressions;
 
-namespace CMcG.CommonwealthBank.ViewModels
+namespace CMcG.Bankr.ViewModels
 {
     public class TransactionsViewModel : ViewModelBase
     {

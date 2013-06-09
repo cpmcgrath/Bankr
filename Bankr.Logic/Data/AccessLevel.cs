@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CMcG.CommonwealthBank.Data
+namespace CMcG.Bankr.Data
 {
     [Flags]
     public enum AccessLevel

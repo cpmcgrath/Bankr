@@ -3,10 +3,10 @@ using System.Linq;
 using System.Windows;
 using System.Diagnostics;
 using Microsoft.Phone.Scheduler;
-using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Data;
+using CMcG.Bankr.Logic;
 
-namespace CMcG.CommonwealthBank.Agent
+namespace CMcG.Bankr.Agent
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {

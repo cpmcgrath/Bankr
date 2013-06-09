@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Phone.Controls;
-using CMcG.CommonwealthBank.ViewModels;
+using CMcG.Bankr.ViewModels;
 
-namespace CMcG.CommonwealthBank.Views
+namespace CMcG.Bankr.Views
 {
     public partial class UpcomingTransactionsView : PhoneApplicationPage
     {

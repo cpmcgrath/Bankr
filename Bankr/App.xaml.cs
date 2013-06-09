@@ -4,13 +4,11 @@ using System.Windows;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
-using CMcG.CommonwealthBank.Data;
-using CMcG.CommonwealthBank.Logic;
+using CMcG.Bankr.Data;
+using CMcG.Bankr.Logic;
 using Microsoft.Phone.Scheduler;
-using CMcG.CommonwealthBank.ViewModels.Options;
-using CMcG.CommonwealthBank.ViewModels.Transfer;
 
-namespace CMcG.CommonwealthBank
+namespace CMcG.Bankr
 {
     public partial class App : Application
     {
@@ -30,7 +28,7 @@ namespace CMcG.CommonwealthBank
             InitializeComponent();
             InitializePhoneApplication();
             Status   = new AppStatus { AutoRemove = true };
-            Security = new CommonwealthBank.Security();
+            Security = new Bankr.Security();
             Security.LoadFromDatabase();
 
             if (System.Diagnostics.Debugger.IsAttached)
@@ -95,7 +93,7 @@ namespace CMcG.CommonwealthBank
 
         void StartBackgroundAgent()
         {
-            var taskName = "CMcG.CommonwealthBank.Agent";
+            var taskName = "CMcG.Bankr.Agent";
 
             if (ScheduledActionService.Find(taskName) is PeriodicTask)
                 ScheduledActionService.Remove(taskName);

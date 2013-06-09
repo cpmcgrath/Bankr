@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Windows.Controls.Primitives;
 using System.Windows.Navigation;
 
-namespace CMcG.CommonwealthBank
+namespace CMcG.Bankr
 {
     public static class UIExtensions
     {

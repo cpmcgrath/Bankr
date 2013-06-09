@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Threading;
 
-namespace CMcG.CommonwealthBank.Logic
+namespace CMcG.Bankr.Logic
 {
     public class AppStatus : Data.NotifyBase
     {
