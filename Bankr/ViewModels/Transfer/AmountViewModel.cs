@@ -2,17 +2,15 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Caliburn.Micro;
 
 namespace CMcG.Bankr.ViewModels.Transfer
 {
     [Description("3. Amount")]
-    class AmountViewModel : ViewModels.ViewModelBase
+    public class AmountViewModel : ViewModels.ViewModelBase
     {
-        public AmountViewModel(int fromAccountId, int toAccountId)
-        {
-            FromAccountId = fromAccountId;
-            ToAccountId   = toAccountId;
-        }
+        public AmountViewModel(INavigationService navigationService) : base(navigationService) { }
+
         string m_amount = "$";
         public string Amount
         {
@@ -42,7 +40,27 @@ namespace CMcG.Bankr.ViewModels.Transfer
         {
             get { return int.Parse(Amount.Substring(1)); }
         }
-        public int FromAccountId { get; private set; }
-        public int ToAccountId   { get; private set; }
+
+        public int FromAccountId { get; set; }
+        public int ToAccountId   { get; set; }
+
+        public void GoToConfirmation()
+        {
+            SelectAmount(Value);
+        }
+
+        public void SelectAmount(decimal amount)
+        {
+            Navigator.UriFor<FinishTransferViewModel>()
+                     .WithParam(p => p.FromAccountId, FromAccountId)
+                     .WithParam(p => p.ToAccountId,   ToAccountId)
+                     .WithParam(p => p.Amount,        amount)
+                     .Navigate();
+        }
+
+        public void Cancel()
+        {
+            Navigator.GoBack(3);
+        }
     }
 }

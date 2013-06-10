@@ -2,15 +2,18 @@
 using System.Linq;
 using System.Collections.Generic;
 using CMcG.Bankr.Data;
+using Caliburn.Micro;
 
 namespace CMcG.Bankr.ViewModels.Options
 {
-    class ScreenProtectionViewModel
+    public class ScreenProtectionViewModel : ViewModelBase
     {
-        public ScreenProtectionViewModel()
+        public ScreenProtectionViewModel(INavigationService navigationService) : base(navigationService) { }
+
+        protected override void OnLoad()
         {
-            Items = Navigator.GetViewModelTypes().Select(GetScreenSecurity)
-                             .OrderBy(y => y.Name).ToArray();
+            Items = App.GetViewModelTypes().Select(GetScreenSecurity)
+                       .OrderBy(y => y.Name).ToArray();
 
             OptionItems   = Items.Where(x => x.Group == "Options" ).ToArray();
             TransferItems = Items.Where(x => x.Group == "Transfer").ToArray();
@@ -38,6 +41,7 @@ namespace CMcG.Bankr.ViewModels.Options
             }
 
             App.Current.Security.LoadFromDatabase();
+            Navigator.GoBack();
         }
     }
 }

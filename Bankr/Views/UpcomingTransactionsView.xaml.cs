@@ -12,11 +12,5 @@ namespace CMcG.Bankr.Views
         {
             InitializeComponent();
         }
-
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            this.SetupView(e);
-        }
     }
 }

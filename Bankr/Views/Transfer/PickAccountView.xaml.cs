@@ -15,18 +15,12 @@ namespace CMcG.Bankr.Views.Transfer
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            this.SetupView(e);
-        }
-
         void SelectAccount(object sender, RoutedEventArgs e)
         {
             var ctl     = (FrameworkElement)sender;
             var account = (Account)ctl.DataContext;
-
-            this.Navigation().GoTo<PickRecipientViewModel>(account.Id);
+            var vm      = (PickAccountViewModel)DataContext;
+            vm.SelectAccount(account);
         }
     }
 }

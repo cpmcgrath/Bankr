@@ -4,12 +4,15 @@ using CMcG.Bankr.Agent;
 using CMcG.Bankr.Data;
 using CMcG.Bankr.Logic;
 using System.Text.RegularExpressions;
+using Caliburn.Micro;
 
 namespace CMcG.Bankr.ViewModels
 {
     public class TransactionsViewModel : ViewModelBase
     {
-        public TransactionsViewModel()
+        public TransactionsViewModel(INavigationService navigationService) : base(navigationService) { }
+
+        protected override void OnLoad()
         {
             Load();
 
@@ -37,11 +40,11 @@ namespace CMcG.Bankr.ViewModels
                 foreach (var transaction in m_allTransactions)
                     transaction.Replacements = replacements;
             }
-            NotifyPropertyChanged("Transactions", "ReceivedTransactions", "SentTransactions", "InternalTransactions", "AccountAmount");
+            Refresh();
             new Updater().UpdateLiveTile();
         }
 
-        public void Refresh()
+        public void RefreshData()
         {
             new DataRetriever
             {
@@ -53,7 +56,7 @@ namespace CMcG.Bankr.ViewModels
         public bool          AutoRefresh  { get; set; }
         public Account       Account      { get; set; }
 
-        Transaction[] m_allTransactions;
+        Transaction[] m_allTransactions = new Transaction[0];
 
         public Transaction[] Transactions
         {
@@ -96,6 +99,39 @@ namespace CMcG.Bankr.ViewModels
                 store.SubmitChanges();
             }
             Load();
+        }
+
+        public void GoToWebsite()
+        {
+            var url = @"http://www.netbank.com.au/mobile";
+            new Microsoft.Phone.Tasks.WebBrowserTask { Uri = new Uri(url) }.Show();
+        }
+
+        public void GoToMoneyTransfer()
+        {
+            Navigator.UriFor<Transfer.PickAccountViewModel>().Navigate();
+        }
+
+        public void GoToSettings()
+        {
+            Navigator.UriFor<Options.OptionsViewModel>().Navigate();
+        }
+
+        public void GoToReplacements()
+        {
+            Navigator.UriFor<Options.ReplacementsViewModel>().Navigate();
+        }
+
+        public void GoToUpcoming()
+        {
+            Navigator.UriFor<UpcomingTransactionsViewModel>().Navigate();
+        }
+
+        public void CreateReplacement(int transactionId)
+        {
+            Navigator.UriFor<Options.ReplacementEditViewModel>()
+                    .WithParam(x => x.TransactionId, transactionId)
+                    .Navigate();
         }
     }
 }

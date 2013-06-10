@@ -4,9 +4,12 @@
              xmlns:phone        = "clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
              xmlns:shell        = "clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
              xmlns:cvt          = "clr-namespace:CMcG.Bankr.Controls.Converters"
+             xmlns:local        = "clr-namespace:CMcG.Bankr"
              UnhandledException = "GlobalUnhandledExceptionHandler">
 
     <Application.Resources>
+        <local:Bootstrap x:Key="bootstrapper" />
+
         <Style x:Key="GreyBtn" TargetType="Button">
             <Setter Property="Background"      Value="{StaticResource PhoneInactiveBrush}"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -121,12 +124,5 @@
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         </Style>
     </Application.Resources>
-
-    <Application.ApplicationLifetimeObjects>
-        <shell:PhoneApplicationService Launching   = "OnInitialLaunch"
-                                       Closing     = "OnClosing"
-                                       Activated   = "OnReactivated"
-                                       Deactivated = "OnDeactivated" />
-    </Application.ApplicationLifetimeObjects>
 
 </Application>

@@ -1,4 +1,5 @@
-﻿using CMcG.Bankr.Data;
+﻿using Caliburn.Micro;
+using CMcG.Bankr.Data;
 using CMcG.Bankr.Logic;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,15 @@ namespace CMcG.Bankr.ViewModels.Transfer
     [Description("2. To Account")]
     public class PickRecipientViewModel : ViewModelBase
     {
-        public PickRecipientViewModel(int fromAccountId)
+        public PickRecipientViewModel(INavigationService navigationService) : base(navigationService) { }
+
+        public int FromAccountId
         {
-            using (var store = new DataStoreContext())
+            get { return FromAccount.Id; }
+            private set
             {
-                FromAccount = store.Accounts.First(x => x.Id == fromAccountId);
+                using (var store = new DataStoreContext())
+                    FromAccount = store.Accounts.First(x => x.Id == value);
             }
         }
 
@@ -24,6 +29,9 @@ namespace CMcG.Bankr.ViewModels.Transfer
         {
             get
             {
+                if (FromAccount == null)
+                    return null;
+
                 using (var store = new DataStoreContext())
                 {
                     if (!store.TransferToAccounts.Any())
@@ -46,6 +54,14 @@ namespace CMcG.Bankr.ViewModels.Transfer
                 Status   = CurrentApp.Status,
                 Callback = () => NotifyPropertyChanged("ToAccounts")
             }.LoadTransferAccounts();
+        }
+
+        public void SelectRecipient(TransferToAccount account)
+        {
+            Navigator.UriFor<AmountViewModel>()
+                     .WithParam(p => p.FromAccountId, FromAccountId)
+                     .WithParam(p => p.ToAccountId,   account.Id)
+                     .Navigate();
         }
     }
 }

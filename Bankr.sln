@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankr.Agent", "Bankr.Agent\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankr.Logic", "Bankr.Logic\Bankr.Logic.csproj", "{B0995A78-B445-42FC-8A0C-542C45DBF3DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bankr.CaliburnTest", "Bankr.CaliburnTest\Bankr.CaliburnTest.csproj", "{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,24 @@ Global
 		{B0995A78-B445-42FC-8A0C-542C45DBF3DA}.Release|ARM.Build.0 = Release|ARM
 		{B0995A78-B445-42FC-8A0C-542C45DBF3DA}.Release|x86.ActiveCfg = Release|x86
 		{B0995A78-B445-42FC-8A0C-542C45DBF3DA}.Release|x86.Build.0 = Release|x86
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Debug|ARM.Build.0 = Debug|ARM
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Debug|ARM.Deploy.0 = Debug|ARM
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Debug|x86.ActiveCfg = Debug|x86
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Debug|x86.Build.0 = Debug|x86
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Debug|x86.Deploy.0 = Debug|x86
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Release|ARM.ActiveCfg = Release|ARM
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Release|ARM.Build.0 = Release|ARM
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Release|ARM.Deploy.0 = Release|ARM
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Release|x86.ActiveCfg = Release|x86
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Release|x86.Build.0 = Release|x86
+		{5E4C9BEC-8E7B-46EA-90A7-FC931488965E}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

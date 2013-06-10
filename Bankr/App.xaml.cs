@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using CMcG.Bankr.Data;
+using CMcG.Bankr.Logic;
+using System.Reflection;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Controls;
 using System.Windows.Navigation;
-using CMcG.Bankr.Data;
-using CMcG.Bankr.Logic;
 using Microsoft.Phone.Scheduler;
+using System.Collections.Generic;
 
 namespace CMcG.Bankr
 {
@@ -21,12 +23,18 @@ namespace CMcG.Bankr
 
         public Security  Security      { get; private set; }
         public AppStatus Status        { get; private set; }
-        public bool      WasTombstoned { get; private set; }
+
+        public static IEnumerable<Type> GetViewModelTypes(bool defaultPathOnly = true, bool includeLogin = false)
+        {
+            var types = Assembly.GetExecutingAssembly().GetTypes();
+            return types.Where(x => x.Name.EndsWith("ViewModel"))
+                        .Where(x => !defaultPathOnly || x.Namespace.Contains("ViewModels"))
+                        .Where(x => includeLogin     || !x.Name.Contains("Login"));
+        }
 
         public App()
         {
             InitializeComponent();
-            InitializePhoneApplication();
             Status   = new AppStatus { AutoRemove = true };
             Security = new Bankr.Security();
             Security.LoadFromDatabase();
@@ -47,26 +55,6 @@ namespace CMcG.Bankr
 
             // Shows areas of a page that are handed off to GPU with a colored overlay.
             //Current.Host.Settings.EnableCacheVisualization = true;
-
-        }
-
-        void OnInitialLaunch(object sender, LaunchingEventArgs e)
-        {
-            WasTombstoned = true;
-        }
-
-        void OnReactivated(object sender, ActivatedEventArgs e)
-        {
-            WasTombstoned = !e.IsApplicationInstancePreserved;
-        }
-
-        void OnDeactivated(object sender, DeactivatedEventArgs e) { }
-        void OnClosing    (object sender, ClosingEventArgs e)     { }
-
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            if (System.Diagnostics.Debugger.IsAttached)
-                System.Diagnostics.Debugger.Break();
         }
 
         void GlobalUnhandledExceptionHandler(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -110,41 +98,5 @@ namespace CMcG.Bankr
             //ScheduledActionService.LaunchForTest(taskName,
             //    TimeSpan.FromSeconds(15));
         }
-
-        #region Phone application initialization
-
-        // Avoid double-initialization
-        private bool phoneApplicationInitialized = false;
-
-        // Do not add any additional code to this method
-        private void InitializePhoneApplication()
-        {
-            if (phoneApplicationInitialized)
-                return;
-
-            // Create the frame but don't set it as RootVisual yet; this allows the splash
-            // screen to remain active until the application is ready to render.
-            RootFrame = new PhoneApplicationFrame();
-            RootFrame.Navigated += CompleteInitializePhoneApplication;
-
-            // Handle navigation failures
-            RootFrame.NavigationFailed += OnNavigationFailed;
-
-            // Ensure we don't initialize again
-            phoneApplicationInitialized = true;
-        }
-
-        // Do not add any additional code to this method
-        private void CompleteInitializePhoneApplication(object sender, NavigationEventArgs e)
-        {
-            // Set the root visual to allow the application to render
-            if (RootVisual != RootFrame)
-                RootVisual = RootFrame;
-
-            // Remove this handler since it is no longer needed
-            RootFrame.Navigated -= CompleteInitializePhoneApplication;
-        }
-
-        #endregion
     }
 }

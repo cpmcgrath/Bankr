@@ -6,6 +6,7 @@
                             xmlns:d               ="http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc              ="http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:toolkit         ="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            xmlns:cal             ="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
                             FontFamily            ="{StaticResource PhoneFontFamilyNormal}"
                             FontSize              ="{StaticResource PhoneFontSizeNormal}"
                             Foreground            ="{StaticResource PhoneForegroundBrush}"
@@ -39,7 +40,7 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar.save.rest.png" Text="Save" Click="Save" />
+            <cal:AppBarButton IconUri="/Images/appbar.save.rest.png" Text="Save" Message="Save" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

@@ -1,4 +1,5 @@
-﻿using CMcG.Bankr.Data;
+﻿using Caliburn.Micro;
+using CMcG.Bankr.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CMcG.Bankr.ViewModels
 {
     public class UpcomingTransactionsViewModel : ViewModelBase
     {
-        public UpcomingTransactionsViewModel()
+        public UpcomingTransactionsViewModel(INavigationService navigationService) : base(navigationService)
         {
             Load();
         }

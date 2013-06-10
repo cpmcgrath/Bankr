@@ -5,35 +5,30 @@ using System.ComponentModel;
 using CMcG.Bankr.Data;
 using System.Collections.Generic;
 using CMcG.Bankr.Logic;
+using Caliburn.Micro;
 
 namespace CMcG.Bankr.ViewModels.Transfer
 {
     [Description("4. Transfer Money")]
     public class FinishTransferViewModel : ViewModelBase
     {
-        public FinishTransferViewModel(int fromAccountId, int toAccountId, decimal amount)
+        public FinishTransferViewModel(INavigationService navigationService) : base(navigationService) { }
+
+        protected override void OnLoad()
         {
-            Amount = amount;
             using (var store = new DataStoreContext())
             {
-                FromAccount = store.Accounts.First(x => x.Id == fromAccountId);
-                ToAccount   = store.TransferToAccounts.First(x => x.Id == toAccountId);
+                FromAccount = store.Accounts.First(x => x.Id == FromAccountId);
+                ToAccount   = store.TransferToAccounts.First(x => x.Id == ToAccountId);
             }
         }
 
-        public Account           FromAccount { get; private set; }
-        public TransferToAccount ToAccount   { get; private set; }
+        public int FromAccountId { get; set; }
+        public int ToAccountId   { get; set; }
 
-        decimal m_amount;
-        public decimal Amount
-        {
-            get { return m_amount; }
-            set
-            {
-                m_amount = value;
-                FirePropertyChanged();
-            }
-        }
+        public Account           FromAccount { get; set; }
+        public TransferToAccount ToAccount   { get; set; }
+        public decimal           Amount      { get; set; }
 
         string m_description;
         public string Description
@@ -54,7 +49,7 @@ namespace CMcG.Bankr.ViewModels.Transfer
             }
         }
 
-        public async void MakeTransaction(Navigator navigator)
+        public async void MakeTransaction()
         {
             var retriever = new DataRetriever { Status = CurrentApp.Status };
             if (retriever.CanTransferMoney)
@@ -66,9 +61,14 @@ namespace CMcG.Bankr.ViewModels.Transfer
                 else
                 {
                     MessageBox.Show("Money Transfered.\r\nReceipt:" + receipt);
-                    navigator.GoBack(3);
+                    Navigator.GoBack(4);
                 }
             }
+        }
+
+        public void Cancel()
+        {
+            Navigator.GoBack(4);
         }
     }
 }

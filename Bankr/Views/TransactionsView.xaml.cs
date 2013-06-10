@@ -2,9 +2,9 @@
 using System.Linq;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
-using CMcG.Bankr.ViewModels;
 using CMcG.Bankr.Data;
 using System.Windows;
+using CMcG.Bankr.ViewModels;
 
 namespace CMcG.Bankr.Views
 {
@@ -15,42 +15,6 @@ namespace CMcG.Bankr.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            this.SetupView(e);
-        }
-
-        void ShowSettings(object sender, EventArgs e)
-        {
-            this.Navigation().GoTo<ViewModels.Options.OptionsViewModel>();
-        }
-
-        void ShowReplacements(object sender, EventArgs e)
-        {
-            this.Navigation().GoTo<ViewModels.Options.ReplacementsViewModel>();
-        }
-
-        void ShowUpcoming(object sender, EventArgs e)
-        {
-            this.Navigation().GoTo<UpcomingTransactionsViewModel>();
-        }
-
-        void TransferMoney(object sender, EventArgs e)
-        {
-            this.Navigation().GoTo<ViewModels.Transfer.PickAccountViewModel>();
-        }
-
-        void MarkAllAsSeen(object sender, EventArgs e)
-        {
-            ((TransactionsViewModel)DataContext).MarkAsSeen();
-        }
-
-        void RefreshAccount(object sender, EventArgs e)
-        {
-            ((TransactionsViewModel)DataContext).Refresh();
-        }
-
         void AddReplacement(object sender, EventArgs e)
         {
             var menuItem    = (MenuItem)sender;
@@ -58,13 +22,8 @@ namespace CMcG.Bankr.Views
             var ctl         = (FrameworkElement)menu.Owner;
             var transaction = (Transaction)ctl.DataContext;
 
-            this.Navigation().GoTo<ViewModels.Options.ReplacementEditViewModel>(-1, transaction.Id);
-        }
-
-        void GoToWebsite(object sender, EventArgs e)
-        {
-            var url = @"http://www.netbank.com.au/mobile";
-            new Microsoft.Phone.Tasks.WebBrowserTask { Uri = new Uri(url) }.Show();
+            var vm = (TransactionsViewModel)DataContext;
+            vm.CreateReplacement(transaction.Id);
         }
     }
 }

@@ -15,12 +15,6 @@ namespace CMcG.Bankr.Views.Transfer
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            this.SetupView(e);
-        }
-
         void SelectRecipient(object sender, RoutedEventArgs e)
         {
             var vm = (PickRecipientViewModel)DataContext;
@@ -28,13 +22,7 @@ namespace CMcG.Bankr.Views.Transfer
             var ctl     = (FrameworkElement)sender;
             var account = (TransferToAccount)ctl.DataContext;
 
-            this.Navigation().GoTo<AmountViewModel>(vm.FromAccount.Id, account.Id);
-        }
-
-        public void Refresh(object sender, EventArgs e)
-        {
-            var vm = (PickRecipientViewModel)DataContext;
-            vm.ReloadList();
+            vm.SelectRecipient(account);
         }
     }
 }

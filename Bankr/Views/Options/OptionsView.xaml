@@ -44,14 +44,14 @@
                             Width               = "250"
                             Height              = "116"
                             Margin              = "0"
-                            Click               = "ShowPinOptions"/>
+                            Name               = "GoToPinOptions"/>
                     <Button Content             = "Screen protection"
                             Style               = "{StaticResource AccentBtn}"
                             HorizontalAlignment = "Left"
                             Width               = "250"
                             Height              = "116"
                             Margin              = "0"
-                            Click               = "ShowScreenProtection"/>
+                            Name               = "GoToScreenProtection"/>
                 </StackPanel>
             </controls:PivotItem>
 
@@ -60,7 +60,7 @@
                     <TextBlock Text="Sending the error report may send personal information." TextWrapping="Wrap"/>
                     <TextBlock Text="When you press the button a report email will be written which you can send." TextWrapping="Wrap"/>
                     <TextBlock Text="We recommend reviewing the data before sending the email." TextWrapping="Wrap"/>
-                    <Button Content="Send error report" Click="SendErrorReport" />
+                    <Button Content="Send error report" Name="SendErrorReport" />
                 </StackPanel>
             </controls:PivotItem>
         </controls:Pivot>

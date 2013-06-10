@@ -8,73 +8,34 @@ using System.Windows.Navigation;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using CMcG.Bankr.Data;
+using Caliburn.Micro;
+using Action = System.Action;
 
 namespace CMcG.Bankr
 {
     public static class FrameworkExtensions
     {
-        public static Navigator Navigation(this Page instance)
-        {
-            return new Navigator(instance.NavigationService);
-        }
-
-        public static void SetupView<TPage>(this TPage instance, NavigationEventArgs e) where TPage : PhoneApplicationPage
-        {
-            var defaultVMName = typeof(TPage).Name + "Model";
-            var attr          = typeof(TPage).GetCustomAttribute<ViewOfAttribute>();
-            var vm            = attr != null ? attr.ViewModelType : Navigator.GetViewModelTypes(false, true).First(x => x.Name == defaultVMName);
-
-            var argLookup = instance.NavigationContext.QueryString;
-            var constructor = vm.GetConstructors()
-                                .Select(x => x.GetParameters())
-                                .First(y => y.Length == argLookup.Count);
-
-            CheckPermissions(instance, vm, e, () => Activator.CreateInstance(vm, GetArgs(vm, instance.NavigationContext.QueryString)));
-        }
-
-        static object[] GetArgs(Type toConstruct, IDictionary<string, string> argLookup)
-        {
-            var parameters = toConstruct.GetConstructors()
-                                        .Select(x => x.GetParameters())
-                                        .First(y => y.Length == argLookup.Count);
-
-            return parameters.Select(x => Convert(x.ParameterType, argLookup[x.Name])).ToArray();
-        }
-
-        static object Convert(Type type, string value)
-        {
-            if (type == typeof(int))
-                return int.Parse(value);
-
-            if (type == typeof(decimal))
-                return decimal.Parse(value);
-
-            return value;
-        }
-
         static Popup s_popup;
 
-        static void CheckPermissions(PhoneApplicationPage instance, Type viewModel, NavigationEventArgs e, Func<object> creator)
+        public static void CheckPermissions(Type viewModel, INavigationService navigationService, Action callback)
         {
             if (s_popup != null && s_popup.IsOpen)
                 s_popup.IsOpen = false;
 
-            if (e.NavigationMode != NavigationMode.New)
-                return;
-
             PhoneApplicationPage screen = null;
+            PhoneApplicationPage instance = (PhoneApplicationPage)navigationService.CurrentContent;
 
             switch (App.Current.Security.LogonRequired(viewModel))
             {
-                case AccessLevel.None        : instance.DataContext = creator.Invoke(); return;
-                case AccessLevel.CreateLogin : screen = new Views.Options.LoginEditView { OnSave  = () => ResetLook(instance, creator)        }; break;
-                case AccessLevel.Password    : screen = new Views.LoginView             { OnLogin = () => ResetLook(instance, creator)        }; break;
-                case AccessLevel.Pin         : screen = new Views.LoginPinView          { OnLogin = () => ResetLook(instance, creator, false) }; break;
+                case AccessLevel.None       : callback.Invoke(); return;
+                case AccessLevel.CreateLogin: screen = new Views.Options.LoginEditView { OnSave  = () => ResetLook(instance, callback) }; break;
+                case AccessLevel.Password   : screen = new Views.LoginView             { OnLogin = () => ResetLook(instance, callback) }; break;
+                case AccessLevel.Pin        : screen = new Views.LoginPinView          { OnLogin = () => ResetLook(instance, callback, false) }; break;
             }
 
             Hide(instance);
-            screen.Height =  Application.Current.Host.Content.ActualHeight - 50;
-            screen.Width  =  Application.Current.Host.Content.ActualWidth;
+            screen.Height =  App.Current.Host.Content.ActualHeight - 50;
+            screen.Width  =  App.Current.Host.Content.ActualWidth;
             s_popup = new Popup
             {
                 Child          = screen,
@@ -86,19 +47,29 @@ namespace CMcG.Bankr
         static void Hide(PhoneApplicationPage instance)
         {
             instance.Opacity = 0;
+            instance.BackKeyPress += HidePopup;
 
             if (instance.ApplicationBar != null)
                 instance.ApplicationBar.IsVisible = false;
         }
 
-        static void ResetLook<TViewModel>(PhoneApplicationPage instance, Func<TViewModel> creator, bool isLoggedIn = true)
+        static void HidePopup(object s, System.ComponentModel.CancelEventArgs e)
         {
+            var sender = (PhoneApplicationPage)s;
+            s_popup.IsOpen = false;
+            sender.BackKeyPress -= HidePopup;
+        }
+
+        static void ResetLook(PhoneApplicationPage instance, Action callback, bool isLoggedIn = true)
+        {
+            instance.BackKeyPress -= HidePopup;
             App.Current.Security.IsLoggedIn = true;
-            instance.DataContext = creator.Invoke();
             instance.Opacity = 1;
 
             if (instance.ApplicationBar != null)
                 instance.ApplicationBar.IsVisible = true;
+
+            callback.Invoke();
         }
     }
 }

@@ -2,12 +2,13 @@
 using System.Linq;
 using CMcG.Bankr.Data;
 using Microsoft.Phone.Tasks;
+using Caliburn.Micro;
 
 namespace CMcG.Bankr.ViewModels.Options
 {
     public class OptionsViewModel : ViewModelBase
     {
-        public OptionsViewModel()
+        public OptionsViewModel(INavigationService navigationService) : base(navigationService)
         {
             AutoRefresh = true;
             using (var store = new DataStoreContext())
@@ -58,6 +59,17 @@ namespace CMcG.Bankr.ViewModels.Options
 
                 store.SubmitChanges();
             }
+
+            Navigator.GoBack();
+        }
+
+        public bool CanSendErrorReport
+        {
+            get
+            {
+                using (var store = new DataStoreContext())
+                    return store.Errors.Any();
+            }
         }
 
         public void SendErrorReport()
@@ -81,6 +93,16 @@ namespace CMcG.Bankr.ViewModels.Options
             };
             
             emailComposeTask.Show();
+        }
+
+        public void GoToPinOptions()
+        {
+            Navigator.UriFor<PinEditViewModel>().Navigate();
+        }
+
+        public void GoToScreenProtection()
+        {
+            Navigator.UriFor<ScreenProtectionViewModel>().Navigate();
         }
     }
 }

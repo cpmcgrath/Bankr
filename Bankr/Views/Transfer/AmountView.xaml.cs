@@ -16,12 +16,6 @@ namespace CMcG.Bankr.Views.Transfer
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            this.SetupView(e);
-        }
-
         AmountViewModel ViewModel
         {
             get { return (AmountViewModel)DataContext; }
@@ -47,24 +41,8 @@ namespace CMcG.Bankr.Views.Transfer
                 var text = ((ApplicationBarMenuItem)sender).Text;
                 amount = text.Substring(text.IndexOf('$'));
             }
-            Confirmation(decimal.Parse(amount.Substring(1)));
-        }
 
-        void GoToConfirmation(object sender, EventArgs e)
-        {
-            Confirmation(ViewModel.Value);
+            ViewModel.SelectAmount(decimal.Parse(amount.Substring(1)));
         }
-
-        void Confirmation(decimal amount)
-        {
-            this.Navigation().GoTo<FinishTransferViewModel>(ViewModel.FromAccountId, ViewModel.ToAccountId, amount);
-        }
-
-        void Cancel(object sender, EventArgs e)
-        {
-            this.Navigation().GoBack(3);
-        }
-
-        
     }
 }

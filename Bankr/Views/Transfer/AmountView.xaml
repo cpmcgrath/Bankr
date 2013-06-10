@@ -5,6 +5,7 @@
                             xmlns:shell           = "clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                             xmlns:d               = "http://schemas.microsoft.com/expression/blend/2008"
                             xmlns:mc              = "http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:cal             = "clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
                             FontFamily            = "{StaticResource PhoneFontFamilyNormal}"
                             FontSize              = "{StaticResource PhoneFontSizeNormal}"
                             Foreground            = "{StaticResource PhoneForegroundBrush}"
@@ -80,8 +81,8 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar.check.rest.png" Text="go to confirmation" Click="GoToConfirmation" />
-            <shell:ApplicationBarIconButton IconUri="/Images/AppBar/cancel.png"     Text="cancel"          Click="Cancel" />
+            <cal:AppBarButton IconUri="/Images/appbar.check.rest.png" Text="go to confirmation" Message="GoToConfirmation" />
+            <cal:AppBarButton IconUri="/Images/AppBar/cancel.png"     Text="cancel"             Message="Cancel" />
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="transfer $10"  Click="ChooseAmount"/>
                 <shell:ApplicationBarMenuItem Text="transfer $15"  Click="ChooseAmount"/>

@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Linq;
 using CMcG.Bankr.Data;
+using Caliburn.Micro;
 
 namespace CMcG.Bankr.ViewModels.Options
 {
     public class ReplacementEditViewModel : ViewModelBase
     {
-        public bool Existing { get; private set; }
-        public ReplacementEditViewModel(int id, int transactionId = -1)
+        public ReplacementEditViewModel(INavigationService navigationService) : base(navigationService)
         {
-            if (id >= 0)
-                Load(id);
+            TransactionId = -1;
+            Id            = -1;
+        }
+        protected override void OnLoad()
+        {
+            if (Id >= 0)
+                Load(Id);
             else
-                Create(transactionId);
+                Create(TransactionId);
         }
 
         public void Create(int transactionId)
@@ -35,7 +40,10 @@ namespace CMcG.Bankr.ViewModels.Options
             }
         }
 
-        public Replacement Data { get; set; }
+        public bool        Existing      { get; private set; }
+        public int         TransactionId { get; set; }
+        public int         Id            { get; set; }
+        public Replacement Data          { get; set; }
 
         public void Save()
         {
@@ -52,6 +60,7 @@ namespace CMcG.Bankr.ViewModels.Options
                 store.SubmitChanges();
                 Existing = true;
             }
+            Navigator.GoBack();
         }
 
         public void Delete()
@@ -65,6 +74,7 @@ namespace CMcG.Bankr.ViewModels.Options
                 store.Replacements.DeleteOnSubmit(data);
                 store.SubmitChanges();
             }
+            Navigator.GoBack();
         }
     }
 }
