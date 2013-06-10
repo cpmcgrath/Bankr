@@ -21,7 +21,7 @@ namespace CMcG.Bankr.ViewModels
             {
                 Transactions = store.UpcomingTransactions.OrderBy(x => x.EffectiveDate).ToArray();
             }
-            NotifyPropertyChanged("Transactions");
+            FirePropertyChanged(() => Transactions);
         }
 
         public UpcomingTransaction[] Transactions { get; set; }

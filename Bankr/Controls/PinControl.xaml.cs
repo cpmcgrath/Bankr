@@ -53,7 +53,7 @@ namespace CMcG.Bankr.Controls
                 set
                 {
                     Parent.Password = value;
-                    NotifyPropertyChanged("Password", "MaskedPassword", "MaxLengthNotReached");
+                    FirePropertyChanged(() => Password, () => MaskedPassword, () => MaxLengthNotReached);
                 }
             }
 

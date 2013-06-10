@@ -18,7 +18,7 @@ namespace CMcG.Bankr.ViewModels.Transfer
             set
             {
                 m_amount = value;
-                NotifyPropertyChanged("Amount", "CanInsertDecimalPoint", "CanInsertNumber", "CanInsertZero");
+                FirePropertyChanged(() => Amount, () => CanInsertDecimalPoint, () => CanInsertNumber, () => CanInsertZero);
             }
         }
 

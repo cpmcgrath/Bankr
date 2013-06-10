@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using System;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 
 namespace CMcG.Bankr.ViewModels
@@ -24,15 +25,15 @@ namespace CMcG.Bankr.ViewModels
         {
         }
 
-        protected void NotifyPropertyChanged(params string[] propertyNames)
-        {
-            foreach (var propertyName in propertyNames)
-                FirePropertyChanged(propertyName);
-        }
-
         protected void FirePropertyChanged([CallerMemberName] string propertyName = "")
         {
             NotifyOfPropertyChange(propertyName);
+        }
+
+        protected void FirePropertyChanged(params Expression<Func<object>>[] properties)
+        {
+            foreach (var property in properties)
+                NotifyOfPropertyChange(property);
         }
 
         public App CurrentApp

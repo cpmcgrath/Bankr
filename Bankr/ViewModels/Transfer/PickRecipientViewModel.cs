@@ -52,7 +52,7 @@ namespace CMcG.Bankr.ViewModels.Transfer
             new DataRetriever
             {
                 Status   = CurrentApp.Status,
-                Callback = () => NotifyPropertyChanged("ToAccounts")
+                Callback = () => FirePropertyChanged(() => ToAccounts)
             }.LoadTransferAccounts();
         }
 

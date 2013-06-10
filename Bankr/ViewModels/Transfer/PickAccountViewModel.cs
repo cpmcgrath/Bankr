@@ -21,7 +21,7 @@ namespace CMcG.Bankr.ViewModels.Transfer
                 YourAccounts = store.Accounts.ToArray();
             }
 
-            NotifyPropertyChanged("YourAccounts");
+            FirePropertyChanged(() => YourAccounts);
         }
 
         public Account[] YourAccounts { get; set; }

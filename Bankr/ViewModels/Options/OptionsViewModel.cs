@@ -33,7 +33,7 @@ namespace CMcG.Bankr.ViewModels.Options
             set
             {
                 m_selectedAccount = value;
-                NotifyPropertyChanged("SelectedAccount");
+                FirePropertyChanged(() => SelectedAccount);
             }
         }
 
