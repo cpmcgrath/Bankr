@@ -32,12 +32,18 @@ namespace CMcG.Bankr.Logic
             return m_uri;
         }
 
-        public async void LoadData()
+        public async Task<HttpClient> Login()
         {
             var uri    = await GetUri();
             var client = new HttpClient { BaseAddress = uri };
 
             m_sessionId = await RunQuery<LogonQuery>(client);
+            return client;
+        }
+
+        public async void LoadData()
+        {
+            var client = await Login();
             if (m_sessionId != null)
             {
                 await RunQuery<GetUpcomingTransactionsQuery>(client);
@@ -53,10 +59,7 @@ namespace CMcG.Bankr.Logic
 
         public async void LoadTransferAccounts()
         {
-            var uri    = await GetUri();
-            var client = new HttpClient { BaseAddress = uri };
-
-            m_sessionId = await RunQuery<LogonQuery>(client);
+            var client = await Login();
             if (m_sessionId != null)
             {
                 await RunQuery<GetTransferAccountsQuery>(client);
@@ -80,10 +83,7 @@ namespace CMcG.Bankr.Logic
 
         public async Task<string> TransferMoney(int fromAccount, int toAccount, string description, decimal amount)
         {
-            var uri    = await GetUri();
-            var client = new HttpClient { BaseAddress = uri };
-
-            m_sessionId = await RunQuery<LogonQuery>(client);
+            var client = await Login();
             if (m_sessionId == null)
                 return null;
 
