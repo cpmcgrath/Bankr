@@ -10,21 +10,22 @@ namespace CMcG.Bankr.ViewModels
 {
     public class TransactionsViewModel : ViewModelBase
     {
-        public TransactionsViewModel(INavigationService navigationService) : base(navigationService) { }
+        public TransactionsViewModel(INavigationService navigationService) : base(navigationService)
+        {
+            Load();
+        }
 
         protected override void OnLoad()
         {
-            Load();
-
             if (Account != null)
             {
                 var sinceUpdate = DateTime.Now - Account.LastUpdate;
                 CurrentApp.Status.SetAction(sinceUpdate.ToFormattedString() + " since last update", true);
                 if (sinceUpdate > TimeSpan.FromMinutes(45) && AutoRefresh)
-                    Refresh();
+                    RefreshData();
             }
             else
-                Refresh();
+                RefreshData();
         }
 
         void Load()
