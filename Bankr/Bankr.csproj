@@ -131,7 +131,7 @@
       <DependentUpon>PinControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PropertyChangedEventArgs.cs" />
-    <Compile Include="Framework\FrameworkExtensions.cs" />
+    <Compile Include="Framework\PermissionChecker.cs" />
     <Compile Include="Framework\Security.cs" />
     <Compile Include="Framework\ViewOfAttribute.cs" />
     <Compile Include="UIExtensions.cs" />
