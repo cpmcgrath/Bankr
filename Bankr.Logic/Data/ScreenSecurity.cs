@@ -19,45 +19,21 @@ namespace CMcG.Bankr.Data
         public int Id
         {
             get { return m_id; }
-            set
-            {
-                if (m_id == value)
-                    return;
-
-                SendPropertyChanging();
-                m_id = value;
-                SendPropertyChanged("Id");
-            }
+            set { SetValue(ref m_id, value); }
         }
 
         [Column(CanBeNull=false)]
         public string TypeFullName
         {
             get { return m_typeFullName; }
-            set
-            {
-                if (m_typeFullName == value)
-                    return;
-
-                SendPropertyChanging();
-                m_typeFullName = value;
-                SendPropertyChanged("TypeFullName");
-            }
+            set { SetValue(ref m_typeFullName, value); }
         }
 
         [Column]
         public AccessLevel AccessLevel
         {
             get { return m_accessLevel; }
-            set
-            {
-                if (m_accessLevel == value)
-                    return;
-
-                SendPropertyChanging();
-                m_accessLevel = value;
-                SendPropertyChanged("AccessLevel");
-            }
+            set { SetValue(ref m_accessLevel, value); }
         }
 
         public Type ViewModelType

@@ -32,120 +32,56 @@ namespace CMcG.Bankr.Data
         public int Id
         {
             get { return m_id; }
-            set
-            {
-                if (m_id == value)
-                    return;
-
-                SendPropertyChanging();
-                m_id = value;
-                SendPropertyChanged("Id");
-            }
+            set { SetValue(ref m_id, value); }
         }
 
         [Column(CanBeNull=false)]
         public string AccountName
         {
             get { return m_accountName; }
-            set
-            {
-                if (m_accountName == value)
-                    return;
-
-                SendPropertyChanging();
-                m_accountName = value;
-                SendPropertyChanged("AccountName");
-            }
+            set { SetValue(ref m_accountName, value); }
         }
 
         [Column(CanBeNull=false)]
         public string AccountNumber
         {
             get { return m_accountNumber; }
-            set
-            {
-                if (m_accountNumber == value)
-                    return;
-
-                SendPropertyChanging();
-                m_accountNumber = value;
-                SendPropertyChanged("AccountNumber");
-            }
+            set { SetValue(ref m_accountNumber, value); }
         }
 
         [Column, JsonConverter(typeof(CbaAmountConverter))]
         public decimal Balance
         {
             get { return m_balance; }
-            set
-            {
-                if (m_balance == value)
-                    return;
-
-                SendPropertyChanging();
-                m_balance = value;
-                SendPropertyChanged("Balance");
-            }
+            set { SetValue(ref m_balance, value); }
         }
 
         [Column, JsonConverter(typeof(CbaAmountConverter))]
         public decimal AvailableFunds
         {
             get { return m_availableFunds; }
-            set
-            {
-                if (m_availableFunds == value)
-                    return;
-
-                SendPropertyChanging();
-                m_availableFunds = value;
-                SendPropertyChanged("AvailableFunds");
-            }
+            set { SetValue(ref m_availableFunds, value); }
         }
 
         [Column]
         public DateTime LastUpdate
         {
             get { return m_lastUpdate; }
-            set
-            {
-                if (m_lastUpdate == value)
-                    return;
-
-                SendPropertyChanging();
-                m_lastUpdate = value;
-                SendPropertyChanged("LastUpdate");
-            }
+            set { SetValue(ref m_lastUpdate, value); }
         }
 
         [Column]
         public bool UseAvailableFunds
         {
             get { return m_useAvailableFunds; }
-            set
-            {
-                if (m_useAvailableFunds == value)
-                    return;
-
-                SendPropertyChanging();
-                m_useAvailableFunds = value;
-                SendPropertyChanged("UseAvailableFunds");
-            }
+            set { SetValue(ref m_useAvailableFunds, value); }
         }
 
         [Column]
         public int CreditLimit
         {
             get { return m_creditLimit; }
-            set
-            {
-                if (m_creditLimit == value)
-                    return;
-
-                SendPropertyChanging();
-                m_creditLimit = value;
-                SendPropertyChanged("CreditLimit");
-            }
+            set { SetValue(ref m_creditLimit, value); }
         }
 
         public decimal AccountAmount
@@ -168,13 +104,13 @@ namespace CMcG.Bankr.Data
 
         private void AttachTransactions(Transaction entity)
         {
-            SendPropertyChanging();
+            FirePropertyChanging();
             entity.Account = this;
         }
 
         private void DetachTransactions(Transaction entity)
         {
-            SendPropertyChanging();
+            FirePropertyChanging();
             entity.Account = null;
         }
     }

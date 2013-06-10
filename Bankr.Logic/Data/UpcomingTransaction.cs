@@ -26,105 +26,49 @@ namespace CMcG.Bankr.Data
         public int Id
         {
             get { return m_id; }
-            set
-            {
-                if (m_id == value)
-                    return;
-
-                SendPropertyChanging();
-                m_id = value;
-                SendPropertyChanged("Id");
-            }
+            set { SetValue(ref m_id, value); }
         }
 
         [Column, JsonConverter(typeof(CbaDateConverter))]
         public DateTime EffectiveDate
         {
             get { return m_date; }
-            set
-            {
-                if (m_date == value)
-                    return;
-
-                SendPropertyChanging();
-                m_date = value;
-                SendPropertyChanged("Date");
-            }
+            set { SetValue(ref m_date, value); }
         }
 
         [Column(CanBeNull=false)]
         public string TransactionType
         {
             get { return m_transactionType.Replace(@"<sup>rd</sup>", "rd"); }
-            set
-            {
-                if (m_transactionType == value)
-                    return;
-
-                SendPropertyChanging();
-                m_transactionType = value;
-                SendPropertyChanged("TransactionType");
-            }
+            set { SetValue(ref m_transactionType, value); }
         }
 
         [Column]
         public string Status
         {
             get { return m_status; }
-            set
-            {
-                if (m_status == value)
-                    return;
-
-                SendPropertyChanging();
-                m_status = value;
-                SendPropertyChanged("Status");
-            }
+            set { SetValue(ref m_status, value); }
         }
 
         [Column, JsonConverter(typeof(CbaAmountConverter))]
         public decimal Amount
         {
             get { return m_amount; }
-            set
-            {
-                if (m_amount == value)
-                    return;
-
-                SendPropertyChanging();
-                m_amount = value;
-                SendPropertyChanged("Amount");
-            }
+            set { SetValue(ref m_amount, value); }
         }
 
         [Column]
         public string TransactionFrom
         {
             get { return m_transactionFrom; }
-            set
-            {
-                if (m_transactionFrom == value)
-                    return;
-
-                SendPropertyChanging();
-                m_transactionFrom = value;
-                SendPropertyChanged("TransactionFrom");
-            }
+            set { SetValue(ref m_transactionFrom, value); }
         }
 
         [Column]
         public string TransactionTo
         {
             get { return m_transactionTo; }
-            set
-            {
-                if (m_transactionTo == value)
-                    return;
-
-                SendPropertyChanging();
-                m_transactionTo = value;
-                SendPropertyChanged("TransactionTo");
-            }
+            set { SetValue(ref m_transactionTo, value); }
         }
 
         public decimal AbsAmount

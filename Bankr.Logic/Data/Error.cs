@@ -17,60 +17,28 @@ namespace CMcG.Bankr.Data
         public int Id
         {
             get { return m_id; }
-            set
-            {
-                if (m_id != value)
-                {
-                    SendPropertyChanging();
-                    m_id = value;
-                    SendPropertyChanged("Id");
-                }
-            }
+            set { SetValue(ref m_id, value); }
         }
 
         [Column]
         public System.DateTime Time
         {
             get { return m_time; }
-            set
-            {
-                if (m_time != value)
-                {
-                    SendPropertyChanging();
-                    m_time = value;
-                    SendPropertyChanged("Time");
-                }
-            }
+            set { SetValue(ref m_time, value); }
         }
 
         [Column(CanBeNull=false)]
         public string Message
         {
             get { return m_message; }
-            set
-            {
-                if (m_message != value)
-                {
-                    SendPropertyChanging();
-                    m_message = value;
-                    SendPropertyChanged("Message");
-                }
-            }
+            set { SetValue(ref m_message, value); }
         }
 
         [Column(CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
         public string Extended
         {
             get { return m_extended; }
-            set
-            {
-                if (m_extended != value)
-                {
-                    SendPropertyChanging();
-                    m_extended = value;
-                    SendPropertyChanged("Extended");
-                }
-            }
+            set { SetValue(ref m_extended, value); }
         }
 
         public override string ToString()

@@ -12,7 +12,7 @@ namespace CMcG.Bankr.Logic
 
         public void FireChanged()
         {
-            SendPropertyChanged("IsBusy", "Action");
+            FirePropertyChanged(() => IsBusy, () => Action);
         }
 
         public void SetAction(string action, bool isState = false)

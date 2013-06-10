@@ -27,75 +27,35 @@ namespace CMcG.Bankr.Data
         public int Id
         {
             get { return m_id; }
-            set
-            {
-                if (m_id == value)
-                    return;
-
-                SendPropertyChanging();
-                m_id = value;
-                SendPropertyChanged("Id");
-            }
+            set { SetValue(ref m_id, value); }
         }
 
         [Column, JsonConverter(typeof(CbaDateConverter))]
         public DateTime EffectiveDate
         {
             get { return m_date; }
-            set
-            {
-                if (m_date == value)
-                    return;
-
-                SendPropertyChanging();
-                m_date = value;
-                SendPropertyChanged("Date");
-            }
+            set { SetValue(ref m_date, value); }
         }
 
         [Column(CanBeNull=false)]
         public string Description
         {
             get { return m_description; }
-            set
-            {
-                if (m_description == value)
-                    return;
-
-                SendPropertyChanging();
-                m_description = value;
-                SendPropertyChanged("Description");
-            }
+            set { SetValue(ref m_description, value); }
         }
 
         [Column]
         public bool IsPending
         {
             get { return m_isPending; }
-            set
-            {
-                if (m_isPending == value)
-                    return;
-
-                SendPropertyChanging();
-                m_isPending = value;
-                SendPropertyChanged("IsPending");
-            }
+            set { SetValue(ref m_isPending, value); }
         }
 
         [Column, JsonConverter(typeof(CbaAmountConverter))]
         public decimal Amount
         {
             get { return m_amount; }
-            set
-            {
-                if (m_amount == value)
-                    return;
-
-                SendPropertyChanging();
-                m_amount = value;
-                SendPropertyChanged("Amount");
-            }
+            set { SetValue(ref m_amount, value); }
         }
 
         [Column]
@@ -104,15 +64,10 @@ namespace CMcG.Bankr.Data
             get { return m_accountId; }
             set
             {
-                if (m_accountId == value)
-                    return;
-
-                if (m_account.HasLoadedOrAssignedValue)
+                if (m_accountId != value && m_account.HasLoadedOrAssignedValue)
                     throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 
-                SendPropertyChanging();
-                m_accountId = value;
-                SendPropertyChanged("AccountId");
+                SetValue(ref m_accountId, value);
             }
         }
 
@@ -120,15 +75,7 @@ namespace CMcG.Bankr.Data
         public bool IsSeen
         {
             get { return m_isSeen; }
-            set
-            {
-                if (m_isSeen == value)
-                    return;
-
-                SendPropertyChanging();
-                m_isSeen = value;
-                SendPropertyChanged("IsSeen");
-            }
+            set { SetValue(ref m_isSeen, value); }
         }
 
         [Association(Name="AccountTransaction", Storage="m_account", ThisKey="AccountId", OtherKey="Id", IsForeignKey=true)]
@@ -141,7 +88,7 @@ namespace CMcG.Bankr.Data
                 if (previousValue == value && m_account.HasLoadedOrAssignedValue)
                     return;
 
-                SendPropertyChanging();
+                FirePropertyChanging();
                 if (previousValue != null)
                 {
                     m_account.Entity = null;
@@ -154,7 +101,7 @@ namespace CMcG.Bankr.Data
 
                 m_accountId = value != null ? value.Id : 0;
 
-                SendPropertyChanged("Account");
+                FirePropertyChanged();
             }
         }
 

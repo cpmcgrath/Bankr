@@ -16,45 +16,21 @@ namespace CMcG.Bankr.Data
         public int Id
         {
             get { return m_id; }
-            set
-            {
-                if (m_id != value)
-                {
-                    SendPropertyChanging();
-                    m_id = value;
-                    SendPropertyChanged("Id");
-                }
-            }
+            set { SetValue(ref m_id, value); }
         }
 
         [Column]
         public int SelectedAccountId
         {
             get { return m_selectedAccountId; }
-            set
-            {
-                if (m_selectedAccountId != value)
-                {
-                    SendPropertyChanging();
-                    m_selectedAccountId = value;
-                    SendPropertyChanged("SelectedAccountId");
-                }
-            }
+            set { SetValue(ref m_selectedAccountId, value); }
         }
 
         [Column(DbType = "BIT DEFAULT 1 NOT NULL")]
         public bool AutoRefresh
         {
             get { return m_autoRefresh; }
-            set
-            {
-                if (m_autoRefresh != value)
-                {
-                    SendPropertyChanging();
-                    m_autoRefresh = value;
-                    SendPropertyChanged("AutoRefresh");
-                }
-            }
+            set { SetValue(ref m_autoRefresh, value); }
         }
 
         public Account GetSelectedAccount(DataStoreContext store)

@@ -17,60 +17,28 @@ namespace CMcG.Bankr.Data
         public int Id
         {
             get { return m_id; }
-            set
-            {
-                if (m_id == value)
-                    return;
-
-                SendPropertyChanging();
-                m_id = value;
-                SendPropertyChanged("Id");
-            }
+            set { SetValue(ref m_id, value); }
         }
 
         [Column(CanBeNull=false)]
         public string Username
         {
             get { return m_username; }
-            set
-            {
-                if (m_username == value)
-                    return;
-
-                SendPropertyChanging();
-                m_username = value;
-                SendPropertyChanged("Username");
-            }
+            set { SetValue(ref m_username, value); }
         }
 
         [Column(CanBeNull=false)]
         public string Password
         {
             get { return m_password; }
-            set
-            {
-                if (m_password == value)
-                    return;
-
-                SendPropertyChanging();
-                m_password = value;
-                SendPropertyChanged("Password");
-            }
+            set { SetValue(ref m_password, value); }
         }
 
         [Column]
         public string Pin
         {
             get { return m_pin ?? string.Empty; }
-            set
-            {
-                if (m_pin == value)
-                    return;
-
-                SendPropertyChanging();
-                m_pin = value;
-                SendPropertyChanged("Pin");
-            }
+            set { SetValue(ref m_pin, value); }
         }
     }
 }

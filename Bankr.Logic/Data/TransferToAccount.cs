@@ -13,7 +13,7 @@ namespace CMcG.Bankr.Data
     public partial class TransferToAccount : NotifyBase
     {
         int         m_id;
-        int?         m_senderId;
+        int?        m_senderId;
         string      m_accountName;
         string      m_accountNumber;
         decimal     m_availableFunds;
@@ -24,60 +24,28 @@ namespace CMcG.Bankr.Data
         public int Id
         {
             get { return m_id; }
-            set
-            {
-                if (m_id == value)
-                    return;
-
-                SendPropertyChanging();
-                m_id = value;
-                SendPropertyChanged("Id");
-            }
+            set { SetValue(ref m_id, value); }
         }
 
         [Column]
         public int? SenderId
         {
             get { return m_senderId; }
-            set
-            {
-                if (m_senderId == value)
-                    return;
-
-                SendPropertyChanging();
-                m_senderId = value;
-                SendPropertyChanged("SenderId");
-            }
+            set { SetValue(ref m_senderId, value); }
         }
 
         [Column(CanBeNull=false)]
         public string AccountName
         {
             get { return m_accountName; }
-            set
-            {
-                if (m_accountName == value)
-                    return;
-
-                SendPropertyChanging();
-                m_accountName = value;
-                SendPropertyChanged("AccountName");
-            }
+            set { SetValue(ref m_accountName, value); }
         }
 
         [Column(CanBeNull=false)]
         public string AccountNumber
         {
             get { return m_accountNumber; }
-            set
-            {
-                if (m_accountNumber == value)
-                    return;
-
-                SendPropertyChanging();
-                m_accountNumber = value;
-                SendPropertyChanged("AccountNumber");
-            }
+            set { SetValue(ref m_accountNumber, value); }
         }
 
         public string MoreInformation
@@ -94,45 +62,21 @@ namespace CMcG.Bankr.Data
         public decimal AvailableFunds
         {
             get { return m_availableFunds; }
-            set
-            {
-                if (m_availableFunds == value)
-                    return;
-
-                SendPropertyChanging();
-                m_availableFunds = value;
-                SendPropertyChanged("AvailableFunds");
-            }
+            set { SetValue(ref m_availableFunds, value); }
         }
 
         [Column]
         public DateTime LastUsed
         {
             get { return m_lastUsed; }
-            set
-            {
-                if (m_lastUsed == value)
-                    return;
-
-                SendPropertyChanging();
-                m_lastUsed = value;
-                SendPropertyChanged("LastUpdate");
-            }
+            set { SetValue(ref m_lastUsed, value); }
         }
 
         [Column]
         public AccountType Type
         {
             get { return m_type; }
-            set
-            {
-                if (m_type == value)
-                    return;
-
-                SendPropertyChanging();
-                m_type = value;
-                SendPropertyChanged("Type");
-            }
+            set { SetValue(ref m_type, value); }
         }
 
         public enum AccountType

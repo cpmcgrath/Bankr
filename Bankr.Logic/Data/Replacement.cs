@@ -15,45 +15,21 @@ namespace CMcG.Bankr.Data
         public int Id
         {
             get { return m_id; }
-            set
-            {
-                if (m_id == value)
-                    return;
-
-                SendPropertyChanging();
-                m_id = value;
-                SendPropertyChanged("Id");
-            }
+            set { SetValue(ref m_id, value); }
         }
 
         [Column(CanBeNull=false)]
         public string Original
         {
             get { return m_original; }
-            set
-            {
-                if (m_original == value)
-                    return;
-
-                SendPropertyChanging();
-                m_original = value;
-                SendPropertyChanged("Original");
-            }
+            set { SetValue(ref m_original, value); }
         }
 
         [Column(CanBeNull=false)]
         public string NewValue
         {
             get { return m_newValue; }
-            set
-            {
-                if (m_newValue == value)
-                    return;
-
-                SendPropertyChanging();
-                m_newValue = value;
-                SendPropertyChanged("NewValue");
-            }
+            set { SetValue(ref m_newValue, value); }
         }
     }
 }
