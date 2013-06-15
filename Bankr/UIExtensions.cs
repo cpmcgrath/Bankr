@@ -13,7 +13,10 @@ namespace CMcG.Bankr
     {
         public static void GoBack(this INavigationService instance, uint pagesToGoBack)
         {
-            for (uint i = 0; i < pagesToGoBack; i++)
+            for (uint i = 1; i < pagesToGoBack; i++)
+                instance.RemoveBackEntry();
+
+            if (pagesToGoBack > 0)
                 instance.GoBack();
         }
 
