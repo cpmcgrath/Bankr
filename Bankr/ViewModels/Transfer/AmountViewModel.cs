@@ -38,7 +38,7 @@ namespace CMcG.Bankr.ViewModels.Transfer
 
         public decimal Value
         {
-            get { return int.Parse(Amount.Substring(1)); }
+            get { return decimal.Parse(Amount.Substring(1)); }
         }
 
         public int FromAccountId { get; set; }
