@@ -7,6 +7,7 @@ namespace CMcG.Bankr.Controls
 {
     public static class DependencyProperties<TOwner> where TOwner : DependencyObject
     {
+        #region Register(p => p.MyProp, default, (s, e) => s.OnMyPropChanged(e)
         public static DependencyProperty Register<TReturn>(Expression<Func<TOwner, TReturn>> property,
                                                            TReturn defaultValue = default(TReturn),
                                                            Action<TOwner, PropertyChangedEventArgs<TReturn>> changed = null)
@@ -14,30 +15,9 @@ namespace CMcG.Bankr.Controls
             var metadata = SetupMetadata(defaultValue, changed);
             return DependencyProperty.Register(GetName(property), typeof(TReturn), typeof(TOwner), metadata);
         }
+        #endregion
 
-        static string GetName<TReturn>(Expression<Func<TOwner, TReturn>> property)
-        {
-            return GetMemberInfo(property).Name;
-        }
-
-        private static System.Reflection.MemberInfo GetMemberInfo(System.Linq.Expressions.Expression member)
-        {
-            var lambda = (LambdaExpression)member;
-            MemberExpression memberExpr = null;
-
-            switch (lambda.Body.NodeType)
-            {
-                case ExpressionType.Convert      : memberExpr = ((UnaryExpression)lambda.Body).Operand as MemberExpression; break;
-                case ExpressionType.MemberAccess : memberExpr = lambda.Body as MemberExpression; break;
-            }
-          
-            if (memberExpr == null)
-                throw new ArgumentException("Not a member access", "member");
-          
-            return memberExpr.Member;
-        }
-
-        #region Register<int>(p => p.MyProp, (s, e) => s.OnMyPropChanged(e))
+        #region Register(p => p.MyProp, (s, e) => s.OnMyPropChanged(e))
         public static DependencyProperty Register<TReturn>(Expression<Func<TOwner, TReturn>>                 property,
                                                            Action<TOwner, PropertyChangedEventArgs<TReturn>> changed)
         {
@@ -45,7 +25,27 @@ namespace CMcG.Bankr.Controls
         }
         #endregion
 
-        
+        #region Helpers
+        static string GetName<TReturn>(Expression<Func<TOwner, TReturn>> property)
+        {
+            return GetMemberInfo(property).Name;
+        }
+
+        static System.Reflection.MemberInfo GetMemberInfo(LambdaExpression lambda)
+        {
+            System.Linq.Expressions.Expression result = null;
+
+            switch (lambda.Body.NodeType)
+            {
+                case ExpressionType.Convert      : result = ((UnaryExpression)lambda.Body).Operand; break;
+                case ExpressionType.MemberAccess : result = lambda.Body; break;
+            }
+          
+            if (result is MemberExpression)
+                return ((MemberExpression)result).Member;
+          
+            throw new ArgumentException("Not a member access", "member");
+        }
 
         static PropertyMetadata SetupMetadata<TReturn>(TReturn defaultValue, Action<TOwner, PropertyChangedEventArgs<TReturn>> changed)
         {
@@ -53,5 +53,6 @@ namespace CMcG.Bankr.Controls
                  ? new PropertyMetadata(defaultValue)
                  : new PropertyMetadata(defaultValue, (s, e) => changed.Invoke((TOwner)s, new PropertyChangedEventArgs<TReturn>(e)));
         }
+        #endregion
     }
 }

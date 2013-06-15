@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace CMcG.Bankr.Controls
 {
+    using DProp = DependencyProperties<PinControl>;
     public partial class PinControl : UserControl
     {
         public PinControl()
@@ -21,7 +22,7 @@ namespace CMcG.Bankr.Controls
         }
 
         #region public string Password { get; set; }
-        public static readonly DependencyProperty PasswordProperty = DependencyProperties<PinControl>.Register(p => p.Password, "");
+        public static readonly DependencyProperty PasswordProperty = DProp.Register(p => p.Password, "");
 
         public string Password
         {
