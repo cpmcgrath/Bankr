@@ -67,9 +67,9 @@ namespace CMcG.Bankr.Logic
             Callback();
         }
 
-        async Task<string> RunQuery<T>(HttpClient client) where T : CommBankQuery, new()
+        Task<string> RunQuery<T>(HttpClient client) where T : CommBankQuery, new()
         {
-            return await new T
+            return new T
             {
                 Status    = Status,
                 SessionId = m_sessionId
