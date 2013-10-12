@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="COMMONWEALTH BANK" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="BANKR" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="login" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 

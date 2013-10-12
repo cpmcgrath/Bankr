@@ -12,9 +12,9 @@ namespace CMcG.Bankr
 
         protected override void Configure()
         {
-            container = new PhoneContainer(RootFrame);
+            container = new PhoneContainer();
 
-            container.RegisterPhoneServices();
+            container.RegisterPhoneServices(RootFrame);
             foreach (var vm in App.GetViewModelTypes())
                 container.RegisterPerRequest(vm, null, vm);
 
