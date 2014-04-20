@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Net;
 using CMcG.Bankr.Data;
 using System.Collections.Generic;
+using Windows.UI.Notifications;
 
 namespace CMcG.Bankr.Logic.Queries
 {
@@ -59,7 +60,17 @@ namespace CMcG.Bankr.Logic.Queries
                     account.TransactionList.Add(transaction);
 
                 store.SubmitChanges();
-                Status.SetAction(transactions.Count() + " new transactions found.", true);
+                var action = transactions.Length + " new transactions found.";
+                string more;
+                if (transactions.Length == 1)
+                    more = string.Format("${0:0.00} {1}", transactions[0].AbsAmount, transactions[0].Summary);
+                else
+                {
+                    decimal amount = transactions.Sum(x => x.Amount);
+                    more = string.Format("Totalling ${0:0.00} {1}.", Math.Abs(amount), amount > 0 ? "in" : "out");
+                }
+                Status.SetImportantAction(action, more, true);
+                var template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText02);
             }
         }
 

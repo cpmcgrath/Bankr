@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.Phone.Shell;
 using System.Windows.Threading;
+using Windows.UI.Notifications;
 
 namespace CMcG.Bankr.Logic
 {
@@ -8,6 +10,7 @@ namespace CMcG.Bankr.Logic
     {
         public bool   AutoRemove { get; set; }
         public bool   IsBusy     { get; set; }
+        public bool   UseToast   { get; set; }
         public string Action     { get; set; }
 
         public void FireChanged()
@@ -31,6 +34,18 @@ namespace CMcG.Bankr.Logic
                 timer.Stop();
             };
             timer.Start();
+        }
+
+        public void SetImportantAction(string action, string moreDetails, bool isState = false)
+        {
+            if (UseToast)
+                new ShellToast
+                {
+                    Title   = action,
+                    Content = moreDetails
+                }.Show();
+
+            SetAction(action, isState);
         }
     }
 }

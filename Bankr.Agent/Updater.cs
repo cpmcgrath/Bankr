@@ -32,7 +32,7 @@ namespace CMcG.Bankr.Agent
 
         public bool Refresh(DataStoreContext store, Action afterUpdate)
         {
-            var retriever = new DataRetriever { Status = new AppStatus() };
+            var retriever = new DataRetriever { Status = new AppStatus { UseToast = true } };
             retriever.Callback = () =>
             {
                 UpdateLiveTile();
