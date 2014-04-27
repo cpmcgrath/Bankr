@@ -127,9 +127,7 @@ namespace CMcG.Bankr.Data
                     foreach (var replacement in Replacements)
                         desc = desc.Replace(replacement.Original, replacement.NewValue);
 
-                var format = Amount < 0 ? "Sent to {1}"
-                                        : "Received from {1}";
-                return string.Format(format, AbsAmount, desc);
+                return desc;
             }
         }
 

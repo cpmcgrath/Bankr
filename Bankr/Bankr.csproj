@@ -139,6 +139,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Converters\FloatToBackgroundConverter.cs" />
     <Compile Include="Controls\DependencyProperties.cs" />
     <Compile Include="Controls\FixedCheckBox.cs" />
     <Compile Include="Controls\PinControl.xaml.cs">

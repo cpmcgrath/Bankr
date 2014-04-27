@@ -8,6 +8,7 @@
                             xmlns:mc       = "http://schemas.openxmlformats.org/markup-compatibility/2006"
                             xmlns:tk       = "clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
                             xmlns:cal      = "clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+                            xmlns:cvt      = "clr-namespace:CMcG.Bankr.Controls.Converters"
                             mc:Ignorable   = "d" d:DesignWidth="480" d:DesignHeight="696"
                             FontFamily     = "{StaticResource PhoneFontFamilyNormal}"
                             FontSize       = "{StaticResource PhoneFontSizeNormal}"
@@ -15,8 +16,9 @@
                             SupportedOrientations="Portrait"  Orientation="Portrait"
                             shell:SystemTray.IsVisible="True" Margin="0,-2,0,2">
     <phone:PhoneApplicationPage.Resources>
+        <cvt:FloatToBackgroundConverter x:Key="cvtBackground" />
         <DataTemplate x:Key="TransactionTemplate">
-            <Grid Margin="0,0,25,40">
+            <Grid Margin="0,0,0,0">
                 <tk:ContextMenuService.ContextMenu>
                     <tk:ContextMenu>
                         <tk:MenuItem Header="add replacement" Click="AddReplacement" />
@@ -27,15 +29,26 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="4*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="{Binding Summary}"                               Grid.ColumnSpan="3" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}"/>
-                <TextBlock Text="{Binding EffectiveDate,  StringFormat=d MMMM}"   Grid.Row="1" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}" />
-                <TextBlock Text="{Binding DateOfPurchase, StringFormat=(d MMMM)}" Grid.Row="1" Grid.Column="1" Margin="4,0,0,0" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}" />
-                <TextBlock Text="{Binding AbsAmount, StringFormat=$0.00}"         Grid.Row="1" Grid.Column="2" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}" />
+                <Border Background="{Binding Amount, Converter={StaticResource cvtBackground}}"
+                        BorderBrush="{StaticResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0,0,1,1"
+                        Grid.RowSpan="2" Grid.Column="0">
+                    <TextBlock Text="{Binding AbsAmount, StringFormat=$0.00}"
+                               Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right"
+                               Margin="0,0,5,0"/>
+                </Border>
+                <StackPanel Grid.Column="1" Orientation="Horizontal"  >
+                    <Border Background="{StaticResource ForegroundBrush}" HorizontalAlignment="Left" Padding="5,0">
+                        <TextBlock Text="{Binding EffectiveDate,  StringFormat=d MMMM}"   Foreground="{StaticResource ApplicationPageBackgroundThemeBrush}" />
+                    </Border>
+                    <TextBlock Text="{Binding DateOfPurchase, StringFormat=(d MMMM)}" Margin="4,0,0,0" Foreground="{StaticResource ForegroundBrush}" />
+                </StackPanel>
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                           Text="{Binding Summary}" Foreground="{Binding IsSeen, Converter={StaticResource colourBoolConverter}}"
+                           Margin="5,0,0,10"/>
             </Grid>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
@@ -47,31 +60,53 @@
     </shell:SystemTray.ProgressIndicator>
 
     <Grid Style="{StaticResource LayoutRootStyle}">
-        <controls:Pivot Title="{Binding AccountAmount}">
-            <controls:PivotItem Header="all">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <controls:Pivot>
+            <controls:PivotItem Header="all" Margin="0,14,0,0">
                 <ListBox ItemTemplate               = "{StaticResource TransactionTemplate}"
                          HorizontalContentAlignment = "Stretch"
                          ItemsSource                = "{Binding Transactions}" />
             </controls:PivotItem>
 
-            <controls:PivotItem Header="received">
+            <controls:PivotItem Header="received" Margin="0,14,0,0">
                 <ListBox ItemTemplate               = "{StaticResource TransactionTemplate}"
                          HorizontalContentAlignment = "Stretch"
                          ItemsSource                = "{Binding ReceivedTransactions}" />
             </controls:PivotItem>
 
-            <controls:PivotItem Header="sent">
+            <controls:PivotItem Header="sent" Margin="0,14,0,0">
                 <ListBox ItemTemplate               = "{StaticResource TransactionTemplate}"
                          HorizontalContentAlignment = "Stretch"
                          ItemsSource                = "{Binding SentTransactions}" />
             </controls:PivotItem>
 
-            <controls:PivotItem Header="internal">
+            <controls:PivotItem Header="internal" Margin="0,14,0,0">
                 <ListBox ItemTemplate               = "{StaticResource TransactionTemplate}"
                          HorizontalContentAlignment = "Stretch"
                          ItemsSource                = "{Binding InternalTransactions}" />
             </controls:PivotItem>
         </controls:Pivot>
+        
+        <Grid Grid.Row="1" Background="#333333">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Background="{Binding Account.AccountAmount, Converter={StaticResource cvtBackground}}"
+                    BorderBrush="{StaticResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0,1,1,0">
+                <TextBlock Text="{Binding Account.AccountAmount, StringFormat=$0.00}"
+                           Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right"
+                           Margin="0,0,5,0"/>
+            </Border>
+            <Border Grid.Column="1" BorderBrush="{StaticResource ApplicationPageBackgroundThemeBrush}" BorderThickness="0,1,0,0"/>
+            <TextBlock Grid.Column="1"
+                       Text="{Binding Account.AccountName}" Foreground="White"
+                       Margin="5,20,0,20"/>
+        </Grid>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
