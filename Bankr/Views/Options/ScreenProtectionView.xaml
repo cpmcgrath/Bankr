@@ -9,14 +9,14 @@
                             xmlns:cal             ="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
                             FontFamily            ="{StaticResource PhoneFontFamilyNormal}"
                             FontSize              ="{StaticResource PhoneFontSizeNormal}"
-                            Foreground            ="{StaticResource PhoneForegroundBrush}"
+                            Style                 = "{StaticResource PageStyle}"
                             SupportedOrientations ="Portrait" Orientation="Portrait"
                             mc:Ignorable          ="d"
                             shell:SystemTray.IsVisible="True">
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="ScreenTemplate">
             <Grid>
-                <TextBlock Text="{Binding Name}" Margin="0,30,0,0" />
+                <TextBlock Text="{Binding Name}" Margin="0,30,0,0" Foreground="{StaticResource ForegroundBrush}" />
                 <toolkit:ListPicker ItemsSource         = "{Binding AccessLevels}"
                                     SelectedItem        = "{Binding AccessLevel, Mode=TwoWay}"
                                     HorizontalAlignment = "Right"
@@ -24,7 +24,7 @@
             </Grid>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootStyle}">
         <phone:Pivot Title="PROTECTION">
             <phone:PivotItem Header="options">
                 <ListBox ItemsSource="{Binding OptionItems}" ItemTemplate="{StaticResource ScreenTemplate}" />

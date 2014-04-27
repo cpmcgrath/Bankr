@@ -11,7 +11,7 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
+    Style       = "{StaticResource PageStyle}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
     <shell:SystemTray.ProgressIndicator>
@@ -20,7 +20,7 @@
                                  Text="{Binding CurrentApp.Status.Action}" />
     </shell:SystemTray.ProgressIndicator>
 
-    <Grid Background="Transparent">
+    <Grid Style="{StaticResource LayoutRootStyle}">
         <controls:Pivot Title="OPTIONS">
             <controls:PivotItem Header="accounts">
                 <StackPanel>
@@ -29,6 +29,7 @@
                                         SelectedItem="{Binding SelectedAccount, Mode=TwoWay}"
                                         DisplayMemberPath="AccountName" />
 
+                    
                     <cmcgctl:FixedCheckBox Content="Use Available Funds instead of Balance" IsChecked="{Binding SelectedAccount.UseAvailableFunds, Mode=TwoWay}" />
                     <TextBlock Text="Credit limit" />
                     <TextBox Text="{Binding SelectedAccount.CreditLimit, Mode=TwoWay}" InputScope="Number" />

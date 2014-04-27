@@ -8,22 +8,22 @@
                             xmlns:c     ="clr-namespace:CMcG.Bankr.Controls"  
                             FontFamily="{StaticResource PhoneFontFamilyNormal}"
                             FontSize="{StaticResource PhoneFontSizeNormal}"
-                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Style       = "{StaticResource PageStyle}"
                             SupportedOrientations="Portrait" Orientation="Portrait"
                             mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
                             shell:SystemTray.IsVisible="True">
     <UserControl.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource GreyBtn}" />
     </UserControl.Resources>
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="COMMONWEALTH BANK" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="pin login" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="COMMONWEALTH BANK" Style="{StaticResource PhoneTxtNormalStyle}"/>
+            <TextBlock Text="pin login" Margin="9,-7,0,0" Style="{StaticResource PhoneTxtTitle1Style}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1">

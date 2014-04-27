@@ -8,19 +8,19 @@
                             xmlns:c     ="clr-namespace:CMcG.Bankr.Controls"  
                             FontFamily  ="{StaticResource PhoneFontFamilyNormal}"
                             FontSize    ="{StaticResource PhoneFontSizeNormal}"
-                            Foreground  ="{StaticResource PhoneForegroundBrush}"
+                            Style       = "{StaticResource PageStyle}"
                             SupportedOrientations="Portrait" Orientation="Portrait"
                             mc:Ignorable="d"
                             shell:SystemTray.IsVisible="True">
-    <Grid Background="Transparent">
+    <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="OPTIONS" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="pin" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="OPTIONS" Style="{StaticResource PhoneTxtNormalStyle}"/>
+            <TextBlock Text="pin" Margin="9,-7,0,0" Style="{StaticResource PhoneTxtTitle1Style}"/>
         </StackPanel>
         <Grid Grid.Row="1" Margin="12,0,12,0">
             <Grid.RowDefinitions>

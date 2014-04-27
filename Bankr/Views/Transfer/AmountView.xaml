@@ -8,7 +8,7 @@
                             xmlns:cal             = "clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
                             FontFamily            = "{StaticResource PhoneFontFamilyNormal}"
                             FontSize              = "{StaticResource PhoneFontSizeNormal}"
-                            Foreground            = "{StaticResource PhoneForegroundBrush}"
+                            Style                 = "{StaticResource PageStyle}"
                             SupportedOrientations = "Portrait" Orientation="Portrait"
                             mc:Ignorable          = "d"
                             shell:SystemTray.IsVisible="True">
@@ -21,14 +21,14 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="12,17,0,8">
-            <TextBlock Text="amount" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="amount" Margin="9,-7,0,0" Style="{StaticResource PhoneTxtTitle1Style}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" >

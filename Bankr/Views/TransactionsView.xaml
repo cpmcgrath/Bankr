@@ -11,7 +11,7 @@
                             mc:Ignorable   = "d" d:DesignWidth="480" d:DesignHeight="696"
                             FontFamily     = "{StaticResource PhoneFontFamilyNormal}"
                             FontSize       = "{StaticResource PhoneFontSizeNormal}"
-                            Foreground     = "{StaticResource PhoneForegroundBrush}"
+                            Style          = "{StaticResource PageStyle}"
                             SupportedOrientations="Portrait"  Orientation="Portrait"
                             shell:SystemTray.IsVisible="True" Margin="0,-2,0,2">
     <phone:PhoneApplicationPage.Resources>
@@ -46,7 +46,7 @@
                                  Text="{Binding CurrentApp.Status.Action}" />
     </shell:SystemTray.ProgressIndicator>
 
-    <Grid Background="Transparent">
+    <Grid Style="{StaticResource LayoutRootStyle}">
         <controls:Pivot Title="{Binding AccountAmount}">
             <controls:PivotItem Header="all">
                 <ListBox ItemTemplate               = "{StaticResource TransactionTemplate}"

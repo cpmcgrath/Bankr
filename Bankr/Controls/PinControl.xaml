@@ -11,6 +11,7 @@
     <UserControl.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource GreyBtn}">
             <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
         </Style>
     </UserControl.Resources>
 
@@ -22,6 +23,7 @@
         <TextBlock Grid.ColumnSpan     = "3"
                    Text                = "{Binding MaskedPassword}"
                    FontSize            = "90"
+                   Foreground          = "{StaticResource ForegroundBrush}"
                    HorizontalAlignment = "Center"
                    VerticalAlignment   = "Top" />
         <Grid Background="{StaticResource PhoneChromeBrush}" Grid.Row="1">
